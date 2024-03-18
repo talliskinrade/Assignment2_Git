@@ -11,8 +11,8 @@ USE work.common_pack.all;
 
 entity dataConsume is
 port (
-  clk:		in std_logic;
-  reset:        in std_logic; -- synchronous reset
+  clk: in std_logic;
+  reset: in std_logic; -- synchronous reset
   start: in std_logic; -- goes high to signal data transfer
   numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
   ctrlIn: in std_logic;
@@ -33,12 +33,13 @@ ARCHITECTURE behavioural OF dataConsume IS
 -- State Declaration
 -- ALL STATE TYPES
 	TYPE state_type IS (INIT, DONE, FIRST_THREE_ctrlSet, FIRST_THREE_ctrlWait,
-??????  FIRST_THREE_regOn, FIRST_THREE_decision, MAIN_LOOP_ctrlSet, MAIN_LOOP_ctrlWait,
-??????  MAIN_LOOP_regOn, MAIN_LOOP_decision, LOOP_END_regOn, LOOP_END_decision
-??????);
+		FIRST_THREE_regOn, FIRST_THREE_decision, MAIN_LOOP_ctrlSet, MAIN_LOOP_ctrlWait,
+		MAIN_LOOP_regOn, MAIN_LOOP_decision, LOOP_END_regOn, LOOP_END_decision
+	);
  
 -- Signal Declaration
-	signal ctrlIn_delayed, ctrlIn_detected: std_logic;
+	SIGNAL curState, nextState: state_type;
+	SIGNAL ctrlIn_delayed, ctrlIn_detected: std_logic;
 	SIGNAL start_reg: std_logic;
 
 	SIGNAL reg6, reg5, reg4, reg3, reg2, reg1, reg0: unsigned(7 DOWNTO 0);
@@ -48,24 +49,23 @@ ARCHITECTURE behavioural OF dataConsume IS
 	SIGNAL numWords_int: integer range 0 to 999;
 	SIGNAL counter: integer range 0 to 999;
 	--SIGNAL maxValue: unsigned(7 DOWNTO 0);
+
 BEGIN
 
 -------------------------------------------------------------------
-  combi_out: PROCESS(cur_state)
+  combi_out: PROCESS(curState)
   BEGIN
-	dataReady <= '0';
-	byte <= '00000000';
+	dataReady <= '1';
+	--byte <= '00000000';
 	seqDone <= '0';
 	
-	IF cur_state = FIRST_THREE_regOn
-	OR cur_state = MAIN_LOOP_regOn THEN
-
+	IF curState = FIRST_THREE_regOn OR curState = MAIN_LOOP_regOn THEN
 	  byte <= data;
 	  dataReady <= '1';
-
 	END IF;
-	IF cur_state = DONE THEN
-	  seqDone = '1';
+
+	IF curState = DONE THEN
+	  seqDone <= '1';
 	END IF;
   END PROCESS;
 
@@ -110,7 +110,7 @@ BEGIN
 
   BEGIN
   FOR i IN 0 TO 2 LOOP
-    tmp:=tmp+TO_INTEGER(numWords_bcd(i))*(10**(2-i));
+    tmp:=tmp+(TO_INTEGER(numWords_bcd(i))*(10**(2-i)));
   
   END LOOP;
 
@@ -195,9 +195,9 @@ BEGIN
 	--data4 <= TO_UNSIGNED(0,8);
 	--data5 <= TO_UNSIGNED(0,8);
 	--data6 <= TO_UNSIGNED(0,8);
-	maxValue <= TO_UNSIGNED(0,8);
+	--maxValue <= TO_UNSIGNED(0,8);
 
-	counter = 0;
+	counter <= 0;
 
 
 
@@ -209,13 +209,13 @@ BEGIN
 	end if;
 
       WHEN DONE =>
-	nextState => INIT;
+	nextState <= INIT;
 	
 	  
--------- maybe there's a way to streamline these? like just three, one before the 
--- max test, one with the max test, one with the end loop.
---------------------------------------------------------------------
--------- Register 6 States (NORMAL CONDITIONS)
+      -------- maybe there's a way to streamline these? like just three, one before the 
+      -- max test, one with the max test, one with the end loop.
+      --------------------------------------------------------------------
+      -------- Register 6 States (NORMAL CONDITIONS)
       WHEN FIRST_THREE_ctrlSet =>
 	ctrlOut <= not ctrlOut;
 	nextState <= FIRST_THREE_ctrlWait;
@@ -272,8 +272,8 @@ BEGIN
 	reg2 <= reg3;
 	reg1 <= reg2;
 	reg0 <= reg1;
-	counter <= counter +1;
-	if reg4 > dataResults(3) then
+	counter <= counter + 1;
+	if reg4 > std_logic_vector(dataResults(3)) then
 	  dataResults(0) <= std_logic_vector(reg1);
 	  dataResults(1) <= std_logic_vector(reg2);
 	  dataResults(2) <= std_logic_vector(reg3);
@@ -281,7 +281,7 @@ BEGIN
 	  dataResults(4) <= std_logic_vector(reg5);
 	  dataResults(5) <= std_logic_vector(reg6);
 	  dataResults(6) <= data;
-	  maxIndex <= counter -3;
+	  maxIndex <= counter - 3;
 
 ---- maybe add more things here?
 
@@ -316,15 +316,15 @@ BEGIN
 	reg2 <= reg3;
 	reg1 <= reg2;
 	reg0 <= reg1;
-	counter <= counter +1;
-	if reg4 > dataResults(3) then
+	counter <= counter + 1;
+	if reg4 > std_logic_vector(dataResults(3)) then
 	  dataResults(0) <= std_logic_vector(reg1);
 	  dataResults(1) <= std_logic_vector(reg2);
 	  dataResults(2) <= std_logic_vector(reg3);
 	  dataResults(3) <= std_logic_vector(reg4);
 	  dataResults(4) <= std_logic_vector(reg5);
 	  dataResults(5) <= std_logic_vector(reg6);
-	  dataResults(6) <= "00000000";
+	  dataResults(6) <= '00000000';
 	  
 	  maxIndex <= counter - 3;
 	end if;
@@ -337,77 +337,8 @@ BEGIN
 	  nextState <= LOOP_END_decision;
 	else
 	  nextState <= DONE;
-
+	end if;
+    END CASE;
 END PROCESS;
 
 END behavioural;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
