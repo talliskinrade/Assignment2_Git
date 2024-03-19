@@ -12,7 +12,7 @@ dC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignm
 Pcommon_pack
 Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z1 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 0
+!i122 49
 w1710710609
 Z2 dC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing
 8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/common_pack.vhd
@@ -23,132 +23,174 @@ VRG>9PGHdXCD_fM]lWo13Z2
 !s100 BJ^Y1M8Bo>]Jn`1e6=_lY3
 Z3 OV;C;2020.1;71
 32
-!s110 1710712487
+Z4 !s110 1710767148
 !i10b 1
-!s108 1710712487.000000
+Z5 !s108 1710767148.000000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/common_pack.vhd|
 !s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/common_pack.vhd|
 !i113 1
-Z4 o-work work -2002 -explicit
-Z5 tExplicit 1 CvgOpt 0
+Z6 o-work work -2002 -explicit
+Z7 tExplicit 1 CvgOpt 0
 Edataconsume
-w1710723760
-Z6 DPx4 work 11 common_pack 0 22 RG>9PGHdXCD_fM]lWo13Z2
-DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z8 w1710764158
+Z9 DPx4 work 11 common_pack 0 22 RG>9PGHdXCD_fM]lWo13Z2
+Z10 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 R0
 R1
-!i122 15
+!i122 46
 R2
-8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd
-FC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd
+Z11 8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd
+Z12 FC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd
 l0
 L12 1
 VO@diQMQ2NeK2Ua?kCYL493
 !s100 N3A:JHd4hlc0M_H6?iH3l0
 R3
 32
-!s110 1710723773
+Z13 !s110 1710767147
 !i10b 1
-!s108 1710723773.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd|
-!s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd|
+Z14 !s108 1710767147.000000
+Z15 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd|
+Z16 !s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd|
 !i113 1
-R4
-R5
-Edatagen
-Z7 w1710712381
 R6
+R7
+Abehavioural
+R9
+R10
 R0
 R1
-!i122 1
+DEx4 work 11 dataconsume 0 22 O@diQMQ2NeK2Ua?kCYL493
+!i122 46
+l57
+L31 315
+V:AFJT2IzLB`Y?5nQY`]>k3
+!s100 DcB_?VhlHebOajzczTPb[0
+R3
+32
+R13
+!i10b 1
+R14
+R15
+R16
+!i113 1
+R6
+R7
+Edatagen
+Z17 w1710712381
+R9
+R0
+R1
+!i122 48
 R2
-Z8 8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd
-Z9 FC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd
+Z18 8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd
+Z19 FC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd
 l0
 L5 1
 V1bMDfP:igB?f1chI1>SaC3
 !s100 2KmO3BR117LiL0c[ZmJFV2
 R3
 32
-Z10 !s110 1710712511
-!i10b 1
-Z11 !s108 1710712511.000000
-Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd|
-Z13 !s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd|
-!i113 1
 R4
+!i10b 1
 R5
-Abehav
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd|
+Z21 !s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataGen.vhd|
+!i113 1
 R6
+R7
+Abehav
+R9
 R0
 R1
 DEx4 work 7 datagen 0 22 1bMDfP:igB?f1chI1>SaC3
-!i122 1
+!i122 48
 l19
 L15 37
 Vf]<h?[VJnle9^mTT_RdZg1
 !s100 z^64WNe`A75`L:f3VUAFJ0
 R3
 32
-R10
-!i10b 1
-R11
-R12
-R13
-!i113 1
 R4
+!i10b 1
 R5
-Etb_datagenconsume
-w1710712336
+R20
+R21
+!i113 1
 R6
-Z14 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R7
+Etb_datagenconsume
+Z22 w1710767137
+R9
+Z23 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 R0
 R1
-!i122 3
+!i122 47
 R2
-Z15 8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
-Z16 FC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+Z24 8C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+Z25 FC:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
 l0
-L7 1
-VA8FffZ[@o^dLE:3aL:EQI0
-!s100 f<`BRhezggH93Nj8U3W^f3
+L6 1
+VXzZo8WA[_8k]?KV1d1BlC3
+!s100 Xd=I:Qj:^fL[CYChQfnNf1
 R3
 32
-!s110 1710712526
+R13
 !i10b 1
-!s108 1710712525.000000
-Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd|
-Z18 !s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd|
-!i113 1
-R4
-R5
-Etb_datagencontroller
-Z19 w1710712803
-R6
 R14
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd|
+Z27 !s107 C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd|
+!i113 1
+R6
+R7
+Atest
+R9
+R23
+R0
+R1
+DEx4 work 17 tb_datagenconsume 0 22 XzZo8WA[_8k]?KV1d1BlC3
+!i122 47
+l78
+L9 155
+V:U;J;@76FK0KMfU2Y0eDI3
+!s100 Uo?DQ46J@ZK89P4[alFZH1
+R3
+32
+R13
+!i10b 1
+R14
+R26
+R27
+!i113 1
+R6
+R7
+Etb_datagencontroller
+Z28 w1710712803
+R9
+R23
 R0
 R1
 !i122 4
 R2
-R15
-R16
+R24
+R25
 l0
 L7 1
 VWDCP[E9le>5]j>HDUUPAA1
 !s100 ;[iUS620H]aHlTSL4zOT<3
 R3
 32
-Z20 !s110 1710712810
+Z29 !s110 1710712810
 !i10b 1
-Z21 !s108 1710712810.000000
-R17
-R18
+Z30 !s108 1710712810.000000
+R26
+R27
 !i113 1
-R4
-R5
-Atest
 R6
-R14
+R7
+Atest
+R9
+R23
 R0
 R1
 DEx4 work 20 tb_datagencontroller 0 22 WDCP[E9le>5]j>HDUUPAA1
@@ -159,11 +201,11 @@ VfBZVh^COLnimQE6M4?DFN2
 !s100 6X:9jX20Z]RcX>kP?RkCV3
 R3
 32
-R20
+R29
 !i10b 1
-R21
-R17
-R18
+R30
+R26
+R27
 !i113 1
-R4
-R5
+R6
+R7

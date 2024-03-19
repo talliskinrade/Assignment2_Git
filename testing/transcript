@@ -26,3 +26,96 @@
 # Compile of dataController.vhd failed with 28 errors.
 # Compile of dataController.vhd failed with 27 errors.
 # Compile of dataController.vhd failed with 27 errors.
+# Compile of dataController.vhd failed with 27 errors.
+# Compile of dataController.vhd failed with 24 errors.
+# Compile of dataController.vhd failed with 94 errors.
+# Compile of dataController.vhd failed with 85 errors.
+# Compile of dataController.vhd failed with 27 errors.
+# Compile of dataController.vhd failed with 24 errors.
+# Compile of dataController.vhd failed with 98 errors.
+# Compile of dataController.vhd failed with 85 errors.
+# Compile of dataController.vhd failed with 85 errors.
+# Compile of dataController.vhd failed with 75 errors.
+# Compile of dataController.vhd failed with 31 errors.
+# Compile of dataController.vhd failed with 18 errors.
+# Compile of dataController.vhd failed with 17 errors.
+# Compile of dataController.vhd failed with 16 errors.
+# Compile of dataController.vhd failed with 17 errors.
+# Compile of dataController.vhd failed with 14 errors.
+# Compile of dataController.vhd failed with 13 errors.
+# Compile of dataController.vhd failed with 19 errors.
+# Compile of dataController.vhd failed with 12 errors.
+# Compile of dataController.vhd failed with 10 errors.
+# Compile of dataController.vhd failed with 12 errors.
+# Compile of dataController.vhd failed with 11 errors.
+# Compile of dataController.vhd failed with 10 errors.
+# Compile of dataController.vhd failed with 8 errors.
+# Compile of dataController.vhd failed with 6 errors.
+# Compile of dataController.vhd failed with 2 errors.
+# Compile of dataController.vhd failed with 1 errors.
+# Compile of dataController.vhd failed with 3 errors.
+# Compile of dataController.vhd failed with 1 errors.
+# Compile of dataController.vhd was successful.
+# Load canceled
+vsim -gui work.tb_datagencontroller
+# vsim -gui work.tb_datagencontroller 
+# Start time: 12:18:41 on Mar 18,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# ** Warning: (vsim-3473) Component instance "dataController1 : dataController" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+add wave -position insertpoint sim:/tb_datagencontroller/*
+run -all
+# ** Failure: Cycle count exceeded 4500; Cycle count:4500
+#    Time: 90030 ns  Iteration: 0  Process: /tb_datagencontroller/tbCounter File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+# Break in Process tbCounter at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd line 107
+quit -sim
+# End time: 13:03:08 on Mar 18,2024, Elapsed time: 0:44:27
+# Errors: 1, Warnings: 57
+# Load canceled
+vsim -gui work.dataconsume
+# vsim -gui work.dataconsume 
+# Start time: 13:04:12 on Mar 18,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.common_pack
+# Loading work.dataconsume(behavioural)
+# Compile of dataController.vhd was successful.
+# Compile of tb_dataController.vhd was successful.
+# Compile of dataGen.vhd was successful.
+# Compile of common_pack.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+quit -sim
+# End time: 13:06:10 on Mar 18,2024, Elapsed time: 0:01:58
+# Errors: 0, Warnings: 2
+# Load canceled
+vsim -gui work.tb_datagenconsume
+# vsim -gui work.tb_datagenconsume 
+# Start time: 13:07:21 on Mar 18,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagenconsume(test)
+# Loading work.datagen(behav)
+# Loading ieee.numeric_std(body)
+# Loading work.dataconsume(behavioural)
+add wave -position insertpoint sim:/tb_datagenconsume/*
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagenconsume/dataConsume1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagenconsume/dataConsume1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagenconsume/dataConsume1
+# ** Failure: Cycle count exceeded 4500; Cycle count:4500
+#    Time: 90030 ns  Iteration: 0  Process: /tb_datagenconsume/tbCounter File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+# Break in Process tbCounter at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd line 106

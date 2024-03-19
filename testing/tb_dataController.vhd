@@ -1,28 +1,27 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
-
 use work.common_pack.all;
 
-entity tb_dataGenController is 
+entity tb_dataGenConsume is 
 end;
 
-architecture test of tb_dataGenController is 
+architecture test of tb_dataGenConsume is 
 
   component dataGen is
   	port (
-  	 clk:		in std_logic;
-  		reset:		in std_logic; -- synchronous reset
+  		clk: in std_logic;
+  		reset: in std_logic; -- synchronous reset
   		ctrlIn: in std_logic;
   		ctrlOut: out std_logic;
   		data: out std_logic_vector(7 downto 0)
   	);
   end component;
   
-  component dataController is
+  component dataConsume is
   	port (
-	  clk:		in std_logic;
-		reset:		in std_logic; -- synchronous reset
+	  	clk: in std_logic;
+		reset: in std_logic; -- synchronous reset
 		start: in std_logic; -- goes high to signal data transfer
 		numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
 		ctrlIn: in std_logic;
@@ -146,7 +145,7 @@ begin
       data => readData
     );
     
-  dataController1: dataController
+  dataConsume1: dataConsume
     port map (
       clk => clk,
       reset => reset,
