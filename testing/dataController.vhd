@@ -9,7 +9,7 @@ USE ieee.numeric_std.ALL;
 USE work.ALL;
 USE work.common_pack.all;
 
-entity dataConsume is
+entity dataController is
 port (
   clk: in std_logic;
   reset: in std_logic; -- synchronous reset
@@ -24,11 +24,11 @@ port (
   maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
   dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
 );
-end dataConsume;
+end dataController;
 
 -----------------------------------------------------------------
 
-ARCHITECTURE behavioural OF dataConsume IS
+ARCHITECTURE behavioural OF dataController IS
 
 -- State Declaration
 -- ALL STATE TYPES
@@ -64,15 +64,13 @@ BEGIN
 	seqDone <= '0';
 	
 	IF cur_state = FIRST_THREE_regOn OR cur_state = MAIN_LOOP_regOn THEN
-
 	  byte <= data;
 	  dataReady <= '1';
-
 	END IF;
+
 	IF cur_state = DONE THEN
 	  seqDone <= '1';
 	END IF;
-	ctrlOut <= ctrlOut_reg;
   END PROCESS;
 
 --- there is a potential issue with this combi_out state stuff. If the max Value is the very final one in the sequence, it may not actually output this. However,
@@ -116,7 +114,7 @@ BEGIN
 
   BEGIN
   FOR i IN 0 TO 2 LOOP
-    tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(2-i)));
+    tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
   
   END LOOP;
 
@@ -153,10 +151,15 @@ seq_state:  PROCESS (clk, reset, start)
     IF reset = '1' THEN
       cur_state <= INIT;
     ELSIF rising_edge(clk) THEN
+	IF cur_state = FIRST_THREE_regOn OR cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+	  counter <= counter + 1;
+	ELSIF cur_state = INIT THEN
+	  counter <= 0;
+	END IF;
         cur_state <= next_state;
 	start_reg <= start;
         dataResults <= dataResults_reg;
-      
+	ctrlOut <= ctrlOut_reg;
     END IF;
    
   END PROCESS;
@@ -195,10 +198,9 @@ BEGIN
 	--data5 <= TO_UNSIGNED(0,8);
 	--data6 <= TO_UNSIGNED(0,8);
 	--maxValue <= TO_UNSIGNED(0,8);
-
-	counter <= 0;
-
-
+	--counter <= 0;
+	ctrlOut_reg <= '0';
+	dataResults_reg <= (others => (others => '0'));
 
 --all registers to zero, then:
 	if start_reg = '1' then
@@ -206,6 +208,7 @@ BEGIN
 	else
 	  next_state <= INIT;
 	end if;
+
 
       WHEN DONE =>
 	next_state <= INIT;
@@ -219,6 +222,7 @@ BEGIN
 	ctrlOut_reg <= not ctrlOut_reg;
 	next_state <= FIRST_THREE_ctrlWait;
 
+
       WHEN FIRST_THREE_ctrlWait =>
 	if ctrlIn_detected = '1' then 
 	  next_state <= FIRST_THREE_regOn;
@@ -226,14 +230,16 @@ BEGIN
 	  next_state <= FIRST_THREE_ctrlWait;
 	end if;
 
+
       WHEN FIRST_THREE_regOn =>
 	reg6 <= UNSIGNED(data);
 	reg5 <= reg6;
 	reg4 <= reg5;
 	--??--reg3 <= reg4;
-	counter <= counter + 1;
+	--counter <= counter + 1;
 	next_state <= FIRST_THREE_decision;
       
+
       WHEN FIRST_THREE_decision =>
 	if start_reg = '1' then
 	  if counter < numWords_int then
@@ -273,7 +279,7 @@ BEGIN
 	reg2 <= reg3;
 	reg1 <= reg2;
 	reg0 <= reg1;
-	counter <= counter +1;
+	--counter <= counter +1;
 	if reg4 > unsigned(dataResults_reg(3)) then
 	  dataResults_reg(0) <= std_logic_vector(reg1);
 	  dataResults_reg(1) <= std_logic_vector(reg2);
@@ -317,7 +323,7 @@ BEGIN
 	reg2 <= reg3;
 	reg1 <= reg2;
 	reg0 <= reg1;
-	counter <= counter +1;
+	-- counter <= counter +1;
 	if reg4 > unsigned(dataResults_reg(3)) then
 	  dataResults_reg(0) <= std_logic_vector(reg1);
 	  dataResults_reg(1) <= std_logic_vector(reg2);
@@ -334,7 +340,7 @@ BEGIN
 
 
       WHEN LOOP_END_decision =>
-	if counter < numWords_add3 then
+	if counter < numWords_int then
 	  next_state <= LOOP_END_decision;
 	else
 	  next_state <= DONE;

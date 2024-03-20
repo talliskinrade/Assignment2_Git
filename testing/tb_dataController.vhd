@@ -3,10 +3,10 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use work.common_pack.all;
 
-entity tb_dataGenConsume is 
+entity tb_dataGenController is 
 end;
 
-architecture test of tb_dataGenConsume is 
+architecture test of tb_dataGenController is 
 
   component dataGen is
   	port (
@@ -18,7 +18,7 @@ architecture test of tb_dataGenConsume is
   	);
   end component;
   
-  component dataConsume is
+  component dataController is
   	port (
 	  	clk: in std_logic;
 		reset: in std_logic; -- synchronous reset
@@ -145,7 +145,7 @@ begin
       data => readData
     );
     
-  dataConsume1: dataConsume
+  dataController1: dataController
     port map (
       clk => clk,
       reset => reset,
