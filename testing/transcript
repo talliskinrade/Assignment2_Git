@@ -467,3 +467,503 @@ run -all
 # ** Failure: Cycle count exceeded 4500; Cycle count:4500
 #    Time: 90030 ns  Iteration: 0  Process: /tb_datagencontroller/tbCounter File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
 # Break in Process tbCounter at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd line 106
+quit -sim
+# End time: 10:35:34 on Mar 20,2024, Elapsed time: 10:42:37
+# Errors: 1, Warnings: 14
+# Compile of dataController.vhd failed with 1 errors.
+# Compile of dataController.vhd was successful.
+vsim -gui work.tb_datagencontroller(test)
+# vsim -gui work.tb_datagencontroller(test) 
+# Start time: 10:36:37 on Mar 20,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# Loading ieee.numeric_std(body)
+# Loading work.datacontroller(behavioural)
+add wave -position insertpoint sim:/tb_datagencontroller/dataController1/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: talli  Hostname: LAPTOP-79ULQ39M  ProcessID: 24420
+#           Attempting to use alternate WLF file "./wlft9mr2df".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft9mr2df
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Note: Sequence No.0; Cycle count:2506
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 0 should be 11110000
+# but is           00111001
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 1 should be 01111011
+# but is           01101000
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 2 should be 10010010
+# but is           11111110
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 4 should be 01101000
+# but is           10010010
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 5 should be 00111001
+# but is           10010010
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 6 should be 11011101
+# but is           01111011
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# peak 0 should be {0010} {0010} {1000}
+# but is           {0111} {0010} {0010}
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.1; Cycle count:3020
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 0 should be 01010110
+# but is           10010100
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 1 should be 01001110
+# but is           11111000
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 2 should be 11010001
+# but is           11111011
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 4 should be 11111000
+# but is           11010001
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 5 should be 10010100
+# but is           11010001
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 6 should be 00111100
+# but is           01001110
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# peak 1 should be {0000} {1000} {0001}
+# but is           {0000} {1000} {0000}
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.2; Cycle count:3524
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 0 should be 11110111
+# but is           01111101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 1 should be 11010101
+# but is           11001011
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 2 should be 01110010
+# but is           11111101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 4 should be 11001011
+# but is           01110010
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 5 should be 01111101
+# but is           01110010
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 6 should be 00100010
+# but is           11010101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# peak 2 should be {0000} {1000} {1000}
+# but is           {0111} {1000} {0000}
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.3; Cycle count:4028
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 0 should be 11110000
+# but is           00111001
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 1 should be 01111011
+# but is           01101000
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 2 should be 10010010
+# but is           11111110
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 4 should be 01101000
+# but is           10010010
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 5 should be 00111001
+# but is           10010010
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 6 should be 11011101
+# but is           01111011
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# peak 3 should be {0000} {0010} {1000}
+# but is           {0111} {0010} {0000}
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Failure: Cycle count exceeded 4500; Cycle count:4500
+#    Time: 90030 ns  Iteration: 0  Process: /tb_datagencontroller/tbCounter File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+# Break in Process tbCounter at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd line 106
+quit -sim
+# End time: 10:39:20 on Mar 20,2024, Elapsed time: 0:02:43
+# Errors: 1, Warnings: 36
+# Compile of dataController.vhd was successful.
+vsim -gui work.tb_datagencontroller(test)
+# vsim -gui work.tb_datagencontroller(test) 
+# Start time: 10:42:41 on Mar 20,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# Loading ieee.numeric_std(body)
+# Loading work.datacontroller(behavioural)
+add wave -position insertpoint sim:/tb_datagencontroller/dataController1/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: talli  Hostname: LAPTOP-79ULQ39M  ProcessID: 24420
+#           Attempting to use alternate WLF file "./wlfteet1f6".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlfteet1f6
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Note: Sequence No.0; Cycle count:2506
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 0 should be 11110000
+# but is           11011101
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 1 should be 01111011
+# but is           00111001
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 2 should be 10010010
+# but is           01101000
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 4 should be 01101000
+# but is           10010010
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 5 should be 00111001
+# but is           01111011
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 6 should be 11011101
+# but is           11110000
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# peak 0 should be {0010} {0010} {1000}
+# but is           {1000} {0010} {0010}
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.1; Cycle count:3020
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 0 should be 01010110
+# but is           00111100
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 1 should be 01001110
+# but is           10010100
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 2 should be 11010001
+# but is           11111000
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 4 should be 11111000
+# but is           11010001
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 5 should be 10010100
+# but is           01001110
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 6 should be 00111100
+# but is           01010110
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# peak 1 should be {0000} {1000} {0001}
+# but is           {0001} {1000} {0000}
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.2; Cycle count:3524
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 0 should be 11110111
+# but is           00100010
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 1 should be 11010101
+# but is           01111101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 2 should be 01110010
+# but is           11001011
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 4 should be 11001011
+# but is           01110010
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 5 should be 01111101
+# but is           11010101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 6 should be 00100010
+# but is           11110111
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# peak 2 should be {0000} {1000} {1000}
+# but is           {1000} {1000} {0000}
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.3; Cycle count:4028
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 0 should be 11110000
+# but is           11011101
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 1 should be 01111011
+# but is           00111001
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 2 should be 10010010
+# but is           01101000
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 4 should be 01101000
+# but is           10010010
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 5 should be 00111001
+# but is           01111011
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 6 should be 11011101
+# but is           11110000
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# peak 3 should be {0000} {0010} {1000}
+# but is           {1000} {0010} {0000}
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Failure: Cycle count exceeded 4500; Cycle count:4500
+#    Time: 90030 ns  Iteration: 0  Process: /tb_datagencontroller/tbCounter File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+# Break in Process tbCounter at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd line 106
+quit -sim
+# End time: 10:53:17 on Mar 20,2024, Elapsed time: 0:10:36
+# Errors: 1, Warnings: 35
+# Compile of dataController.vhd failed with 2 errors.
+# Compile of dataController.vhd failed with 2 errors.
+# Compile of dataController.vhd failed with 1 errors.
+# Compile of dataController.vhd was successful.
+vsim -gui work.tb_datagencontroller(test)
+# vsim -gui work.tb_datagencontroller(test) 
+# Start time: 10:58:04 on Mar 20,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# Loading ieee.numeric_std(body)
+# Loading work.datacontroller(behavioural)
+add wave -position insertpoint sim:/tb_datagencontroller/dataController1/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: talli  Hostname: LAPTOP-79ULQ39M  ProcessID: 24420
+#           Attempting to use alternate WLF file "./wlft6jzd77".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft6jzd77
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Note: Sequence No.0; Cycle count:2506
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 0 should be 11110000
+# but is           10110000
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 1 should be 01111011
+# but is           00111001
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 2 should be 10010010
+# but is           01101000
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 4 should be 01101000
+# but is           10010010
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 5 should be 00111001
+# but is           01111011
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# byte 6 should be 11011101
+# but is           11110000
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 0:
+# peak 0 should be {0010} {0010} {1000}
+# but is           {1001} {0010} {0010}
+#    Time: 50130 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.1; Cycle count:3020
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 0 should be 01010110
+# but is           01001011
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 1 should be 01001110
+# but is           10010100
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 2 should be 11010001
+# but is           11111000
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 4 should be 11111000
+# but is           11010001
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 5 should be 10010100
+# but is           01001110
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# byte 6 should be 00111100
+# but is           01010110
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 1:
+# peak 1 should be {0000} {1000} {0001}
+# but is           {0010} {1000} {0000}
+#    Time: 60410 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.2; Cycle count:3524
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 0 should be 11110111
+# but is           00110111
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 1 should be 11010101
+# but is           01111101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 2 should be 01110010
+# but is           11001011
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 4 should be 11001011
+# but is           01110010
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 5 should be 01111101
+# but is           11010101
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# byte 6 should be 00100010
+# but is           11110111
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 2:
+# peak 2 should be {0000} {1000} {1000}
+# but is           {1001} {1000} {0000}
+#    Time: 70490 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Note: Sequence No.3; Cycle count:4028
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 0 should be 11110000
+# but is           10110000
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 1 should be 01111011
+# but is           00111001
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 2 should be 10010010
+# but is           01101000
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 4 should be 01101000
+# but is           10010010
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 5 should be 00111001
+# but is           01111011
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# byte 6 should be 11011101
+# but is           11110000
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Warning: Mismatch for seq 3:
+# peak 3 should be {0000} {0010} {1000}
+# but is           {1001} {0010} {0000}
+#    Time: 80570 ns  Iteration: 2  Instance: /tb_datagencontroller
+# ** Failure: Cycle count exceeded 4500; Cycle count:4500
+#    Time: 90030 ns  Iteration: 0  Process: /tb_datagencontroller/tbCounter File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd
+# Break in Process tbCounter at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/tb_dataController.vhd line 106
+quit -sim
+# End time: 11:22:09 on Mar 20,2024, Elapsed time: 0:24:05
+# Errors: 1, Warnings: 38
+# Compile of dataController.vhd was successful with warnings.
+# Compile of dataController.vhd was successful.
+vsim -gui work.tb_datagencontroller(test)
+# vsim -gui work.tb_datagencontroller(test) 
+# Start time: 11:23:00 on Mar 20,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# Loading ieee.numeric_std(body)
+# Loading work.datacontroller(behavioural)
+add wave -position insertpoint sim:/tb_datagencontroller/dataController1/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: talli  Hostname: LAPTOP-79ULQ39M  ProcessID: 24420
+#           Attempting to use alternate WLF file "./wlft2ck7d1".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft2ck7d1
+run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+# ** Fatal: (vsim-3421) Value 1000 is out of range 0 to 999.
+#    Time: 80010 ns  Iteration: 0  Process: /tb_datagencontroller/dataController1/seq_state File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd Line: 157
+# Fatal error in Process seq_state at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd line 157
+# 
+# HDL call sequence:
+# Stopped at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd 157 Process seq_state
+# 
+quit -sim
+# End time: 11:31:26 on Mar 20,2024, Elapsed time: 0:08:26
+# Errors: 1, Warnings: 8
