@@ -75,7 +75,7 @@ BEGIN
 
 
 --Data Generation Two-Phase Protocol
-
+-- NOTE: this code originally features in the data Generator, as the reverse process of what the following code does. Credit: Dr Shuangyi Yan and Dr Faezeh Arab Hassani.
   delay_CtrlIn: process(clk)     
     begin
       if rising_edge(clk) then
@@ -84,6 +84,7 @@ BEGIN
     end process;
   
   ctrlIn_detected <= ctrlIn xor ctrlIn_delayed;
+
 
 
   bcd_to_integer: PROCESS(numWords_bcd)
@@ -109,12 +110,10 @@ BEGIN
   Integer_to_bcd: Process(maxIndex_int)
 	Variable tmp: integer range 0 to 99;
   Begin
-	maxIndex(0) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
--- can I convert this to vector in same line?
---vhdl integers really round down?
+	maxIndex(2) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
 	tmp:= maxIndex_int rem 100;
 	maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
-	maxIndex(2) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
+	maxIndex(0) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
   End process;
 
 
