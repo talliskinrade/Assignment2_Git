@@ -1,5 +1,5 @@
 
--- Data Processor (DataController.vhd)
+-- Data Processor (DataConsume.vhd)
 -- Asynchronous reset, active high
 ------------------------------------------------------
 
@@ -38,8 +38,7 @@ ARCHITECTURE behavioural OF dataConsume IS
  
 -- Signal Declaration
 
---DELELELELELELELELELELELELELELLE
-	SIGNAL cur_state, next_state, prev_state: state_type;
+	SIGNAL cur_state, next_state: state_type;
 	SIGNAL ctrlIn_delayed, ctrlIn_detected: std_logic;
 	SIGNAL start_reg: std_logic;
 
@@ -138,11 +137,10 @@ seq_state:  PROCESS (clk, reset, start)
 	ELSIF cur_state = INIT THEN
 	  counter <= 0;
 	END IF;
-	    cur_state <= next_state;
-        --cur_state <= next_state after 1 ns;
-	--prev_state <= cur_state;
+	cur_state <= next_state;
+    
 	start_reg <= start;
-        dataResults <= dataResults_reg;
+    dataResults <= dataResults_reg;
 	ctrlOut <= ctrlOut_reg;
     END IF;
    
@@ -233,30 +231,27 @@ BEGIN
 	if counter < numWords_int then
 	   next_state <= MAIN_LOOP_decision;
 	else
-	   next_state <= LOOP_END_decision;
+	  if counter < numWords_add3 then
+	    next_state <= LOOP_END_regOn;
+	    else
+	    next_state <= DONE;
+	    end if;
+	
+	
+	
+	
+	 --  next_state <= LOOP_END_decision;
 	   
 	 end if;
 	
---	if prev_state = MAIN_LOOP_regOn then
---	  next_state <= MAIN_LOOP_decision;
---	else
---	  next_state <= LOOP_END_decision;
---	end if;
 
 
       WHEN MAIN_LOOP_decision =>
 	if start_reg = '1' then
-	  if counter < numWords_int then
 	    next_state <= MAIN_LOOP_ctrlSet;
------ loop back to the start of MAIN_LOOP_ctrlSet.
 
 	  else
-	    
-	    next_state <= LOOP_END_regOn;
----- if counter equals numWords , move on to LOOP_END.
-
-	  end if;
-	else
+	 
 	  next_state <= MAIN_LOOP_decision;
 ---- if start is still 0, stay on MAIN_LOOP_decision
 	end if;	
@@ -276,15 +271,6 @@ BEGIN
 	reg0 <= reg1;
 
 	next_state <= STORE_reg;
-
-
-      WHEN LOOP_END_decision =>
-	if counter < numWords_add3 then
-	  next_state <= LOOP_END_regOn;
-	  
-	else
-	  next_state <= DONE;
-	end if;
 
 	WHEN DONE =>
 	  next_state <= INIT;
