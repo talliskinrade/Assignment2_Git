@@ -1,0 +1,63 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Mon Apr  1 17:24:57 2024
+# Process ID: 10300
+# Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/impl_1
+# Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/impl_1/top.vdi
+# Journal file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/impl_1\vivado.jou
+# Running On: DESKTOP-5CTLBIO, OS: Windows, CPU Frequency: 1797 MHz, CPU Physical cores: 16, Host memory: 7883 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
+Command: link_design -top top -part xc7a35tcpg236-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.dcp' for cell 'clk_wiz'
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 905.238 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 14 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2023.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc] for cell 'clk_wiz/inst'
+Finished Parsing XDC File [c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc] for cell 'clk_wiz/inst'
+Parsing XDC File [c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc] for cell 'clk_wiz/inst'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc:54]
+INFO: [Timing 38-2] Deriving generated clocks [c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc:54]
+Finished Parsing XDC File [c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc] for cell 'clk_wiz/inst'
+Parsing XDC File [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/Cmod-A7-Master.xdc]
+Finished Parsing XDC File [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/Cmod-A7-Master.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+CRITICAL WARNING: [Project 1-486] Could not resolve non-primitive black box cell 'dataGen' instantiated as 'dataGen1' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:115]
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1599.875 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+10 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.statsThreshold
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+ERROR: [DRC INBB-3] Black Box Instances: Cell 'dataGen1' of type 'dataGen' has undefined contents and is considered a black box.  The contents of this cell must be defined for opt_design to complete successfully.
+INFO: [Project 1-461] DRC finished with 1 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1599.875 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+16 Infos, 0 Warnings, 1 Critical Warnings and 2 Errors encountered.
+opt_design failed
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.statsThreshold
+ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
+
+INFO: [Common 17-206] Exiting Vivado at Mon Apr  1 17:25:23 2024...

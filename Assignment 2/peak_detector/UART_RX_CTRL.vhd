@@ -107,7 +107,7 @@ begin
   receiver_nextState: process(currentState, baudClkX8Count, bitCount, RxD_reg, regFull, rxDone, rcvShiftReg) 
   begin
 	 -- assign defaults at the beginning to avoid assigning in every branch
-    setFE <= '0'; setOE <= '1'; 
+    setFE <= '0'; setOE <= '0';
 	 enable_baudClkX8Count <= TRUE;
 	 reset_baudClkX8Count <= FALSE;
     case currentState is

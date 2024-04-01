@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "cmdProc_behav" "xil_defaultlib.cmdProc" -log "elaborate.log" 
