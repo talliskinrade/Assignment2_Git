@@ -62,9 +62,11 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
 	SIGNAL numWordsBuffer: std_logic_vector (11 downto 0) := "000000000000";
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
-	SIGNAL nibbleOneBuffer, nibbleTwoBuffer: std_logic_vector (3 downto 0) := "0000";
+	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
+--	SIGNAL nibbleOneBuffer, nibbleTwoBuffer: std_logic_vector (3 downto 0) := "0000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL hexASCIIMapping: std_logic_vector (0 to 127) := "00110000001100010011001000110011001101000011010100110110001101110011100000111001010000010100001001000011010001000100010101000110";
+	SIGNAL receivedByteFlag: std_logic := '0';
 	-- Have faith in the mega array!!!!!
 	
 -------------------------------------------------------------------
@@ -96,36 +98,39 @@ BEGIN
 
     combi_out: PROCESS (cur_state)
     BEGIN
-       txNow <= '0';    
-    
-	     IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P THEN
-	         txNow <= '1';
-	     END IF;
+        txNow <= '0';
+	    IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P THEN
+	       txNow <= '1';
+	    ELSIF cur_state = SET_TX_L THEN
+	       txData <= byteBuffer(counter3*8 to counter3*8 + 7);
+	    END IF;
     END PROCESS;
     
-    combi_byteToBCD: PROCESS (cur_state, counterA3)
+    combi_byteToBCD: PROCESS (cur_state, dataBuffer)
     BEGIN
         IF cur_state = BYTE_TO_BCD AND counterA3 < 3 THEN
+            -- Byte in dataBuffer is an ASCII code between 00110000 and 00111001.
+            -- Last 4 bits denote the BCD digit, hence we can extract this and store it in the BCD array.
             numWordsBuffer(counterA3*4 to counterA3*4 + 3) <= dataBuffer(3 to 7);
             numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 to counterA3*4 + 3);
+            -- Repeat for all three bytes received.
             counterA3 <= counterA3 + 1;
         END IF;
     END PROCESS;
     
     combi_byteToASCII: PROCESS (cur_state)
     BEGIN
-        IF cur_state = BYTE_TO_ASCII THEN
-            -- Take first 4 bits of incoming byte
-            nibbleOneBuffer <= byteBuffer (0 to 3);
-            -- Take last 4 bits of incoming byte
-            nibbleTwoBuffer <= byteBuffer (4 to 7);
+        receivedByteFlag <= '0';
+        IF cur_state = BYTE_TO_ASCII_L AND seqDone = '1' THEN
+            dataResultBuffer <= dataResults(counter7);
             
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
-            outByteBuffer(0 to 7) <= hexASCIIMapping((TO_INTEGER(UNSIGNED(nibbleOneBuffer))*8) to (TO_INTEGER(UNSIGNED(nibbleOneBuffer))*8 + 7));
+            outByteBuffer(0 to 7) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 + 7);
             -- Set second byte of outByteBuffer to the ASCII value for the hex value of the last 4 bits of the incoming byte.
-            outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(nibbleTwoBuffer))*8 to TO_INTEGER(UNSIGNED(nibbleTwoBuffer))*8 + 7);
+            outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 + 7);
             -- Set third byte of outByteBuffer to the ASCII value for the space character.
             outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
+            receivedByteFlag <= '1';
         END IF;
     END PROCESS;
 
@@ -173,7 +178,11 @@ BEGIN
 	           END IF;
 	
 	       WHEN BYTE_TO_ASCII_L =>
-	           next_state <= RESET_COUNTER_3;
+	           IF receivedByteFlag = '1' THEN
+    	           next_state <= RESET_COUNTER_3;
+    	       ELSE
+    	           next_state <= BYTE_TO_ASCII_L;
+    	       END IF;
 	
 	       WHEN RESET_COUNTER_3 =>
 	           counter7 <= counter7 + 1;
@@ -181,9 +190,9 @@ BEGIN
 	           next_state <= SET_TX_L;
 	
 	       WHEN SET_TX_L =>
-	           counter3 <= counter3 + 1;
 	           IF txDone = '1' THEN
 	               next_state <= SEND_TX_L;
+	               counter3 <= counter3 + 1;
 	           ELSE
 	               next_state <= SET_TX_L;
 	           END IF;
