@@ -31,9 +31,9 @@ ARCHITECTURE behavioural OF cmdProc IS
 -- ALL STATE TYPES
 	TYPE state_type IS (
 	   INIT,
-	   ECHO_DATA_START,
-	   SET_DATA,
-	   TRANSMIT,
+	   RECEIVE_DATA,
+	   ECHO_DATA,
+	   CHECK_COMMANDS,
 	   RESET_COUNT,
 	   INCREMENT_COUNT,
 	   BYTE_TO_BCD,
@@ -46,6 +46,10 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   RESET_COUNTER_3,
 	   SET_TX_L,
 	   SEND_TX_L,
+	   BYTE_AND_BCD_TO_ASCII,
+	   RESET_COUNTER_6,
+	   SET_TX_P,
+	   SEND_TX_P,
 	   DONE
 	);
  
@@ -53,37 +57,70 @@ ARCHITECTURE behavioural OF cmdProc IS
     SIGNAL cur_state, next_state: state_type;
 	SIGNAL counter7: integer range 0 to 7;
 	SIGNAL counter3: integer range 0 to 3;
+	SIGNAL counterA3: integer range 0 to 3;
+	SIGNAL receivedDataFlag, sentDataFlag, byteToBCDFlag: std_logic;
+	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
+	SIGNAL numWordsBuffer: std_logic_vector (11 downto 0) := "000000000000";
 	
 -------------------------------------------------------------------
 --Component Instantiation
 
-    COMPONENT terminal_echo
-    PORT (
-        clk: IN STD_LOGIC;
-        reset: IN STD_LOGIC;
-        rxNow: IN STD_LOGIC;
-        txDone: IN STD_LOGIC;
-        rxData: IN STD_LOGIC_VECTOR (7 downto 0);
-        txData: OUT STD_LOGIC_VECTOR (7 downto 0);
-        txNow: OUT STD_LOGIC;
-        rxDone: OUT STD_LOGIC
-    );
-    END COMPONENT;
+--    COMPONENT terminal_echo
+--    PORT (
+--        clk: IN STD_LOGIC;
+--        reset: IN STD_LOGIC;
+--        rxNow: IN STD_LOGIC;
+--        txDone: IN STD_LOGIC;
+--        rxData: IN STD_LOGIC_VECTOR (7 downto 0);
+--        txData: OUT STD_LOGIC_VECTOR (7 downto 0);
+--        txNow: OUT STD_LOGIC;
+--        rxDone: OUT STD_LOGIC
+--    );
+--    END COMPONENT;
     
-    FOR behavTerminalEcho: terminal_echo USE ENTITY WORK.terminal_echo(behavTerminalEcho);
+--    FOR behavTerminalEcho: terminal_echo USE ENTITY WORK.terminal_echo(behavTerminalEcho);
 
 --End component instantiation
 -------------------------------------------------------------------
 	
 BEGIN
-    combi_out: PROCESS(cur_state)
+
+    combi_terminalEcho: PROCESS(cur_state, rxNow, txDone)
     BEGIN
---	     txNow <= '0';
-	
+        txNow <= '0';
+        rxDone <= '0';
+        receivedDataFlag <= '0';
+        sentDataFlag <= '0';
+	     
+        IF cur_state = RECEIVE_DATA AND rxNow = '1' THEN
+	       dataBuffer <= rxData;
+	       rxDone <= '1';
+	       txData <= dataBuffer;
+	       receivedDataFlag <= '1';
+	    END IF;
+	   IF cur_state = ECHO_DATA AND txDone = '1' THEN
+	       txNow <= '1';
+	       sentDataFlag <= '1';
+	   END IF;
+    END PROCESS;
+
+    combi_out: PROCESS (cur_state)
+    BEGIN
+--       txNow <= '0';    
+    
 --	     IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P OR --etc. THEN
 --	         txNow <= '1';
 --	     ELSIF cur_state = THEN
 --	     END IF;
+    END PROCESS;
+    
+    combi_byteToBCD: PROCESS (cur_state, counterA3)
+    BEGIN
+        IF cur_state = BYTE_TO_BCD AND counterA3 < 3 THEN
+            numWordsBuffer(counterA3*4 to counterA3*4 + 3) <= dataBuffer(3 to 7);
+            numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 to counterA3*4 + 3);
+            counterA3 <= counterA3 + 1;
+        END IF;
     END PROCESS;
 
     seq_state: PROCESS (clk, reset)
@@ -97,23 +134,36 @@ BEGIN
     END PROCESS;
   
 ------------------------------------------------------------------
-    combi_nextState: PROCESS(cur_state, rxData, txDone, counter3, counter7) --[other states necessary]--
+    combi_nextState: PROCESS(cur_state, receivedDataFLag, sentDataFlag, rxData, txDone, counter3, counter7) --[other states necessary]--
     BEGIN
         CASE cur_state IS
 	       WHEN INIT =>
-	           next_state <= ECHO_DATA_START;
+	           next_state <= RECEIVE_DATA;
 	
-	       WHEN ECHO_DATA_START =>
-	           next_state <= SET_DATA;
+	       WHEN RECEIVE_DATA =>
+	           IF receivedDataFlag = '1' THEN
+	               next_state <= ECHO_DATA;
+	           ELSE
+	               next_state <= RECEIVE_DATA;
+	           END IF;
 	  
-	       WHEN SET_DATA =>
-	           next_state <= TRANSMIT;
+	       WHEN ECHO_DATA =>
+	           IF sentDataFlag = '1' THEN
+	               next_state <= CHECK_COMMANDS;
+	           ELSE
+	               next_state <= ECHO_DATA;
+	           END IF;
 
-	       WHEN TRANSMIT =>
-	           IF rxData = "01001100" OR rxData = "01101100" THEN
+	       WHEN CHECK_COMMANDS =>
+	           IF dataBuffer = "01001100" OR dataBuffer = "01101100" THEN -- L
 	               next_state <= BYTE_TO_ASCII_L;
 	               counter7 <= 0;
---	             ELSIF rxData = --etc.
+	           ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN -- A
+	               next_state <= RESET_COUNT;
+	           ELSIF dataBuffer = "01010000" OR dataBuffer = "01110000" THEN -- P
+	               next_state <= BYTE_AND_BCD_TO_ASCII;
+	           ELSE
+	               next_state <= RECEIVE_DATA;
 	           END IF;
 	
 	       WHEN BYTE_TO_ASCII_L =>
@@ -138,7 +188,7 @@ BEGIN
 	           ELSIF counter7 < 7 THEN
 	               next_state <= BYTE_TO_ASCII_L;
 	           ELSE
-	               next_state <= ECHO_DATA_START;
+	               next_state <= RECEIVE_DATA;
 	           END IF;
 	  
 	
@@ -149,5 +199,5 @@ BEGIN
         END CASE;
     END PROCESS;
     
-    behavTerminalEcho: terminal_echo PORT MAP(clk,reset,rxNow,txDone,rxData,txData,txNow,rxDone);
+--    behavTerminalEcho: terminal_echo PORT MAP(clk,reset,rxNow,txDone,rxData,txData,txNow,rxDone);
 END behavioural;

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="411.255690 us"></ZoomStartTime>
-      <ZoomEndTime time="3,326.255691 us"></ZoomEndTime>
-      <Cursor1Time time="3,490.505000 us"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="2,001.000001 us"></ZoomEndTime>
+      <Cursor1Time time="991.515000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="168"></NameColumnWidth>
+      <NameColumnWidth column_width="162"></NameColumnWidth>
       <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="14" />
+   <WVObjectSize size="10" />
    <wvobject fp_name="/tb_cmdProc_interim/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,10 +36,6 @@
       <obj_property name="ElementShortName">rxData[7:0]</obj_property>
       <obj_property name="ObjectShortName">rxData[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/rx/dataReady" type="logic">
-      <obj_property name="ElementShortName">dataReady</obj_property>
-      <obj_property name="ObjectShortName">dataReady</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_cmdProc_interim/rx/setOE" type="logic">
       <obj_property name="ElementShortName">setOE</obj_property>
       <obj_property name="ObjectShortName">setOE</obj_property>
@@ -48,32 +44,20 @@
       <obj_property name="ElementShortName">regFull</obj_property>
       <obj_property name="ObjectShortName">regFull</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/rx/currentState" type="other">
-      <obj_property name="ElementShortName">currentState</obj_property>
-      <obj_property name="ObjectShortName">currentState</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_cmdProc_interim/sig_rx" type="logic">
       <obj_property name="ElementShortName">sig_rx</obj_property>
       <obj_property name="ObjectShortName">sig_rx</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/behavTerminalEcho/currentState" type="other">
-      <obj_property name="ElementShortName">currentState</obj_property>
-      <obj_property name="ObjectShortName">currentState</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/behavTerminalEcho/rxNow" type="logic">
-      <obj_property name="ElementShortName">rxNow</obj_property>
-      <obj_property name="ObjectShortName">rxNow</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/behavTerminalEcho/dataBuffer" type="array">
-      <obj_property name="ElementShortName">dataBuffer[7:0]</obj_property>
-      <obj_property name="ObjectShortName">dataBuffer[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/behavTerminalEcho/txNow" type="logic">
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/txNow" type="logic">
       <obj_property name="ElementShortName">txNow</obj_property>
       <obj_property name="ObjectShortName">txNow</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/tx/DATA" type="array">
-      <obj_property name="ElementShortName">DATA[7:0]</obj_property>
-      <obj_property name="ObjectShortName">DATA[7:0]</obj_property>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/dataBuffer" type="array">
+      <obj_property name="ElementShortName">dataBuffer[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dataBuffer[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/cur_state" type="other">
+      <obj_property name="ElementShortName">cur_state</obj_property>
+      <obj_property name="ObjectShortName">cur_state</obj_property>
    </wvobject>
 </wave_config>
