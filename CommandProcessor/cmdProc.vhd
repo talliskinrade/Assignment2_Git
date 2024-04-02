@@ -61,24 +61,14 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL receivedDataFlag, sentDataFlag, byteToBCDFlag: std_logic;
 	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
 	SIGNAL numWordsBuffer: std_logic_vector (11 downto 0) := "000000000000";
+	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
+	SIGNAL nibbleOneBuffer, nibbleTwoBuffer: std_logic_vector (3 downto 0) := "0000";
+	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
+	SIGNAL hexASCIIMapping: std_logic_vector (0 to 127) := "00110000001100010011001000110011001101000011010100110110001101110011100000111001010000010100001001000011010001000100010101000110";
+	-- Have faith in the mega array!!!!!
 	
 -------------------------------------------------------------------
 --Component Instantiation
-
---    COMPONENT terminal_echo
---    PORT (
---        clk: IN STD_LOGIC;
---        reset: IN STD_LOGIC;
---        rxNow: IN STD_LOGIC;
---        txDone: IN STD_LOGIC;
---        rxData: IN STD_LOGIC_VECTOR (7 downto 0);
---        txData: OUT STD_LOGIC_VECTOR (7 downto 0);
---        txNow: OUT STD_LOGIC;
---        rxDone: OUT STD_LOGIC
---    );
---    END COMPONENT;
-    
---    FOR behavTerminalEcho: terminal_echo USE ENTITY WORK.terminal_echo(behavTerminalEcho);
 
 --End component instantiation
 -------------------------------------------------------------------
@@ -106,12 +96,11 @@ BEGIN
 
     combi_out: PROCESS (cur_state)
     BEGIN
---       txNow <= '0';    
+       txNow <= '0';    
     
---	     IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P OR --etc. THEN
---	         txNow <= '1';
---	     ELSIF cur_state = THEN
---	     END IF;
+	     IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P THEN
+	         txNow <= '1';
+	     END IF;
     END PROCESS;
     
     combi_byteToBCD: PROCESS (cur_state, counterA3)
@@ -120,6 +109,23 @@ BEGIN
             numWordsBuffer(counterA3*4 to counterA3*4 + 3) <= dataBuffer(3 to 7);
             numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 to counterA3*4 + 3);
             counterA3 <= counterA3 + 1;
+        END IF;
+    END PROCESS;
+    
+    combi_byteToASCII: PROCESS (cur_state)
+    BEGIN
+        IF cur_state = BYTE_TO_ASCII THEN
+            -- Take first 4 bits of incoming byte
+            nibbleOneBuffer <= byteBuffer (0 to 3);
+            -- Take last 4 bits of incoming byte
+            nibbleTwoBuffer <= byteBuffer (4 to 7);
+            
+            -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
+            outByteBuffer(0 to 7) <= hexASCIIMapping((TO_INTEGER(UNSIGNED(nibbleOneBuffer))*8) to (TO_INTEGER(UNSIGNED(nibbleOneBuffer))*8 + 7));
+            -- Set second byte of outByteBuffer to the ASCII value for the hex value of the last 4 bits of the incoming byte.
+            outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(nibbleTwoBuffer))*8 to TO_INTEGER(UNSIGNED(nibbleTwoBuffer))*8 + 7);
+            -- Set third byte of outByteBuffer to the ASCII value for the space character.
+            outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
         END IF;
     END PROCESS;
 
@@ -190,8 +196,7 @@ BEGIN
 	           ELSE
 	               next_state <= RECEIVE_DATA;
 	           END IF;
-	  
-	
+	 
 	       WHEN DONE =>
 	           next_state <= INIT;
 	       WHEN OTHERS =>
@@ -199,5 +204,4 @@ BEGIN
         END CASE;
     END PROCESS;
     
---    behavTerminalEcho: terminal_echo PORT MAP(clk,reset,rxNow,txDone,rxData,txData,txNow,rxDone);
 END behavioural;
