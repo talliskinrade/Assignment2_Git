@@ -121,7 +121,7 @@ BEGIN
         END IF;
     END PROCESS;
     
-    combi_BCDToByte: PROCESS (cur_state)
+    combi_BCDToASCII: PROCESS (cur_state)
     BEGIN
         IF cur_state = BCD_TO_ASCII_P THEN
             -- Don't need to check if seqDone = 1 as this will have been checked in BYTE_TO_ASCII_P
