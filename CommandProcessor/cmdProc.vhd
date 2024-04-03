@@ -50,6 +50,7 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   RESET_COUNTER_6,
 	   SET_TX_P,
 	   SEND_TX_P,
+	   BYTE_TO_ASCII_P,
 	   DONE
 	);
  
@@ -121,8 +122,12 @@ BEGIN
     combi_byteToASCII: PROCESS (cur_state)
     BEGIN
         receivedByteFlag <= '0';
-        IF cur_state = BYTE_TO_ASCII_L AND seqDone = '1' THEN
-            dataResultBuffer <= dataResults(counter7);
+        IF seqDone = '1' AND (cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P) THEN
+            IF cur_state = BYTE_TO_ASCII_L THEN
+                dataResultBuffer <= dataResults(counter7);
+            ELSIF cur_state = BYTE_TO_ASCII_P THEN
+                dataResultBuffer <= dataResults(3);
+            END IF;
             
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
             outByteBuffer(0 to 7) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 + 7);
