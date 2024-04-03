@@ -36,7 +36,7 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   CHECK_COMMANDS,
 	   RESET_COUNT,
 	   INCREMENT_COUNT,
-	   BYTE_TO_BCD,
+	   BYTE_TO_BCD_A,
 	   SEND_TO_DP,
 	   BYTE_TO_ASCII,
 	   SET_TX,
@@ -51,6 +51,7 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   SET_TX_P,
 	   SEND_TX_P,
 	   BYTE_TO_ASCII_P,
+	   BCD_TO_ASCII_P,
 	   DONE
 	);
  
@@ -64,11 +65,12 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL numWordsBuffer: std_logic_vector (11 downto 0) := "000000000000";
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
---	SIGNAL nibbleOneBuffer, nibbleTwoBuffer: std_logic_vector (3 downto 0) := "0000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL hexASCIIMapping: std_logic_vector (0 to 127) := "00110000001100010011001000110011001101000011010100110110001101110011100000111001010000010100001001000011010001000100010101000110";
-	SIGNAL receivedByteFlag: std_logic := '0';
 	-- Have faith in the mega array!!!!!
+	SIGNAL receivedByteFlag: std_logic := '0';
+	SIGNAL outMaxIndexBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
+	SIGNAL outPPrinting: std_logic_vector (0 to 48) := "00000000000000000000000000000000000000000000000000000000";
 	
 -------------------------------------------------------------------
 --Component Instantiation
@@ -109,7 +111,7 @@ BEGIN
     
     combi_byteToBCD: PROCESS (cur_state, dataBuffer)
     BEGIN
-        IF cur_state = BYTE_TO_BCD AND counterA3 < 3 THEN
+        IF cur_state = BYTE_TO_BCD_A AND counterA3 < 3 THEN
             -- Byte in dataBuffer is an ASCII code between 00110000 and 00111001.
             -- Last 4 bits denote the BCD digit, hence we can extract this and store it in the BCD array.
             numWordsBuffer(counterA3*4 to counterA3*4 + 3) <= dataBuffer(3 to 7);
@@ -119,13 +121,35 @@ BEGIN
         END IF;
     END PROCESS;
     
+    combi_BCDToByte: PROCESS (cur_state)
+    BEGIN
+        IF cur_state = BCD_TO_ASCII_P THEN
+            -- Don't need to check if seqDone = 1 as this will have been checked in BYTE_TO_ASCII_P
+            -- and will no longer be 1 as it has been a clock cycle.
+            -- Every decimal character begins with the ASCII code "0011".
+            outMaxIndexBuffer(0 to 3) <= "0011";
+            -- First BCD digit in maxIndex
+            outMaxIndexBuffer(4 to 7) <= maxIndex(0);
+            outMaxIndexBuffer(8 to 11) <= "0011";
+            outMaxIndexBuffer(12 to 15) <= maxIndex(1);
+            outMaxIndexBuffer(16 to 19) <= "0011";
+            outMaxIndexBuffer(20 to 23) <= maxIndex(2);
+            -- outMaxIndexBuffer contains all three ASCII codes for the BCD digits that must be output for the max index.
+            
+            outPPrinting(24 to 47) <= outMaxIndexBuffer;
+            -- outPPrinting now contains all 6 bytes that must be printed in turn to complete P printing.
+        END IF;
+    END PROCESS;
+    
     combi_byteToASCII: PROCESS (cur_state)
     BEGIN
         receivedByteFlag <= '0';
         IF seqDone = '1' AND (cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P) THEN
             IF cur_state = BYTE_TO_ASCII_L THEN
+                -- If L printing, output each result individually.
                 dataResultBuffer <= dataResults(counter7);
             ELSIF cur_state = BYTE_TO_ASCII_P THEN
+                -- If P printing, only output the 4th (middle) result as this is the peak byte.
                 dataResultBuffer <= dataResults(3);
             END IF;
             
@@ -135,6 +159,9 @@ BEGIN
             outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 + 7);
             -- Set third byte of outByteBuffer to the ASCII value for the space character.
             outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
+            IF cur_state = BYTE_TO_ASCII_P THEN
+                outPPrinting(0 to 23) <= outByteBuffer;
+            END IF;
             receivedByteFlag <= '1';
         END IF;
     END PROCESS;
@@ -177,7 +204,7 @@ BEGIN
 	           ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN -- A
 	               next_state <= RESET_COUNT;
 	           ELSIF dataBuffer = "01010000" OR dataBuffer = "01110000" THEN -- P
-	               next_state <= BYTE_AND_BCD_TO_ASCII;
+	               next_state <= BYTE_TO_ASCII_P;
 	           ELSE
 	               next_state <= RECEIVE_DATA;
 	           END IF;
@@ -210,6 +237,19 @@ BEGIN
 	           ELSE
 	               next_state <= RECEIVE_DATA;
 	           END IF;
+
+    	   WHEN BYTE_TO_ASCII_P =>
+    	       -- Because in combi_byteToASCII we wait for seqDone to = 1, we do not know if this 
+    	       -- will be completed in a single clock cycle. Hence, we must wait for it to finish 
+    	       -- before moving to the next state.
+    	       IF receivedByteFlag = '1' THEN
+    	           next_state <= BCD_TO_ASCII_P;
+    	       ELSE
+    	           next_state <= BYTE_TO_ASCII_P;
+    	       END IF;
+    	   
+    	   WHEN BCD_TO_ASCII_P =>
+    	       next_state <= RESET_COUNTER_6;
 	 
 	       WHEN DONE =>
 	           next_state <= INIT;
