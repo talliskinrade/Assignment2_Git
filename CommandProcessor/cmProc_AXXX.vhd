@@ -7,7 +7,7 @@ use work.common_pack.all;
 -- use UNISIM.VPKG.ALL;
 
 -- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
+-- arithmetic functions with Signed OR Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
@@ -15,236 +15,286 @@ use work.common_pack.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity cmdProc is
-   port (
-      clk:	in std_logic;
-      reset:	in std_logic;
-      rxnow:	in std_logic;
-      rxData:	in std_logic_vector (7 downto 0);
-      txData:	out std_logic_vector (7 downto 0);
-      rxdone:	out std_logic;
-      ovErr:	in std_logic;
-      framErr:	in std_logic;
-      txnow:	out std_logic;
-      txdone:	in std_logic;
-      start:    out std_logic;
-      numWords_bcd: out BCD_ARRAY_TYPE(2 downto 0);
-      dataReady: in std_logic;
-      byte:     in std_logic_vector(7 downto 0);
-      maxIndex: in BCD_ARRAY_TYPE(2 downto 0);
-      dataResults: in CHAR_ARRAY_TYPE(0 to RESULT_BYTE_NUM-1);
-      seqDone:  in std_logic
+ENTITY cmdProc IS
+   pORt (
+      clk:	IN std_logic;
+      reset:	IN std_logic;
+      rxnow:	IN std_logic;
+      rxData:	IN std_logic_vectOR (7 downto 0);
+      txData:	OUT std_logic_vectOR (7 downto 0);
+      rxdone:	OUT std_logic;
+      ovErr:	IN std_logic;
+      framErr:	IN std_logic;
+      txnow:	OUT std_logic;
+      txdone:	IN std_logic;
+      start:    OUT std_logic;
+      numWORds_bcd: OUT BCD_ARRAY_TYPE(2 downto 0);
+      dataReady: IN std_logic;
+      byte:     IN std_logic_vectOR(7 downto 0);
+      maxIndex: IN BCD_ARRAY_TYPE(2 downto 0);
+      dataResults: IN CHAR_ARRAY_TYPE(0 to RESULT_BYTE_NUM-1);
+      seqDone:  IN std_logic
     );
-end cmdProc;
+END cmdProc;
 
-architecture Behavioral of cmdProc is
-   Type state_type is (INIT, TRANSMIT, BYTE_TO_BCD, RX_DONE_LOW, SEND_TO_DP, START_HIGH, DETA_READY, SEND_TX_1, SEND_TX_2, SEND_SPACE);
-   Signal curState, nextState : state_type;
-   signal count_numbers, count_send : integer := 0;
-   signal tem_BCD, tem_Data_to_BCD : std_logic_vector(11 downto 0);
-   signal rxdone_temp : std_logic := '0';
-   signal ASCII1, ASCII2 : std_logic_vector(7 downto 0);
-begin
+ARCHITECTURE BehaviORal OF cmdProc IS
+   Type state_type is (INIT, TRANSMIT, BYTE_TO_BCD, RX_DONE_LOW, SEND_TO_DP_A, START_HIGH, DETA_READY, SEND_TX_1, SEND_TX_2, SEND_SPACE);
+   SIGNAL cur_state, next_state : state_type;
+   SIGNAL count_numbers, count_send : integer := 0;
+   SIGNAL tem_BCD, tem_Data_to_BCD : std_logic_vectOR(11 downto 0);
+   SIGNAL rxdone_temp : std_logic := '0';
+   SIGNAL ASCII1, ASCII2 : std_logic_vectOR(7 downto 0);
+   signal prev_seqDone, seqDone_temp : std_logic := '0';
+   signal byte_complete, count_reset : std_logic := '0';
+BEGIN
 
--- This process increment counter when a number is received from rxData and reset otherwise
-count_number: process(rxData)
-begin
---   if clk'event and clk = '1' then
-      if rxData = "00110000" or 
-         rxData = "00110001" or 
-         rxData = "00110010" or 
-         rxData = "00110011" or 
-         rxData = "00110100" or 
-         rxData = "00110101" or 
-         rxData = "00110110" or 
-         rxData = "00110111" or 
-         rxData = "00111000" or 
-         rxData = "00111001" then
+-- This PROCESS increment counter when a number is received from rxData and reset otherwise
+count_number: PROCESS(rxData, count_reset)
+BEGIN
+   IF count_reset = '0' THEN
+      IF rxData = "00110000" OR 
+         rxData = "00110001" OR 
+         rxData = "00110010" OR 
+         rxData = "00110011" OR 
+         rxData = "00110100" OR 
+         rxData = "00110101" OR 
+         rxData = "00110110" OR 
+         rxData = "00110111" OR 
+         rxData = "00111000" OR 
+         rxData = "00111001" THEN
          count_numbers <= count_numbers + 1;
-      else
+      ELSE
          count_numbers <= 0;
-      end if;
---   end if;
-end process;
+      END IF;
+   ELSE
+      count_numbers <= 0;
+      count_reset <= '0';
+   END IF;
+
+END PROCESS;
 
 
--- This register saves the BCD of numbers to be sent to Data processor
-numbers_register: process(clk, tem_Data_to_BCD)
-begin
-   if clk'event and clk = '1' then
+-- This register saves the BCD OF numbers to be sent to Data PROCESSOR
+numbers_register: PROCESS(clk, tem_Data_to_BCD)
+BEGIN
+   IF clk'EVENT AND clk = '1' THEN
       tem_BCD <= tem_Data_to_BCD;
-   end if;
-end process;
+   END IF;
+END PROCESS;
 
-process(txdone)
-begin
-   if txdone = '0' then
+PROCESS(txdone)
+BEGIN
+   IF txdone = '0' THEN
       txnow <= '0';
-   end if;
-end process;
+   END IF;
+END PROCESS;
 
-set_rxdone_high_proc: process(clk, rxdone_temp)
-begin
-   
-   if clk'event and clk= '1' then
-      if rxdone_temp = '1' then
+--PROCESS(clk)
+--BEGIN
+--    IF clk'EVENT and CLK = '1' THEN
+--        IF rxdone = '1' THEN
+--            rxdone <= '0';  -- Set rxdone low after one clock cycle
+--        END IF;
+--    END IF;
+--END PROCESS;
+
+
+set_rxdone_high_proc: PROCESS(clk, rxdone_temp)
+BEGIN 
+   IF clk'EVENT AND clk= '1' THEN
+      IF rxdone_temp = '1' THEN
          rxdone <= '1';
-      else
+      ELSE
          rxdone <= '0';
-      end if;
+      END IF;
       rxdone_temp <= '0';
-   end if;
-end process;
-
-byte_to_ASCII: process(byte)
-  begin
-      case byte(7 downto 4) is
-        when "0000" => ASCII1 <= "00110000";  -- '0'
-        when "0001" => ASCII1 <= "00110001";  -- '1'
-        when "0010" => ASCII1 <= "00110010";  -- '2'
-        when "0011" => ASCII1 <= "00110011";  -- '3'
-        when "0100" => ASCII1 <= "00110100";  -- '4'
-        when "0101" => ASCII1 <= "00110101";  -- '5'
-        when "0110" => ASCII1 <= "00110110";  -- '6'
-        when "0111" => ASCII1 <= "00110111";  -- '7'
-        when "1000" => ASCII1 <= "00111000";  -- '8'
-        when "1001" => ASCII1 <= "00111001";  -- '9'
-        when "1010" => ASCII1 <= "01000001";  -- 'A'
-        when "1011" => ASCII1 <= "01000010";  -- 'B'
-        when "1100" => ASCII1 <= "01000011";  -- 'C'
-        when "1101" => ASCII1 <= "01000100";  -- 'D'
-        when "1110" => ASCII1 <= "01000101";  -- 'E'
-        when "1111" => ASCII1 <= "01000110";  -- 'F'
-        when others => ASCII1 <= "01000110";  -- '?' (default for unknown values)
-      end case;
-            case byte(3 downto 0) is
-        when "0000" => ASCII2 <= "00110000";  -- '0'
-        when "0001" => ASCII2 <= "00110001";  -- '1'
-        when "0010" => ASCII2 <= "00110010";  -- '2'
-        when "0011" => ASCII2 <= "00110011";  -- '3'
-        when "0100" => ASCII2 <= "00110100";  -- '4'
-        when "0101" => ASCII2 <= "00110101";  -- '5'
-        when "0110" => ASCII2 <= "00110110";  -- '6'
-        when "0111" => ASCII2 <= "00110111";  -- '7'
-        when "1000" => ASCII2 <= "00111000";  -- '8'
-        when "1001" => ASCII2 <= "00111001";  -- '9'
-        when "1010" => ASCII2 <= "01000001";  -- 'A'
-        when "1011" => ASCII2 <= "01000010";  -- 'B'
-        when "1100" => ASCII2 <= "01000011";  -- 'C'
-        when "1101" => ASCII2 <= "01000100";  -- 'D'
-        when "1110" => ASCII2 <= "01000101";  -- 'E'
-        when "1111" => ASCII2 <= "01000110";  -- 'F'
-        when others => ASCII2 <= "01000110";  -- '?' (default for unknown values)
-      end case;
-  end process;
+   END IF;
+END PROCESS;
 
 
-nextState_logic: process(curState, rxData, byte, txdone, dataReady)
-begin
-   case curState is     
-      when INIT =>
-         rxdone <= '0';
+-- process(seqDone)
+-- begin
+----    if clk'event and clk = '1' then
+--        if seqDone = '1' then
+--            seqDone_temp <= '1';  -- Set Start signal to low
+--        else
+--           seqDone_temp <= seqDone_temp;
+--        end if;
+----     end if;
+--    end process;
+
+byte_to_ASCII: PROCESS(byte)
+  BEGIN
+      CASE byte(7 downto 4) is
+        WHEN "0000" => ASCII1 <= "00110000";  -- '0'
+        WHEN "0001" => ASCII1 <= "00110001";  -- '1'
+        WHEN "0010" => ASCII1 <= "00110010";  -- '2'
+        WHEN "0011" => ASCII1 <= "00110011";  -- '3'
+        WHEN "0100" => ASCII1 <= "00110100";  -- '4'
+        WHEN "0101" => ASCII1 <= "00110101";  -- '5'
+        WHEN "0110" => ASCII1 <= "00110110";  -- '6'
+        WHEN "0111" => ASCII1 <= "00110111";  -- '7'
+        WHEN "1000" => ASCII1 <= "00111000";  -- '8'
+        WHEN "1001" => ASCII1 <= "00111001";  -- '9'
+        WHEN "1010" => ASCII1 <= "01000001";  -- 'A'
+        WHEN "1011" => ASCII1 <= "01000010";  -- 'B'
+        WHEN "1100" => ASCII1 <= "01000011";  -- 'C'
+        WHEN "1101" => ASCII1 <= "01000100";  -- 'D'
+        WHEN "1110" => ASCII1 <= "01000101";  -- 'E'
+        WHEN "1111" => ASCII1 <= "01000110";  -- 'F'
+        WHEN others => ASCII1 <= "01000110";  -- '?' (default fOR unknown values)
+      END CASE;
+            CASE byte(3 downto 0) is
+        WHEN "0000" => ASCII2 <= "00110000";  -- '0'
+        WHEN "0001" => ASCII2 <= "00110001";  -- '1'
+        WHEN "0010" => ASCII2 <= "00110010";  -- '2'
+        WHEN "0011" => ASCII2 <= "00110011";  -- '3'
+        WHEN "0100" => ASCII2 <= "00110100";  -- '4'
+        WHEN "0101" => ASCII2 <= "00110101";  -- '5'
+        WHEN "0110" => ASCII2 <= "00110110";  -- '6'
+        WHEN "0111" => ASCII2 <= "00110111";  -- '7'
+        WHEN "1000" => ASCII2 <= "00111000";  -- '8'
+        WHEN "1001" => ASCII2 <= "00111001";  -- '9'
+        WHEN "1010" => ASCII2 <= "01000001";  -- 'A'
+        WHEN "1011" => ASCII2 <= "01000010";  -- 'B'
+        WHEN "1100" => ASCII2 <= "01000011";  -- 'C'
+        WHEN "1101" => ASCII2 <= "01000100";  -- 'D'
+        WHEN "1110" => ASCII2 <= "01000101";  -- 'E'
+        WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
+        WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
+      END CASE;
+  END PROCESS;
+
+
+next_state_logic: PROCESS(cur_state, rxData, byte, txdone, dataReady, seqDone)
+BEGIN
+   CASE cur_state IS     
+      WHEN INIT =>
+         --rxdone <= '1';
          txnow <= '0';
          start <= '0';
-         nextState <= TRANSMIT;
-      when TRANSMIT =>
-         if rxnow = '1' then
-            if rxData = "01000001" or rxData = "01100001" then
-               nextState <= BYTE_TO_BCD;
+         byte_complete <= '0';
+         next_state <= TRANSMIT;
+      WHEN TRANSMIT =>
+         IF rxnow = '1' THEN
+            --rxdone <= '1';
+            IF rxData = "01000001" OR rxData = "01100001" THEN
                rxdone <= '1';
-            else
-              nextState <= BYTE_TO_BCD;
-            end if;
-         end if;
-      when BYTE_TO_BCD =>
-        if rxnow = '1' then
-         if rxData = "00110000" or 
-            rxData = "00110001" or 
-            rxData = "00110010" or 
-            rxData = "00110011" or 
-            rxData = "00110100" or 
-            rxData = "00110101" or 
-            rxData = "00110110" or 
-            rxData = "00110111" or 
-            rxData = "00111000" or 
-            rxData = "00111001" then
-            if count_numbers = 1 then
+               next_state <= BYTE_TO_BCD;
+               --rxdone <= '1';
+            ELSE
+              next_state <= BYTE_TO_BCD;
+            END IF;
+         END IF;
+      WHEN BYTE_TO_BCD =>
+        IF rxnow = '1' THEN
+         rxdone <= '1';
+         IF rxData = "00110000" OR 
+            rxData = "00110001" OR 
+            rxData = "00110010" OR 
+            rxData = "00110011" OR 
+            rxData = "00110100" OR 
+            rxData = "00110101" OR 
+            rxData = "00110110" OR 
+            rxData = "00110111" OR 
+            rxData = "00111000" OR 
+            rxData = "00111001" THEN
+            IF count_numbers = 1 THEN
                tem_Data_to_BCD(11 downto 8) <= rxData(3 downto 0);
-            elsif count_numbers = 2 then
+            ELSIF count_numbers = 2 THEN
                tem_Data_to_BCD(7 downto 4) <= rxData(3 downto 0);      
-            elsif count_numbers = 3 then
+            ELSIF count_numbers = 3 THEN
                tem_Data_to_BCD(3 downto 0) <= rxData(3 downto 0);
-            end if;
-            rxdone <= '1';
-            nextState <= RX_DONE_LOW;
-         else
-            nextState <= INIT;
-         end if;
-       end if;
-      when RX_DONE_LOW =>
+            END IF;
+            --rxdone <= '1';
+            next_state <= RX_DONE_LOW;
+         ELSE
+            next_state <= INIT;
+         END IF;
+       END IF;
+      WHEN RX_DONE_LOW =>
          rxdone <= '0';
-         if count_numbers = 3 then
-            nextState <= SEND_TO_DP;
-         else
-            nextState <= INIT;
-         end if;
-      when SEND_TO_DP =>
-         numWords_bcd(2) <= tem_BCD(11 downto 8);
-         numWords_bcd(1) <= tem_BCD(7 downto 4);
-         numWords_bcd(0) <= tem_BCD(3 downto 0);
-         nextState <= START_HIGH;
-
-      when START_HIGH =>
+         IF count_numbers = 3 THEN
+            next_state <= SEND_TO_DP_A;
+            count_reset <= '1';
+         ELSE
+            next_state <= INIT;
+         END IF;
+      WHEN SEND_TO_DP_A =>
+         numWORds_bcd(2) <= tem_BCD(11 downto 8);
+         numWORds_bcd(1) <= tem_BCD(7 downto 4);
+         numWORds_bcd(0) <= tem_BCD(3 downto 0);
+         tem_Data_to_BCD(11 downto 0) <="000000000000";
+         next_state <= START_HIGH;
+      WHEN START_HIGH =>
          start <= '1';
-         nextState <= DETA_READY;
-      when DETA_READY =>
-         if dataReady = '1' then
-            nextState <= SEND_TX_1;
-         else
-            nextState <= DETA_READY;
-         end if;
-      when SEND_TX_1 =>
-            if txdone = '1' then
+         next_state <= DETA_READY;
+      WHEN DETA_READY =>
+      IF byte_complete = '0' THEN
+         IF dataReady = '1' THEN
+            next_state <= SEND_TX_1;
+         ELSE
+            next_state <= DETA_READY;
+         END IF;
+         IF seqDone = '1' THEN
+            start <= '0';
+         END IF;
+      ELSE
+         next_state <= INIT;
+      END IF;
+      WHEN SEND_TX_1 =>
+            IF txdone = '1' THEN
                txnow <= '1';
                txData <= ASCII1;
-               count_send <= count_send + 1;
-               nextState <= SEND_TX_2;
-            else
-               nextState <= SEND_TX_1;
-            end if;
-      when SEND_TX_2 =>
-            if txdone = '1' then
+               next_state <= SEND_TX_2;
+               IF seqDone = '1' THEN
+                  start <= '0';
+               END IF;
+            ELSE
+               next_state <= SEND_TX_1;
+            END IF;
+            IF seqDone = '1' THEN
+               start <= '0';
+               byte_complete <= '1';
+            END IF;
+      WHEN SEND_TX_2 =>
+            IF txdone = '1' THEN
                txnow <= '1';
                txData <= ASCII2;
                count_send <= count_send + 1;
-               nextState <= SEND_SPACE;
-            else
-               nextState <= SEND_TX_2;
-            end if;
-      when SEND_SPACE =>
-            if txdone = '1' then
+               next_state <= SEND_SPACE;
+            ELSE
+               next_state <= SEND_TX_2;
+            END IF;
+            IF seqDone = '1' THEN
+               start <= '0';
+               byte_complete <= '1';
+            END IF;
+      WHEN SEND_SPACE =>
+            IF txdone = '1' THEN
                txnow <= '1';
                txData <= "00100000";
-               count_send <= count_send + 1;
-               if seqDone = '0' then
-                  nextState <= DETA_READY;
-               else
-                  nextState <= INIT;
-               end if;
-            end if;
-      when others =>
-         nextState <= INIT;
-   end case;
-end process;
+               IF seqDone = '0' THEN
+                  next_state <= DETA_READY;
+               ELSIF seqDone = '1' then
+                  start <= '0';
+                  byte_complete <= '1';
+                  next_state <= INIT;
+               END IF;
+            END IF;
+      WHEN others =>
+         next_state <= INIT;
+   END CASE;
+END PROCESS;
 
 
-seq_state: process(clk, reset)
-begin
-   if reset = '1' then
-      curState <= INIT;
-   elsif clk'event and clk = '1' then
-      curState <= nextState;
-   end if;
-end process;
+seq_state: PROCESS(clk, reset)
+BEGIN
+   IF reset = '1' THEN
+      cur_state <= INIT;
+   ELSIF clk'EVENT AND clk = '1' THEN
+      cur_state <= next_state;
+   END IF;
+END PROCESS;
 
-end Behavioral;
+END BehaviORal;
