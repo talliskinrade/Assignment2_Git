@@ -36,6 +36,8 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   CHECK_COMMANDS,
 	   RESET_COUNT,
 	   INCREMENT_COUNT,
+	   RECEIVE_DATA_A,
+	   ECHO_DATA_A,
 	   CHECK_BYTE_A,
 	   BYTE_TO_BCD_A,
 	   INCREMENT_COUNT_A,
@@ -95,20 +97,14 @@ BEGIN
 
     combi_terminalEcho: PROCESS(cur_state, rxNow, txDone)
         BEGIN
-        txNow <= '0';
         rxDone <= '0';
         receivedDataFlag <= '0';
-        sentDataFlag <= '0';
 	   
-        IF cur_state = RECEIVE_DATA AND rxNow = '1' THEN
+        IF (cur_state = RECEIVE_DATA OR cur_state = RECEIVE_DATA_A) AND rxNow = '1' THEN
 	       dataBuffer <= rxData;
 	       rxDone <= '1';
 	       txData <= dataBuffer;
 	       receivedDataFlag <= '1';
-	    END IF;
-	    IF cur_state = ECHO_DATA AND txDone = '1' THEN
-	       txNow <= '1';
-	       sentDataFlag <= '1';
 	    END IF;
     END PROCESS;
 
@@ -116,10 +112,14 @@ BEGIN
     BEGIN
         txNow <= '0';
         start <= '0';
+        sentDataFlag <= '0';
+        
 	    IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P OR cur_state = SEND_TX_1 OR cur_state = SEND_TX_2 OR cur_state = SEND_SPACE THEN
 	       txNow <= '1';
+	    ELSIF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
+	       txNow <= '1';
+	       sentDataFlag <= '1';
 	    ELSIF cur_state = SET_TX_L THEN
---	       txData <= byteBuffer(counter3*8 to counter3*8 + 7);
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
         ELSIF cur_State = SET_TX_P THEN
             txData <= outPPrinting(counter6*8 to counter6*8 + 7);
@@ -128,8 +128,6 @@ BEGIN
         ELSIF cur_state = SEND_TX_A THEN
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
            txNow <= '1';
-           
-        ELSIF cur_state = INIT THEN 
 	    END IF;
     END PROCESS;
     
@@ -138,8 +136,8 @@ BEGIN
         IF cur_state = BYTE_TO_BCD_A AND counterA3 < 3 THEN
             -- Byte in dataBuffer is an ASCII code between 00110000 and 00111001.
             -- Last 4 bits denote the BCD digit, hence we can extract this and store it in the BCD array.
-            numWordsBuffer(counterA3*4 to counterA3*4 + 3) <= dataBuffer(3 to 7);
-            numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 to counterA3*4 + 3);
+            numWordsBuffer(counterA3*4 + 3 downto counterA3*4) <= dataBuffer(7 downto 4);
+            numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 + 3 downto counterA3*4);
             -- Repeat for all three bytes received.
         END IF;
     END PROCESS;
@@ -228,38 +226,6 @@ BEGIN
 
 END PROCESS;
 
--- This register saves the BCD OF numbers to be sent to Data PROCESSOR
-numbers_register: PROCESS(clk, tem_Data_to_BCD)
-BEGIN
-   IF clk'EVENT AND clk = '1' THEN
-      tem_BCD <= tem_Data_to_BCD;
-   END IF;
-END PROCESS;
-
-
-set_rxdone_high_proc: PROCESS(clk, rxdone_temp)
-BEGIN 
-   IF clk'EVENT AND clk= '1' THEN
-      IF rxdone_temp = '1' THEN
-         rxdone <= '1';
-      ELSE
-         rxdone <= '0';
-      END IF;
-      rxdone_temp <= '0';
-   END IF;
-END PROCESS;
-
-
--- process(seqDone)
--- begin
-----    if clk'event and clk = '1' then
---        if seqDone = '1' then
---            seqDone_temp <= '1';  -- Set Start signal to low
---        else
---           seqDone_temp <= seqDone_temp;
---        end if;
-----     end if;
---    end process;
 
 byte_to_ASCII_proc: PROCESS(byte)
   BEGIN
@@ -304,7 +270,7 @@ byte_to_ASCII_proc: PROCESS(byte)
   END PROCESS;
   
 ------------------------------------------------------------------
-    combi_nextState: PROCESS(cur_state, receivedDataFlag, sentDataFlag, rxData, txDone, counter3, counter7, byte, txdone, dataReady, seqDone, RESET_COUNTER_6, SET_TX_P, SEND_TX_P) --[other states necessary]--
+    combi_nextState: PROCESS(cur_state, receivedDataFlag, sentDataFlag, rxData, txDone, counter3, counter7, byte, txdone, dataReady, seqDone) --[other states necessary]--
     BEGIN
         CASE cur_state IS
 	       WHEN INIT =>
@@ -321,6 +287,8 @@ byte_to_ASCII_proc: PROCESS(byte)
 	       WHEN ECHO_DATA =>
 	           IF sentDataFlag = '1' THEN
 	               next_state <= CHECK_COMMANDS;
+--	           ELSIF sentDataFlag = '1' THEN
+--	               next_state <= CHECK_BYTE_A;
 	           ELSE
 	               next_state <= ECHO_DATA;
 	           END IF;
@@ -330,7 +298,8 @@ byte_to_ASCII_proc: PROCESS(byte)
 	               next_state <= BYTE_TO_ASCII_L;
 	               counter7 <= 0;
 	           ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN -- A
-	               next_state <= CHECK_BYTE_A;
+	               counterA3 <= 0;
+	               next_state <= RECEIVE_DATA_A;
 	           ELSIF dataBuffer = "01010000" OR dataBuffer = "01110000" THEN -- P
 	               next_state <= BYTE_TO_ASCII_P;
 	           ELSE
@@ -401,6 +370,20 @@ byte_to_ASCII_proc: PROCESS(byte)
 	 
 ---A Printing States--------------------------------------------
 
+           WHEN RECEIVE_DATA_A =>
+               IF receivedDataFlag = '1' THEN
+                   next_state <= ECHO_DATA_A;
+               ELSE
+                   next_state <= RECEIVE_DATA_A;
+               END IF;
+               
+           WHEN ECHO_DATA_A =>
+               IF sentDataFlag = '1' THEN
+                   next_state <= CHECK_BYTE_A;
+               ELSE
+                   next_state <= ECHO_DATA_A;
+               END IF;
+
            WHEN CHECK_BYTE_A =>
                IF dataBuffer = "00110000" OR 
                     dataBuffer = "00110001" OR 
@@ -413,22 +396,19 @@ byte_to_ASCII_proc: PROCESS(byte)
                     dataBuffer = "00111000" OR 
                     dataBuffer = "00111001" THEN
                    next_state <= BYTE_TO_BCD_A;
+                   counterA3 <= counterA3 + 1;
                ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN
-                   next_state <= CHECK_BYTE_A;
+                   next_state <= RECEIVE_DATA_A;
                ELSE
                    next_state <= INIT;
                END IF;
                
            WHEN BYTE_TO_BCD_A =>
                IF counterA3 < 3 THEN
-                   next_state <= INCREMENT_COUNT_A;
+                   next_state <= RECEIVE_DATA_A;
                ELSE
                    next_state <= SEND_TO_DP_A;
                END IF;
-               
-           WHEN INCREMENT_COUNT_A =>
-               counterA3 <= counterA3 + 1;
-               next_state <= CHECK_BYTE_A;
 
 --           WHEN BYTE_TO_BCD =>
 --               IF dataBuffer = "00110000" OR 
