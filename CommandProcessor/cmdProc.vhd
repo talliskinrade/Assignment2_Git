@@ -64,6 +64,7 @@ ARCHITECTURE behavioural OF cmdProc IS
     SIGNAL cur_state, next_state: state_type;
 	SIGNAL counter7: integer range 0 to 7;
 	SIGNAL counter3: integer range 0 to 3;
+	SIGNAL counter6: integer range 0 to 5;
 	SIGNAL counterA3: integer range 0 to 3;
 	SIGNAL receivedDataFlag, sentDataFlag, byteToBCDFlag: std_logic;
 	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
@@ -120,6 +121,8 @@ BEGIN
 	    ELSIF cur_state = SET_TX_L THEN
 --	       txData <= byteBuffer(counter3*8 to counter3*8 + 7);
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
+        ELSIF cur_State = SET_TX_P THEN
+            txData <= outPPrinting(counter6*8 to counter6*8 + 7);
         ELSIF cur_state = SEND_TO_DP_A THEN
            start <= '1';
         ELSIF cur_state = SEND_TX_A THEN
@@ -301,7 +304,7 @@ byte_to_ASCII_proc: PROCESS(byte)
   END PROCESS;
   
 ------------------------------------------------------------------
-    combi_nextState: PROCESS(cur_state, receivedDataFlag, sentDataFlag, rxData, txDone, counter3, counter7, byte, txdone, dataReady, seqDone) --[other states necessary]--
+    combi_nextState: PROCESS(cur_state, receivedDataFlag, sentDataFlag, rxData, txDone, counter3, counter7, byte, txdone, dataReady, seqDone, RESET_COUNTER_6, SET_TX_P, SEND_TX_P) --[other states necessary]--
     BEGIN
         CASE cur_state IS
 	       WHEN INIT =>
@@ -334,6 +337,7 @@ byte_to_ASCII_proc: PROCESS(byte)
 	               next_state <= RECEIVE_DATA;
 	           END IF;
 	
+	--- L printing:
 	       WHEN BYTE_TO_ASCII_L =>
 	           IF receivedByteFlag = '1' THEN
     	           next_state <= RESET_COUNTER_3;
@@ -362,6 +366,8 @@ byte_to_ASCII_proc: PROCESS(byte)
 	           ELSE
 	               next_state <= RECEIVE_DATA;
 	           END IF;
+	           
+	   ---- P printing:
 
     	   WHEN BYTE_TO_ASCII_P =>
     	       -- Because in combi_byteToASCII we wait for seqDone to = 1, we do not know if this 
@@ -375,9 +381,24 @@ byte_to_ASCII_proc: PROCESS(byte)
     	   
     	   WHEN BCD_TO_ASCII_P =>
     	       next_state <= RESET_COUNTER_6;
+    	       
+    	   WHEN RESET_COUNTER_6 =>
+    	       next_state <= SET_TX;
+    	       
+    	   WHEN SET_TX_P =>
+    	       IF txDone = '1' THEN
+    	           next_state <= SEND_TX_P;
+    	       ELSE
+    	           next_state <= SET_TX_P;
+    	       END IF;
+    	           
+    	   WHEN SEND_TX_P => 
+    	       IF counter6 < 6 THEN 
+    	           next_state <= SET_TX;
+    	       ELSE   --counter6 = 6
+    	           next_state <= ECHO_DATA;
+    	       END IF;
 	 
-	       WHEN DONE =>
-	           next_state <= INIT;
 ---A Printing States--------------------------------------------
 
            WHEN CHECK_BYTE_A =>
