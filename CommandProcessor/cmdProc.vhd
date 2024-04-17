@@ -74,9 +74,10 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL outPPrinting: std_logic_vector (0 to 48) := "0000000000000000000000000000000000000000000000000";
 	-------- A Printing -------
     SIGNAL count_numbers, count_send : integer := 0;
-    SIGNAL tem_BCD, tem_Data_to_BCD : std_logic_vectOR(11 downto 0);
+    SIGNAL tem_BCD : std_logic_vector(11 downto 0);
+    SIGNAL tem_Data_to_BCD : std_logic_vector(11 downto 0) := "000000000000";
     SIGNAL rxdone_temp : std_logic := '0';
-    SIGNAL ASCII1, ASCII2 : std_logic_vectOR(7 downto 0);
+    SIGNAL ASCII1, ASCII2 : std_logic_vector(7 downto 0);
     signal prev_seqDone, seqDone_temp : std_logic := '0';
     signal byte_complete, count_reset : std_logic := '0';
 -------------------------------------------------------------------
@@ -93,7 +94,7 @@ BEGIN
         rxDone <= '0';
         receivedDataFlag <= '0';
         sentDataFlag <= '0';
-	     
+	   
         IF cur_state = RECEIVE_DATA AND rxNow = '1' THEN
 	       dataBuffer <= rxData;
 	       rxDone <= '1';
@@ -210,7 +211,6 @@ BEGIN
 
 END PROCESS;
 
-
 -- This register saves the BCD OF numbers to be sent to Data PROCESSOR
 numbers_register: PROCESS(clk, tem_Data_to_BCD)
 BEGIN
@@ -234,7 +234,6 @@ END PROCESS;
 --        END IF;
 --    END IF;
 --END PROCESS;
-
 
 set_rxdone_high_proc: PROCESS(clk, rxdone_temp)
 BEGIN 
@@ -307,11 +306,6 @@ byte_to_ASCII_proc: PROCESS(byte)
     BEGIN
         CASE cur_state IS
 	       WHEN INIT =>
-	           txnow <= '0';
-	           rxDone <= '0';
-               start <= '0';
-               byte_complete <= '0';
-               tem_Data_to_BCD(11 downto 0) <="000000000000";
 	           next_state <= RECEIVE_DATA;
 	
 	       WHEN RECEIVE_DATA =>
