@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+Note: =====Process of Sequence No.1 starts.
+Time: 3490545 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+INFO: xsimkernel Simulation Memory Usage: 17240 KB (Peak: 17240 KB), Simulation CPU Usage: 10592 ms
