@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'cmdProc'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume_synthesised_unsigned.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dataConsume_synthesised'

@@ -1,2168 +1,377 @@
--- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
--- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2018.1 (win64) Build 2188600 Wed Apr  4 18:40:38 MDT 2018
--- Date        : Thu Feb  7 15:08:15 2019
--- Host        : IT000752 running 64-bit Service Pack 1  (build 7601)
--- Command     : write_vhdl E:/work/teaching/Bristol/Digital_ECAD/compareSims/dataConsume_synthesised.vhd -rename_top
---               dataConsume_synthesised -cell dataConsume -mode funcsim -force
--- Design      : dataConsume
--- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
---               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a35tcpg236-1
--- --------------------------------------------------------------------------------
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity comparator is
-  port (
-    equal : out STD_LOGIC;
-    grtThan : out STD_LOGIC;
-    data1 : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    data2 : in STD_LOGIC_VECTOR ( 7 downto 0 )
-  );
-end comparator;
 
-architecture STRUCTURE of comparator is
-  signal \<const0>\ : STD_LOGIC;
-  signal grtThan_INST_0_i_1_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_2_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_3_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_4_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_5_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_6_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_7_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_i_8_n_0 : STD_LOGIC;
-  signal grtThan_INST_0_n_1 : STD_LOGIC;
-  signal grtThan_INST_0_n_2 : STD_LOGIC;
-  signal grtThan_INST_0_n_3 : STD_LOGIC;
-  signal NLW_grtThan_INST_0_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-begin
-  equal <= \<const0>\;
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
-grtThan_INST_0: unisim.vcomponents.CARRY4
-     port map (
-      CI => '0',
-      CO(3) => grtThan,
-      CO(2) => grtThan_INST_0_n_1,
-      CO(1) => grtThan_INST_0_n_2,
-      CO(0) => grtThan_INST_0_n_3,
-      CYINIT => '0',
-      DI(3) => grtThan_INST_0_i_1_n_0,
-      DI(2) => grtThan_INST_0_i_2_n_0,
-      DI(1) => grtThan_INST_0_i_3_n_0,
-      DI(0) => grtThan_INST_0_i_4_n_0,
-      O(3 downto 0) => NLW_grtThan_INST_0_O_UNCONNECTED(3 downto 0),
-      S(3) => grtThan_INST_0_i_5_n_0,
-      S(2) => grtThan_INST_0_i_6_n_0,
-      S(1) => grtThan_INST_0_i_7_n_0,
-      S(0) => grtThan_INST_0_i_8_n_0
-    );
-grtThan_INST_0_i_1: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2F02"
-    )
-        port map (
-      I0 => data1(6),
-      I1 => data2(6),
-      I2 => data2(7),
-      I3 => data1(7),
-      O => grtThan_INST_0_i_1_n_0
-    );
-grtThan_INST_0_i_2: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2F02"
-    )
-        port map (
-      I0 => data1(4),
-      I1 => data2(4),
-      I2 => data2(5),
-      I3 => data1(5),
-      O => grtThan_INST_0_i_2_n_0
-    );
-grtThan_INST_0_i_3: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2F02"
-    )
-        port map (
-      I0 => data1(2),
-      I1 => data2(2),
-      I2 => data2(3),
-      I3 => data1(3),
-      O => grtThan_INST_0_i_3_n_0
-    );
-grtThan_INST_0_i_4: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2F02"
-    )
-        port map (
-      I0 => data1(0),
-      I1 => data2(0),
-      I2 => data2(1),
-      I3 => data1(1),
-      O => grtThan_INST_0_i_4_n_0
-    );
-grtThan_INST_0_i_5: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9009"
-    )
-        port map (
-      I0 => data1(6),
-      I1 => data2(6),
-      I2 => data1(7),
-      I3 => data2(7),
-      O => grtThan_INST_0_i_5_n_0
-    );
-grtThan_INST_0_i_6: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9009"
-    )
-        port map (
-      I0 => data1(4),
-      I1 => data2(4),
-      I2 => data1(5),
-      I3 => data2(5),
-      O => grtThan_INST_0_i_6_n_0
-    );
-grtThan_INST_0_i_7: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9009"
-    )
-        port map (
-      I0 => data1(2),
-      I1 => data2(2),
-      I2 => data1(3),
-      I3 => data2(3),
-      O => grtThan_INST_0_i_7_n_0
-    );
-grtThan_INST_0_i_8: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9009"
-    )
-        port map (
-      I0 => data1(0),
-      I1 => data2(0),
-      I2 => data1(1),
-      I3 => data2(1),
-      O => grtThan_INST_0_i_8_n_0
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
+-- Data Processor (DataController.vhd)
+-- Asynchronous reset, active high
+------------------------------------------------------
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+USE work.ALL;
+USE work.common_pack.all;
+
 entity dataConsume_synthesised is
-  port (
-    clk : in STD_LOGIC;
-    ctrlIn : in STD_LOGIC;
-    ctrlOut : out STD_LOGIC;
-    dataReady : out STD_LOGIC;
-    reset : in STD_LOGIC;
-    seqDone : out STD_LOGIC;
-    start : in STD_LOGIC;
-    byte : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    data : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[0]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[1]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[2]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[3]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[4]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[5]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \dataResults[6]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \maxIndex[0]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    \maxIndex[1]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    \maxIndex[2]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    \numWords_bcd[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    \numWords_bcd[1]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    \numWords_bcd[2]\ : in STD_LOGIC_VECTOR ( 3 downto 0 )
-  );
-  attribute NotValidForBitStream : boolean;
-  attribute NotValidForBitStream of dataConsume_synthesised : entity is true;
+port (
+  clk: in std_logic;
+  reset: in std_logic; -- synchronous reset
+  start: in std_logic; -- goes high to signal data transfer
+  --numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
+  \numWords_bcd[2]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
+  \numWords_bcd[1]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
+  \numWords_bcd[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
+  ctrlIn: in std_logic;
+  ctrlOut: out std_logic;
+  data: in std_logic_vector(7 downto 0);
+  dataReady: out std_logic;
+  byte: out std_logic_vector(7 downto 0);
+  seqDone: out std_logic;
+  --maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
+  \maxIndex[2]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+  \maxIndex[1]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+  \maxIndex[0]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+  --dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
+  \dataResults[0]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[1]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[2]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[3]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[4]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[5]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[6]\ : out STD_LOGIC_VECTOR ( 7 downto 0 )
+);
 end dataConsume_synthesised;
 
-architecture STRUCTURE of dataConsume_synthesised is
-  signal ctrlIn_delayed : STD_LOGIC;
-  signal \^ctrlout\ : STD_LOGIC;
-  attribute RTL_KEEP : string;
-  attribute RTL_KEEP of ctrlOut : signal is "true";
-  signal ctrlOut_reg_i_1_n_0 : STD_LOGIC;
-  signal curState : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal \curState[0]_i_2_n_0\ : STD_LOGIC;
-  signal \curState[1]_i_1_n_0\ : STD_LOGIC;
-  signal \curState[2]_i_1_n_0\ : STD_LOGIC;
-  signal \^data\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  attribute RTL_KEEP of \^data\ : signal is "true";
-  signal \dataArrayCurrent_reg[0]__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \dataArrayCurrent_reg[1]__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \dataArrayCurrent_reg[2]__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \dataArrayCurrent_reg[3]__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \dataArraySaved[0][7]_i_1_n_0\ : STD_LOGIC;
-  signal \dataArraySaved[1][7]_i_1_n_0\ : STD_LOGIC;
-  signal \dataArraySaved[2][7]_i_1_n_0\ : STD_LOGIC;
-  signal \dataArraySaved_reg[0]0\ : STD_LOGIC;
-  signal \^dataready\ : STD_LOGIC;
-  attribute RTL_KEEP of dataReady : signal is "true";
-  signal \^dataresults[3]\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  attribute RTL_KEEP of \^dataresults[3]\ : signal is "true";
-  signal eqOp : STD_LOGIC;
-  signal grtThan : STD_LOGIC;
-  signal \maxIndex_reg[0][2]_i_1_n_0\ : STD_LOGIC;
-  signal \maxIndex_reg[0][3]_i_1_n_0\ : STD_LOGIC;
-  signal \maxIndex_reg[2][3]_i_2_n_0\ : STD_LOGIC;
-  signal minusOp : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal nextState : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal plusOp : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \plusOp__0\ : STD_LOGIC_VECTOR ( 3 downto 1 );
-  signal \plusOp__1\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \^seqdone\ : STD_LOGIC;
-  attribute RTL_KEEP of seqDone : signal is "true";
-  signal seqDone_inferred_i_2_n_0 : STD_LOGIC;
-  signal seqDone_inferred_i_3_n_0 : STD_LOGIC;
-  signal seqDone_inferred_i_4_n_0 : STD_LOGIC;
-  signal seqDone_inferred_i_5_n_0 : STD_LOGIC;
-  signal seqDone_inferred_i_6_n_0 : STD_LOGIC;
-  signal seqDone_inferred_i_7_n_0 : STD_LOGIC;
-  signal sig_seqDone_delayed : STD_LOGIC;
-  signal sig_seqDone_delayed_i_1_n_0 : STD_LOGIC;
-  signal startUpdate_i_1_n_0 : STD_LOGIC;
-  signal startUpdate_reg_n_0 : STD_LOGIC;
-  signal updateCount0 : STD_LOGIC;
-  signal \updateCount[0]_i_1_n_0\ : STD_LOGIC;
-  signal \updateCount[1]_i_1_n_0\ : STD_LOGIC;
-  signal \updateCount[1]_i_3_n_0\ : STD_LOGIC;
-  signal \updateCount_reg_n_0_\ : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal var_bcdCount : STD_LOGIC_VECTOR ( 2 downto 1 );
-  signal \var_bcdCount[0][3]_i_1_n_0\ : STD_LOGIC;
-  signal \var_bcdCount[1][3]_i_1_n_0\ : STD_LOGIC;
-  signal \var_bcdCount[1][3]_i_4_n_0\ : STD_LOGIC;
-  signal \var_bcdCount[1][3]_i_5_n_0\ : STD_LOGIC;
-  signal \var_bcdCount[2][3]_i_1_n_0\ : STD_LOGIC;
-  signal \var_bcdCount[2][3]_i_4_n_0\ : STD_LOGIC;
-  signal \var_bcdCount[2][3]_i_5_n_0\ : STD_LOGIC;
-  signal \var_bcdCount_reg[0]__0\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \var_bcdCount_reg[1]__0\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \var_bcdCount_reg[2]__0\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_comp_equal_UNCONNECTED : STD_LOGIC;
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of ctrlOut_reg_i_1 : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \curState[1]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \curState[2]_i_1\ : label is "soft_lutpair8";
-  attribute FSM_ENCODED_STATES : string;
-  attribute FSM_ENCODED_STATES of \curState_reg[0]\ : label is "wait_data:010,data_valid:011,update_reg:100,init:000,req_data:001";
-  attribute FSM_ENCODED_STATES of \curState_reg[1]\ : label is "wait_data:010,data_valid:011,update_reg:100,init:000,req_data:001";
-  attribute FSM_ENCODED_STATES of \curState_reg[2]\ : label is "wait_data:010,data_valid:011,update_reg:100,init:000,req_data:001";
-  attribute SOFT_HLUTNM of \maxIndex_reg[0][0]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \maxIndex_reg[0][1]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \maxIndex_reg[0][2]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \maxIndex_reg[0][3]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \updateCount[1]_i_2\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \updateCount[1]_i_3\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \var_bcdCount[0][1]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \var_bcdCount[0][2]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \var_bcdCount[0][3]_i_2\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \var_bcdCount[0][3]_i_3\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \var_bcdCount[1][0]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \var_bcdCount[1][1]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \var_bcdCount[1][2]_i_1\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \var_bcdCount[1][3]_i_3\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \var_bcdCount[1][3]_i_4\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \var_bcdCount[1][3]_i_5\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \var_bcdCount[2][0]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \var_bcdCount[2][1]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \var_bcdCount[2][2]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \var_bcdCount[2][3]_i_3\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \var_bcdCount[2][3]_i_5\ : label is "soft_lutpair6";
-  attribute keep : string;
-  attribute keep of clk : signal is "true";
-  attribute keep of ctrlIn : signal is "true";
-  attribute keep of ctrlOut : signal is "true";
-  attribute keep of dataReady : signal is "true";
-  attribute keep of reset : signal is "true";
-  attribute keep of seqDone : signal is "true";
-  attribute keep of start : signal is "true";
-begin
-  \^data\(7 downto 0) <= data(7 downto 0);
-  byte(7 downto 0) <= \^data\(7 downto 0);
-  ctrlOut <= \^ctrlout\;
-  dataReady <= \^dataready\;
-  \dataResults[3]\(7 downto 0) <= \^dataresults[3]\(7 downto 0);
-  seqDone <= \^seqdone\;
-comp: entity work.comparator
-     port map (
-      data1(7 downto 0) => \^data\(7 downto 0),
-      data2(7 downto 0) => \^dataresults[3]\(7 downto 0),
-      equal => NLW_comp_equal_UNCONNECTED,
-      grtThan => grtThan
-    );
-ctrlIn_delayed_reg: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => ctrlIn,
-      Q => ctrlIn_delayed,
-      R => '0'
-    );
-ctrlOut_reg_i_1: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"EF10"
-    )
-        port map (
-      I0 => curState(1),
-      I1 => curState(2),
-      I2 => curState(0),
-      I3 => \^ctrlout\,
-      O => ctrlOut_reg_i_1_n_0
-    );
-ctrlOut_reg_reg: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => ctrlOut_reg_i_1_n_0,
-      Q => \^ctrlout\,
-      R => reset
-    );
-\curState[0]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"B888B888B8BBB888"
-    )
-        port map (
-      I0 => start,
-      I1 => curState(2),
-      I2 => \curState[0]_i_2_n_0\,
-      I3 => curState(1),
-      I4 => start,
-      I5 => curState(0),
-      O => nextState(0)
-    );
-\curState[0]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"202F2F20"
-    )
-        port map (
-      I0 => start,
-      I1 => grtThan,
-      I2 => curState(0),
-      I3 => ctrlIn_delayed,
-      I4 => ctrlIn,
-      O => \curState[0]_i_2_n_0\
-    );
-\curState[1]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"06"
-    )
-        port map (
-      I0 => curState(0),
-      I1 => curState(1),
-      I2 => curState(2),
-      O => \curState[1]_i_1_n_0\
-    );
-\curState[2]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0080"
-    )
-        port map (
-      I0 => curState(0),
-      I1 => grtThan,
-      I2 => curState(1),
-      I3 => curState(2),
-      O => \curState[2]_i_1_n_0\
-    );
-\curState_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => nextState(0),
-      Q => curState(0),
-      R => reset
-    );
-\curState_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => \curState[1]_i_1_n_0\,
-      Q => curState(1),
-      R => reset
-    );
-\curState_reg[2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => \curState[2]_i_1_n_0\,
-      Q => curState(2),
-      R => reset
-    );
-\dataArrayCurrent_reg[0][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(0),
-      Q => \dataArrayCurrent_reg[0]__0\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(1),
-      Q => \dataArrayCurrent_reg[0]__0\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(2),
-      Q => \dataArrayCurrent_reg[0]__0\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(3),
-      Q => \dataArrayCurrent_reg[0]__0\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(4),
-      Q => \dataArrayCurrent_reg[0]__0\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(5),
-      Q => \dataArrayCurrent_reg[0]__0\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(6),
-      Q => \dataArrayCurrent_reg[0]__0\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[0][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \^data\(7),
-      Q => \dataArrayCurrent_reg[0]__0\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(0),
-      Q => \dataArrayCurrent_reg[1]__0\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(1),
-      Q => \dataArrayCurrent_reg[1]__0\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(2),
-      Q => \dataArrayCurrent_reg[1]__0\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(3),
-      Q => \dataArrayCurrent_reg[1]__0\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(4),
-      Q => \dataArrayCurrent_reg[1]__0\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(5),
-      Q => \dataArrayCurrent_reg[1]__0\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(6),
-      Q => \dataArrayCurrent_reg[1]__0\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[1][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[0]__0\(7),
-      Q => \dataArrayCurrent_reg[1]__0\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(0),
-      Q => \dataArrayCurrent_reg[2]__0\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(1),
-      Q => \dataArrayCurrent_reg[2]__0\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(2),
-      Q => \dataArrayCurrent_reg[2]__0\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(3),
-      Q => \dataArrayCurrent_reg[2]__0\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(4),
-      Q => \dataArrayCurrent_reg[2]__0\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(5),
-      Q => \dataArrayCurrent_reg[2]__0\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(6),
-      Q => \dataArrayCurrent_reg[2]__0\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[2][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[1]__0\(7),
-      Q => \dataArrayCurrent_reg[2]__0\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(0),
-      Q => \dataArrayCurrent_reg[3]__0\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(1),
-      Q => \dataArrayCurrent_reg[3]__0\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(2),
-      Q => \dataArrayCurrent_reg[3]__0\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(3),
-      Q => \dataArrayCurrent_reg[3]__0\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(4),
-      Q => \dataArrayCurrent_reg[3]__0\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(5),
-      Q => \dataArrayCurrent_reg[3]__0\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(6),
-      Q => \dataArrayCurrent_reg[3]__0\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArrayCurrent_reg[3][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \dataArrayCurrent_reg[2]__0\(7),
-      Q => \dataArrayCurrent_reg[3]__0\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved[0][7]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0004000000000000"
-    )
-        port map (
-      I0 => \updateCount_reg_n_0_\(0),
-      I1 => \updateCount_reg_n_0_\(1),
-      I2 => startUpdate_reg_n_0,
-      I3 => curState(2),
-      I4 => curState(0),
-      I5 => curState(1),
-      O => \dataArraySaved[0][7]_i_1_n_0\
-    );
-\dataArraySaved[1][7]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0004000000000000"
-    )
-        port map (
-      I0 => \updateCount_reg_n_0_\(1),
-      I1 => \updateCount_reg_n_0_\(0),
-      I2 => startUpdate_reg_n_0,
-      I3 => curState(2),
-      I4 => curState(0),
-      I5 => curState(1),
-      O => \dataArraySaved[1][7]_i_1_n_0\
-    );
-\dataArraySaved[2][7]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0001000000000000"
-    )
-        port map (
-      I0 => \updateCount_reg_n_0_\(1),
-      I1 => \updateCount_reg_n_0_\(0),
-      I2 => startUpdate_reg_n_0,
-      I3 => curState(2),
-      I4 => curState(0),
-      I5 => curState(1),
-      O => \dataArraySaved[2][7]_i_1_n_0\
-    );
-\dataArraySaved_reg[0][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(0),
-      Q => \dataResults[0]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(1),
-      Q => \dataResults[0]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(2),
-      Q => \dataResults[0]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(3),
-      Q => \dataResults[0]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(4),
-      Q => \dataResults[0]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(5),
-      Q => \dataResults[0]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(6),
-      Q => \dataResults[0]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[0][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[0][7]_i_1_n_0\,
-      D => \^data\(7),
-      Q => \dataResults[0]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(0),
-      Q => \dataResults[1]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(1),
-      Q => \dataResults[1]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(2),
-      Q => \dataResults[1]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(3),
-      Q => \dataResults[1]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(4),
-      Q => \dataResults[1]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(5),
-      Q => \dataResults[1]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(6),
-      Q => \dataResults[1]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[1][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[1][7]_i_1_n_0\,
-      D => \^data\(7),
-      Q => \dataResults[1]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(0),
-      Q => \dataResults[2]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(1),
-      Q => \dataResults[2]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(2),
-      Q => \dataResults[2]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(3),
-      Q => \dataResults[2]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(4),
-      Q => \dataResults[2]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(5),
-      Q => \dataResults[2]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(6),
-      Q => \dataResults[2]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[2][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \dataArraySaved[2][7]_i_1_n_0\,
-      D => \^data\(7),
-      Q => \dataResults[2]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(0),
-      Q => \^dataresults[3]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(1),
-      Q => \^dataresults[3]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(2),
-      Q => \^dataresults[3]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(3),
-      Q => \^dataresults[3]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(4),
-      Q => \^dataresults[3]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(5),
-      Q => \^dataresults[3]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(6),
-      Q => \^dataresults[3]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[3][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[0]__0\(7),
-      Q => \^dataresults[3]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(0),
-      Q => \dataResults[4]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(1),
-      Q => \dataResults[4]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(2),
-      Q => \dataResults[4]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(3),
-      Q => \dataResults[4]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(4),
-      Q => \dataResults[4]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(5),
-      Q => \dataResults[4]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(6),
-      Q => \dataResults[4]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[4][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[1]__0\(7),
-      Q => \dataResults[4]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(0),
-      Q => \dataResults[5]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(1),
-      Q => \dataResults[5]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(2),
-      Q => \dataResults[5]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(3),
-      Q => \dataResults[5]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(4),
-      Q => \dataResults[5]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(5),
-      Q => \dataResults[5]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(6),
-      Q => \dataResults[5]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[5][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[2]__0\(7),
-      Q => \dataResults[5]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(0),
-      Q => \dataResults[6]\(0),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(1),
-      Q => \dataResults[6]\(1),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(2),
-      Q => \dataResults[6]\(2),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(3),
-      Q => \dataResults[6]\(3),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][4]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(4),
-      Q => \dataResults[6]\(4),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][5]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(5),
-      Q => \dataResults[6]\(5),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][6]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(6),
-      Q => \dataResults[6]\(6),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataArraySaved_reg[6][7]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \dataArrayCurrent_reg[3]__0\(7),
-      Q => \dataResults[6]\(7),
-      R => \dataArraySaved_reg[0]0\
-    );
-\dataReady_inferred__0_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"40"
-    )
-        port map (
-      I0 => curState(2),
-      I1 => curState(0),
-      I2 => curState(1),
-      O => \^dataready\
-    );
-\maxIndex_reg[0][0]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(0),
-      O => minusOp(0)
-    );
-\maxIndex_reg[0][1]_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(1),
-      I1 => \var_bcdCount_reg[0]__0\(0),
-      O => minusOp(1)
-    );
-\maxIndex_reg[0][2]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"E1"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(1),
-      I1 => \var_bcdCount_reg[0]__0\(0),
-      I2 => \var_bcdCount_reg[0]__0\(2),
-      O => \maxIndex_reg[0][2]_i_1_n_0\
-    );
-\maxIndex_reg[0][3]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FE01"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(2),
-      I1 => \var_bcdCount_reg[0]__0\(0),
-      I2 => \var_bcdCount_reg[0]__0\(1),
-      I3 => \var_bcdCount_reg[0]__0\(3),
-      O => \maxIndex_reg[0][3]_i_1_n_0\
-    );
-\maxIndex_reg[2][3]_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => reset,
-      I1 => sig_seqDone_delayed,
-      O => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg[2][3]_i_2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"10"
-    )
-        port map (
-      I0 => curState(1),
-      I1 => curState(0),
-      I2 => curState(2),
-      O => \maxIndex_reg[2][3]_i_2_n_0\
-    );
-\maxIndex_reg_reg[0][0]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => minusOp(0),
-      Q => \maxIndex[0]\(0),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[0][1]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => minusOp(1),
-      Q => \maxIndex[0]\(1),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[0][2]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \maxIndex_reg[0][2]_i_1_n_0\,
-      Q => \maxIndex[0]\(2),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[0][3]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \maxIndex_reg[0][3]_i_1_n_0\,
-      Q => \maxIndex[0]\(3),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[1][0]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[1]__0\(0),
-      Q => \maxIndex[1]\(0),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[1][1]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[1]__0\(1),
-      Q => \maxIndex[1]\(1),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[1][2]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[1]__0\(2),
-      Q => \maxIndex[1]\(2),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[1][3]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[1]__0\(3),
-      Q => \maxIndex[1]\(3),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[2][0]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[2]__0\(0),
-      Q => \maxIndex[2]\(0),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[2][1]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[2]__0\(1),
-      Q => \maxIndex[2]\(1),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[2][2]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[2]__0\(2),
-      Q => \maxIndex[2]\(2),
-      S => \dataArraySaved_reg[0]0\
-    );
-\maxIndex_reg_reg[2][3]\: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => \maxIndex_reg[2][3]_i_2_n_0\,
-      D => \var_bcdCount_reg[2]__0\(3),
-      Q => \maxIndex[2]\(3),
-      S => \dataArraySaved_reg[0]0\
-    );
-seqDone_inferred_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"8000000000000000"
-    )
-        port map (
-      I0 => seqDone_inferred_i_2_n_0,
-      I1 => seqDone_inferred_i_3_n_0,
-      I2 => seqDone_inferred_i_4_n_0,
-      I3 => seqDone_inferred_i_5_n_0,
-      I4 => seqDone_inferred_i_6_n_0,
-      I5 => seqDone_inferred_i_7_n_0,
-      O => \^seqdone\
-    );
-seqDone_inferred_i_2: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[2]__0\(0),
-      I1 => \numWords_bcd[2]\(0),
-      I2 => \numWords_bcd[2]\(2),
-      I3 => \var_bcdCount_reg[2]__0\(2),
-      I4 => \numWords_bcd[2]\(1),
-      I5 => \var_bcdCount_reg[2]__0\(1),
-      O => seqDone_inferred_i_2_n_0
-    );
-seqDone_inferred_i_3: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \numWords_bcd[2]\(3),
-      I1 => \var_bcdCount_reg[2]__0\(3),
-      O => seqDone_inferred_i_3_n_0
-    );
-seqDone_inferred_i_4: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \numWords_bcd[1]\(3),
-      I1 => \var_bcdCount_reg[1]__0\(3),
-      O => seqDone_inferred_i_4_n_0
-    );
-seqDone_inferred_i_5: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[1]__0\(0),
-      I1 => \numWords_bcd[1]\(0),
-      I2 => \numWords_bcd[1]\(2),
-      I3 => \var_bcdCount_reg[1]__0\(2),
-      I4 => \numWords_bcd[1]\(1),
-      I5 => \var_bcdCount_reg[1]__0\(1),
-      O => seqDone_inferred_i_5_n_0
-    );
-seqDone_inferred_i_6: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \numWords_bcd[0]\(3),
-      I1 => \var_bcdCount_reg[0]__0\(3),
-      O => seqDone_inferred_i_6_n_0
-    );
-seqDone_inferred_i_7: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(0),
-      I1 => \numWords_bcd[0]\(0),
-      I2 => \numWords_bcd[0]\(2),
-      I3 => \var_bcdCount_reg[0]__0\(2),
-      I4 => \numWords_bcd[0]\(1),
-      I5 => \var_bcdCount_reg[0]__0\(1),
-      O => seqDone_inferred_i_7_n_0
-    );
-sig_seqDone_delayed_i_1: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"B8"
-    )
-        port map (
-      I0 => sig_seqDone_delayed,
-      I1 => reset,
-      I2 => \^seqdone\,
-      O => sig_seqDone_delayed_i_1_n_0
-    );
-sig_seqDone_delayed_reg: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => sig_seqDone_delayed_i_1_n_0,
-      Q => sig_seqDone_delayed,
-      R => '0'
-    );
-startUpdate_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFF0FFFF88808888"
-    )
-        port map (
-      I0 => \updateCount_reg_n_0_\(1),
-      I1 => \updateCount_reg_n_0_\(0),
-      I2 => curState(1),
-      I3 => curState(0),
-      I4 => curState(2),
-      I5 => startUpdate_reg_n_0,
-      O => startUpdate_i_1_n_0
-    );
-startUpdate_reg: unisim.vcomponents.FDSE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => startUpdate_i_1_n_0,
-      Q => startUpdate_reg_n_0,
-      S => reset
-    );
-\updateCount[0]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000000000A6"
-    )
-        port map (
-      I0 => \updateCount_reg_n_0_\(0),
-      I1 => \^dataready\,
-      I2 => startUpdate_reg_n_0,
-      I3 => \updateCount[1]_i_3_n_0\,
-      I4 => reset,
-      I5 => \^seqdone\,
-      O => \updateCount[0]_i_1_n_0\
-    );
-\updateCount[1]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"000000000000006A"
-    )
-        port map (
-      I0 => \updateCount_reg_n_0_\(1),
-      I1 => updateCount0,
-      I2 => \updateCount_reg_n_0_\(0),
-      I3 => \updateCount[1]_i_3_n_0\,
-      I4 => reset,
-      I5 => \^seqdone\,
-      O => \updateCount[1]_i_1_n_0\
-    );
-\updateCount[1]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0008"
-    )
-        port map (
-      I0 => curState(1),
-      I1 => curState(0),
-      I2 => curState(2),
-      I3 => startUpdate_reg_n_0,
-      O => updateCount0
-    );
-\updateCount[1]_i_3\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"02"
-    )
-        port map (
-      I0 => curState(2),
-      I1 => curState(0),
-      I2 => curState(1),
-      O => \updateCount[1]_i_3_n_0\
-    );
-\updateCount_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => \updateCount[0]_i_1_n_0\,
-      Q => \updateCount_reg_n_0_\(0),
-      R => '0'
-    );
-\updateCount_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => '1',
-      D => \updateCount[1]_i_1_n_0\,
-      Q => \updateCount_reg_n_0_\(1),
-      R => '0'
-    );
-\var_bcdCount[0][1]_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(0),
-      I1 => \var_bcdCount_reg[0]__0\(1),
-      O => \plusOp__0\(1)
-    );
-\var_bcdCount[0][2]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"78"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(0),
-      I1 => \var_bcdCount_reg[0]__0\(1),
-      I2 => \var_bcdCount_reg[0]__0\(2),
-      O => \plusOp__0\(2)
-    );
-\var_bcdCount[0][3]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"EEEEFEEEEEEEAEEE"
-    )
-        port map (
-      I0 => reset,
-      I1 => \^seqdone\,
-      I2 => curState(0),
-      I3 => curState(1),
-      I4 => curState(2),
-      I5 => eqOp,
-      O => \var_bcdCount[0][3]_i_1_n_0\
-    );
-\var_bcdCount[0][3]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7F80"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(1),
-      I1 => \var_bcdCount_reg[0]__0\(0),
-      I2 => \var_bcdCount_reg[0]__0\(2),
-      I3 => \var_bcdCount_reg[0]__0\(3),
-      O => \plusOp__0\(3)
-    );
-\var_bcdCount[0][3]_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"1000"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(2),
-      I1 => \var_bcdCount_reg[0]__0\(1),
-      I2 => \var_bcdCount_reg[0]__0\(3),
-      I3 => \var_bcdCount_reg[0]__0\(0),
-      O => eqOp
-    );
-\var_bcdCount[1][0]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[1]__0\(0),
-      O => plusOp(0)
-    );
-\var_bcdCount[1][1]_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[1]__0\(0),
-      I1 => \var_bcdCount_reg[1]__0\(1),
-      O => plusOp(1)
-    );
-\var_bcdCount[1][2]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"78"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[1]__0\(0),
-      I1 => \var_bcdCount_reg[1]__0\(1),
-      I2 => \var_bcdCount_reg[1]__0\(2),
-      O => plusOp(2)
-    );
-\var_bcdCount[1][3]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"EEEEFEEEEEEEAEEE"
-    )
-        port map (
-      I0 => reset,
-      I1 => \^seqdone\,
-      I2 => curState(0),
-      I3 => curState(1),
-      I4 => curState(2),
-      I5 => \var_bcdCount[1][3]_i_4_n_0\,
-      O => \var_bcdCount[1][3]_i_1_n_0\
-    );
-\var_bcdCount[1][3]_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000001000"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[0]__0\(2),
-      I1 => \var_bcdCount_reg[0]__0\(1),
-      I2 => \var_bcdCount_reg[0]__0\(3),
-      I3 => \var_bcdCount_reg[0]__0\(0),
-      I4 => curState(2),
-      I5 => \var_bcdCount[1][3]_i_5_n_0\,
-      O => var_bcdCount(1)
-    );
-\var_bcdCount[1][3]_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7F80"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[1]__0\(1),
-      I1 => \var_bcdCount_reg[1]__0\(0),
-      I2 => \var_bcdCount_reg[1]__0\(2),
-      I3 => \var_bcdCount_reg[1]__0\(3),
-      O => plusOp(3)
-    );
-\var_bcdCount[1][3]_i_4\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000080"
-    )
-        port map (
-      I0 => eqOp,
-      I1 => \var_bcdCount_reg[1]__0\(0),
-      I2 => \var_bcdCount_reg[1]__0\(3),
-      I3 => \var_bcdCount_reg[1]__0\(1),
-      I4 => \var_bcdCount_reg[1]__0\(2),
-      O => \var_bcdCount[1][3]_i_4_n_0\
-    );
-\var_bcdCount[1][3]_i_5\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"7"
-    )
-        port map (
-      I0 => curState(1),
-      I1 => curState(0),
-      O => \var_bcdCount[1][3]_i_5_n_0\
-    );
-\var_bcdCount[2][0]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[2]__0\(0),
-      O => \plusOp__1\(0)
-    );
-\var_bcdCount[2][1]_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[2]__0\(0),
-      I1 => \var_bcdCount_reg[2]__0\(1),
-      O => \plusOp__1\(1)
-    );
-\var_bcdCount[2][2]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"78"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[2]__0\(0),
-      I1 => \var_bcdCount_reg[2]__0\(1),
-      I2 => \var_bcdCount_reg[2]__0\(2),
-      O => \plusOp__1\(2)
-    );
-\var_bcdCount[2][3]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"EEEEFEEEEEEEAEEE"
-    )
-        port map (
-      I0 => reset,
-      I1 => \^seqdone\,
-      I2 => curState(0),
-      I3 => curState(1),
-      I4 => curState(2),
-      I5 => \var_bcdCount[2][3]_i_4_n_0\,
-      O => \var_bcdCount[2][3]_i_1_n_0\
-    );
-\var_bcdCount[2][3]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2000"
-    )
-        port map (
-      I0 => \var_bcdCount[1][3]_i_4_n_0\,
-      I1 => curState(2),
-      I2 => curState(0),
-      I3 => curState(1),
-      O => var_bcdCount(2)
-    );
-\var_bcdCount[2][3]_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7F80"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[2]__0\(1),
-      I1 => \var_bcdCount_reg[2]__0\(0),
-      I2 => \var_bcdCount_reg[2]__0\(2),
-      I3 => \var_bcdCount_reg[2]__0\(3),
-      O => \plusOp__1\(3)
-    );
-\var_bcdCount[2][3]_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0200000000000000"
-    )
-        port map (
-      I0 => eqOp,
-      I1 => \var_bcdCount_reg[2]__0\(1),
-      I2 => \var_bcdCount_reg[2]__0\(2),
-      I3 => \var_bcdCount_reg[2]__0\(0),
-      I4 => \var_bcdCount_reg[2]__0\(3),
-      I5 => \var_bcdCount[2][3]_i_5_n_0\,
-      O => \var_bcdCount[2][3]_i_4_n_0\
-    );
-\var_bcdCount[2][3]_i_5\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"1000"
-    )
-        port map (
-      I0 => \var_bcdCount_reg[1]__0\(2),
-      I1 => \var_bcdCount_reg[1]__0\(1),
-      I2 => \var_bcdCount_reg[1]__0\(3),
-      I3 => \var_bcdCount_reg[1]__0\(0),
-      O => \var_bcdCount[2][3]_i_5_n_0\
-    );
-\var_bcdCount_reg[0][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => minusOp(0),
-      Q => \var_bcdCount_reg[0]__0\(0),
-      R => \var_bcdCount[0][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[0][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \plusOp__0\(1),
-      Q => \var_bcdCount_reg[0]__0\(1),
-      R => \var_bcdCount[0][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[0][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \plusOp__0\(2),
-      Q => \var_bcdCount_reg[0]__0\(2),
-      R => \var_bcdCount[0][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[0][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => \^dataready\,
-      D => \plusOp__0\(3),
-      Q => \var_bcdCount_reg[0]__0\(3),
-      R => \var_bcdCount[0][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[1][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(1),
-      D => plusOp(0),
-      Q => \var_bcdCount_reg[1]__0\(0),
-      R => \var_bcdCount[1][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[1][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(1),
-      D => plusOp(1),
-      Q => \var_bcdCount_reg[1]__0\(1),
-      R => \var_bcdCount[1][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[1][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(1),
-      D => plusOp(2),
-      Q => \var_bcdCount_reg[1]__0\(2),
-      R => \var_bcdCount[1][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[1][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(1),
-      D => plusOp(3),
-      Q => \var_bcdCount_reg[1]__0\(3),
-      R => \var_bcdCount[1][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[2][0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(2),
-      D => \plusOp__1\(0),
-      Q => \var_bcdCount_reg[2]__0\(0),
-      R => \var_bcdCount[2][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[2][1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(2),
-      D => \plusOp__1\(1),
-      Q => \var_bcdCount_reg[2]__0\(1),
-      R => \var_bcdCount[2][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[2][2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(2),
-      D => \plusOp__1\(2),
-      Q => \var_bcdCount_reg[2]__0\(2),
-      R => \var_bcdCount[2][3]_i_1_n_0\
-    );
-\var_bcdCount_reg[2][3]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clk,
-      CE => var_bcdCount(2),
-      D => \plusOp__1\(3),
-      Q => \var_bcdCount_reg[2]__0\(3),
-      R => \var_bcdCount[2][3]_i_1_n_0\
-    );
-end STRUCTURE;
+-----------------------------------------------------------------
+
+ARCHITECTURE behavioural OF dataConsume_synthesised IS
+
+-- State Declaration
+-- ALL STATE TYPES
+	TYPE state_type IS (INIT, DONE, FIRST_THREE_ctrlSet, FIRST_THREE_ctrlWait,
+		FIRST_THREE_regOn, FIRST_THREE_decision, MAIN_LOOP_ctrlSet, MAIN_LOOP_ctrlWait,
+		MAIN_LOOP_regOn, MAIN_LOOP_decision, LOOP_END_regOn, LOOP_END_decision, STORE_reg
+	);
+ 
+-- Signal Declaration
+	SIGNAL cur_state, next_state, prev_state: state_type;
+	SIGNAL ctrlIn_delayed, ctrlIn_detected: std_logic;
+	SIGNAL start_reg: std_logic;
+
+	SIGNAL reg6, reg5, reg4, reg3, reg2, reg1, reg0: unsigned(7 DOWNTO 0);
+        --SIGNAL data0, data1, data2, data3, data4, data5, data6: UNSIGNED(7 DOWNTO 0);
+
+	SIGNAL numWords_add3: integer range 3 to 1002;
+	SIGNAL numWords_int: integer range 0 to 999;
+	SIGNAL counter: integer range 0 to 999;
+	--SIGNAL maxValue: unsigned(7 DOWNTO 0);
+
+	SIGNAL maxIndex_int: integer range 0 to 999;
+
+	SIGNAL ctrlOut_reg: std_logic;
+	SIGNAL dataResults_reg: CHAR_ARRAY_TYPE(0 to 6);
+	--SIGNAL \dataResults_reg[0]\, \dataResults_reg[1]\, \dataResults_reg[2]\, \dataResults_reg[3]\, \dataResults_reg[4]\, \dataResults_reg[5]\, \dataResults_reg[6]\: STD_LOGIC_VECTOR ( 7 downto 0 );
+BEGIN
+
+-------------------------------------------------------------------
+  combi_out: PROCESS(cur_state)
+  BEGIN
+	dataReady <= '0';
+	byte <= "00000000";
+	seqDone <= '0';
+	
+	IF cur_state = FIRST_THREE_regOn OR cur_state = MAIN_LOOP_regOn THEN
+	  byte <= data;
+	  dataReady <= '1';
+	END IF;
+
+	IF cur_state = DONE THEN
+	  seqDone <= '1';
+	END IF;
+  END PROCESS;
+
+--- there is a potential issue with this combi_out state stuff. If the max Value is the very final one in the sequence, it may not actually output this. However,
+-- I think this is unlikely because the last three digits are always 0. However, it is worth trying this to see.
+
+
+
+
+
+
+
+--fill in list
+
+-------------------------------------------------------------------
+--Component Instantiation
+
+
+--Data Generation Two-Phase Protocol
+
+  delay_CtrlIn: process(clk)     
+    begin
+      if rising_edge(clk) then
+        ctrlIn_delayed <= ctrlIn;
+      end if;
+    end process;
+  
+  ctrlIn_detected <= ctrlIn xor ctrlIn_delayed;
+
+-- Registers:
+
+-- use this to get the reg6_in.
+
+
+
+
+
+  bcd_to_integer: PROCESS(\numWords_bcd[2]\,\numWords_bcd[1]\,\numWords_bcd[0]\ )
+	    -- variable of type integer with constrained range and initial value
+
+  VARIABLE tmp:INTEGER RANGE 0 TO 999:=0;  -- store the sum
+
+  BEGIN
+  tmp := 0;
+
+  --FOR i IN 0 TO 2 LOOP
+    --tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
+   tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[0]\))*(10**(0)));
+   tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[1]\))*(10**(1)));
+   tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[2]\))*(10**(2)));
+  
+  --END LOOP;
+
+  numWords_int <= tmp;    
+  numWords_add3 <= (tmp +3);
+  END PROCESS;
+	  
+--make something that converts the integer back to a thing.
+
+
+  Integer_to_bcd: Process(maxIndex_int)
+	Variable tmp: integer range 0 to 99;
+  Begin
+	\maxIndex[0]\ <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
+-- can I convert this to vector in same line?
+--vhdl integers really round down?
+	tmp:= maxIndex_int rem 100;
+	\maxIndex[1]\ <= std_logic_vector(to_unsigned((tmp / 10), 4));
+	\maxIndex[2]\ <= std_logic_vector(to_unsigned((tmp mod 10), 4));
+  End process;
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+seq_state:  PROCESS (clk, reset, start)
+
+--setting up sequential state logic and putting the 'start' signal
+-- through a register.
+ BEGIN
+    IF reset = '1' THEN
+      cur_state <= INIT;
+    ELSIF rising_edge(clk) THEN
+	IF cur_state = FIRST_THREE_regOn OR cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+	  counter <= counter + 1;
+	ELSIF cur_state = INIT THEN
+	  counter <= 0;
+	END IF;
+        cur_state <= next_state after 1 ns;
+	prev_state <= cur_state;
+	start_reg <= start;
+        --dataResults <= dataResults_reg;
+        \dataResults[0]\ <= dataResults_reg(0);
+        \dataResults[1]\ <= dataResults_reg(1);
+        \dataResults[2]\ <= dataResults_reg(2);
+        \dataResults[3]\ <= dataResults_reg(3);
+        \dataResults[4]\ <= dataResults_reg(4);
+        \dataResults[5]\ <= dataResults_reg(5);
+        \dataResults[6]\ <= dataResults_reg(6);
+        
+	ctrlOut <= ctrlOut_reg;
+    END IF;
+   
+  END PROCESS;
+
+
+
+
+
+
+
+ 
+
+------------------------------------------------------------------
+combi_nextState: PROCESS(cur_state, start_reg, ctrlIn_detected, numWords_int, numWords_add3)
+
+BEGIN
+
+  CASE cur_state IS
+
+-----INIT and DONE states:
+
+      WHEN INIT =>
+	--reset all registers
+	reg6 <= TO_UNSIGNED(0,8);
+	reg5 <= TO_UNSIGNED(0,8);
+	reg4 <= TO_UNSIGNED(0,8);
+	reg3 <= TO_UNSIGNED(0,8);
+	reg2 <= TO_UNSIGNED(0,8);
+	reg1 <= TO_UNSIGNED(0,8);
+	reg0 <= TO_UNSIGNED(0,8);
+	--data0 <= TO_UNSIGNED(0,8);
+	--data1 <= TO_UNSIGNED(0,8);
+	--data2 <= TO_UNSIGNED(0,8);
+	--data3 <= TO_UNSIGNED(0,8);
+	--data4 <= TO_UNSIGNED(0,8);
+	--data5 <= TO_UNSIGNED(0,8);
+	--data6 <= TO_UNSIGNED(0,8);
+	--maxValue <= TO_UNSIGNED(0,8);
+	--counter <= 0;
+	ctrlOut_reg <= '0';
+	dataResults_reg <= (others => (others => '0'));
+
+--all registers to zero, then:
+	if start_reg = '1' then
+	  next_state <= FIRST_THREE_ctrlSet;
+	else
+	  next_state <= INIT;
+	end if;
+
+
+      WHEN DONE =>
+	next_state <= INIT;
+	
+	  
+-------- maybe there's a way to streamline these? like just three, one before the 
+-- max test, one with the max test, one with the end loop.
+--------------------------------------------------------------------
+-------- Register 6 States (NORMAL CONDITIONS)
+      WHEN FIRST_THREE_ctrlSet =>
+	ctrlOut_reg <= not ctrlOut_reg;
+	next_state <= FIRST_THREE_ctrlWait;
+
+
+      WHEN FIRST_THREE_ctrlWait =>
+	if ctrlIn_detected = '1' then 
+	  next_state <= FIRST_THREE_regOn;
+	else
+	  next_state <= FIRST_THREE_ctrlWait;
+	end if;
+
+
+      WHEN FIRST_THREE_regOn =>
+	reg6 <= UNSIGNED(data) after 2 ns;
+	reg5 <= reg6 after 1 ns;
+	reg4 <= reg5;
+	--??--reg3 <= reg4;
+	--counter <= counter + 1;
+	next_state <= FIRST_THREE_decision;
+      
+
+      WHEN FIRST_THREE_decision =>
+	if start_reg = '1' then
+	  if counter < numWords_int then
+	    if counter < 3 then
+--or should it be 4?
+	      next_state <= FIRST_THREE_ctrlSet;
+
+	    else
+	      next_state <= MAIN_LOOP_ctrlSet;
+	    end if;
+	  else
+	    next_state <= LOOP_END_regOn;
+	  end if;
+	else
+	  next_state <= FIRST_THREE_decision;
+	end if;
+
+--------------------------------------------------------------------
+------ Registers 3 to 0 (Main Loop)
+
+      WHEN MAIN_LOOP_ctrlSet =>
+	ctrlOut_reg <= not ctrlOut_reg;
+	next_state <= MAIN_LOOP_ctrlWait;
+
+
+      WHEN MAIN_LOOP_ctrlWait =>
+	if ctrlIn_detected = '1' then 
+	  next_state <= MAIN_LOOP_regOn;
+	else
+	  next_state <= MAIN_LOOP_ctrlWait;
+	end if;
+
+
+      WHEN MAIN_LOOP_regOn =>
+	reg6 <= UNSIGNED(data) after 6 ns;
+	reg5 <= reg6 after 5 ns;
+	reg4 <= reg5 after 4 ns;
+	reg3 <= reg4 after 3 ns;
+	reg2 <= reg3 after 2 ns;
+	reg1 <= reg2 after 1 ns;
+	reg0 <= reg1;
+
+	next_state <= STORE_reg;
+
+
+      WHEN MAIN_LOOP_decision =>
+	if start_reg = '1' then
+	  if counter < numWords_int then
+	    next_state <= MAIN_LOOP_ctrlSet;
+----- loop back to the start of MAIN_LOOP_ctrlSet.
+	  else
+	    next_state <= LOOP_END_regOn;
+	  end if;
+	else
+	  next_state <= MAIN_LOOP_decision;
+	end if;	
+	  
+--------------------------------------------------------------------
+-------- Register states AT FINAL THREE bytes:
+---Register 6
+
+
+      WHEN LOOP_END_regOn =>
+	reg6 <= TO_UNSIGNED(0,8) after 6 ns;
+	reg5 <= reg6 after 5 ns;
+	reg4 <= reg5 after 4 ns;
+	reg3 <= reg4 after 3 ns;
+	reg2 <= reg3 after 2 ns;
+	reg1 <= reg2 after 1 ns;
+	reg0 <= reg1;
+
+	next_state <= STORE_reg;
+
+
+      WHEN LOOP_END_decision =>
+	if counter < numWords_int then
+	  next_state <= LOOP_END_decision;
+	else
+	  next_state <= DONE;
+	end if;
+
+
+-----------------------------------------------------------------------------
+-- COMPARING REGISTER TO DATARESULT_REG AND STORE VALUES
+      WHEN STORE_reg =>
+	if reg3 > unsigned(dataResults_reg(3)) then
+	  dataResults_reg(0) <= std_logic_vector(reg0);
+	  dataResults_reg(1) <= std_logic_vector(reg1);
+	  dataResults_reg(2) <= std_logic_vector(reg2);
+	  dataResults_reg(3) <= std_logic_vector(reg3);
+	  dataResults_reg(4) <= std_logic_vector(reg4);
+	  dataResults_reg(5) <= std_logic_vector(reg5);
+	  dataResults_reg(6) <= std_logic_vector(reg6);
+	  
+	  maxIndex_int <= counter - 3;
+	end if;
+	
+	if prev_state = MAIN_LOOP_regOn then
+	  next_state <= MAIN_LOOP_decision;
+	else
+	  next_state <= LOOP_END_regOn;
+	end if;
+
+    END CASE;
+END PROCESS;
+
+END behavioural;

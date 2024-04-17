@@ -123,18 +123,18 @@ clk_wiz : clk_wiz_0
     
   dataConsume1: dataConsume
     port map (
-      clk => clk_100,
-      reset => reset,
-      start => sig_start,
-		numWords_bcd => sig_numWords_bcd,
-      ctrlIn => ctrl_genDriv,
-      ctrlOut => ctrl_consDriv,
-      data => dataRead,
+        clk => clk_100,
+        reset => reset,
+        start => sig_start,
+	    numWords_bcd => sig_numWords_bcd,
+        ctrlIn => ctrl_genDriv,
+        ctrlOut => ctrl_consDriv,
+        data => dataRead,
 		dataReady => sig_dataReady,
 		byte => sig_byte,
-      seqDone => sig_seqDone,
+        seqDone => sig_seqDone,
     	maxIndex => sig_maxIndex,
-      dataResults => sig_dataResults
+        dataResults => sig_dataResults
     );
     
   cmdProc1: cmdProc
