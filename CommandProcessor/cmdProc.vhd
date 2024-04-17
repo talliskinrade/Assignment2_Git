@@ -38,6 +38,7 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   INCREMENT_COUNT,
 	   CHECK_BYTE_A,
 	   BYTE_TO_BCD_A,
+	   INCREMENT_COUNT_A,
 	   SEND_TO_DP,
 	   BYTE_TO_ASCII,
 	   SEND_TX_A,
@@ -123,8 +124,9 @@ BEGIN
            start <= '1';
         ELSIF cur_state = SEND_TX_A THEN
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
-           counterA3 <= counterA3 + 1;
            txNow <= '1';
+           
+        ELSIF cur_state = INIT THEN 
 	    END IF;
     END PROCESS;
     
@@ -136,7 +138,6 @@ BEGIN
             numWordsBuffer(counterA3*4 to counterA3*4 + 3) <= dataBuffer(3 to 7);
             numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 to counterA3*4 + 3);
             -- Repeat for all three bytes received.
-            counterA3 <= counterA3 + 1;
         END IF;
     END PROCESS;
     
@@ -172,7 +173,6 @@ BEGIN
                 dataResultBuffer <= dataResults(3);
             ELSIF cur_state = DATA_READY THEN
                 dataResultBuffer <= byte;
-                counterA3 <= 0;
             END IF;
             
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
@@ -305,6 +305,7 @@ byte_to_ASCII_proc: PROCESS(byte)
     BEGIN
         CASE cur_state IS
 	       WHEN INIT =>
+               counterA3 <= 0;
 	           next_state <= RECEIVE_DATA;
 	
 	       WHEN RECEIVE_DATA =>
@@ -327,7 +328,6 @@ byte_to_ASCII_proc: PROCESS(byte)
 	               counter7 <= 0;
 	           ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN -- A
 	               next_state <= CHECK_BYTE_A;
-                   counterA3 <= 0;
 	           ELSIF dataBuffer = "01010000" OR dataBuffer = "01110000" THEN -- P
 	               next_state <= BYTE_TO_ASCII_P;
 	           ELSE
@@ -400,10 +400,14 @@ byte_to_ASCII_proc: PROCESS(byte)
                
            WHEN BYTE_TO_BCD_A =>
                IF counterA3 < 3 THEN
-                   next_state <= CHECK_BYTE_A;
+                   next_state <= INCREMENT_COUNT_A;
                ELSE
                    next_state <= SEND_TO_DP_A;
                END IF;
+               
+           WHEN INCREMENT_COUNT_A =>
+               counterA3 <= counterA3 + 1;
+               next_state <= CHECK_BYTE_A;
 
 --           WHEN BYTE_TO_BCD =>
 --               IF dataBuffer = "00110000" OR 
@@ -452,6 +456,7 @@ byte_to_ASCII_proc: PROCESS(byte)
            WHEN DATA_READY =>
                IF receivedByteFlag = '1' THEN
                    next_state <= SET_TX_A;
+                   counterA3 <= 0;
                ELSE
                    next_state <= DATA_READY;
                END IF;
@@ -465,6 +470,7 @@ byte_to_ASCII_proc: PROCESS(byte)
                    
            WHEN SEND_TX_A =>
                next_state <= SET_TX_A;
+               counterA3 <= counterA3 + 1;
            
 --           WHEN SEND_TX_1 =>
 --               IF txDone = '1' THEN
