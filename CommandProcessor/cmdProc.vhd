@@ -104,7 +104,6 @@ BEGIN
         IF (cur_state = RECEIVE_DATA OR cur_state = RECEIVE_DATA_A) AND rxNow = '1' THEN
 	       dataBuffer <= rxData;
 	       rxDone <= '1';
-	       txData <= dataBuffer;
 	       receivedDataFlag <= '1';
 	    END IF;
     END PROCESS;
@@ -113,10 +112,12 @@ BEGIN
     BEGIN
         txNow <= '0';
         sentDataFlag <= '0';
+        txData <= "00000000";
         
 	    IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P OR cur_state = SEND_TX_1 OR cur_state = SEND_TX_2 OR cur_state = SEND_SPACE THEN
 	       txNow <= '1';
 	    ELSIF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
+	       txData <= dataBuffer;
 	       txNow <= '1';
 	       sentDataFlag <= '1';
 	    ELSIF cur_state = SET_TX_L THEN
@@ -124,7 +125,7 @@ BEGIN
         ELSIF cur_State = SET_TX_P THEN
             txData <= outPPrinting(counter6*8 to counter6*8 + 7);
         ELSIF cur_state = SEND_TX_A THEN
-           txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
+           txData <= outByteBuffer(counterA3*8 to counterA3*8 + 7);
            txNow <= '1';
 	    END IF;
     END PROCESS;
@@ -162,9 +163,6 @@ BEGIN
     
     combi_readDataResults: PROCESS (cur_state, regDataReady)
     BEGIN
-        dataResultBuffer <= "00000000";
-        outPPrinting(0 to 23) <= "000000000000000000000000";
-        
         IF (seqDone = '1' AND (cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P)) OR (dataReady = '1' AND cur_state = DATA_READY) THEN
             IF seqDone = '1' AND cur_state = BYTE_TO_ASCII_L THEN
                 dataResultBuffer <= dataResults(counter7);
@@ -173,7 +171,10 @@ BEGIN
             ELSIF dataReady = '1' AND cur_state = DATA_READY THEN
                 dataResultBuffer <= byte;
             END IF;
-            
+        ELSIF cur_state = SET_TX_A OR cur_state = SEND_TX_A THEN
+            dataResultBuffer <= dataResultBuffer;
+        ELSE
+            dataResultBuffer <= "00000000";
         END IF;
     END PROCESS;
     
@@ -181,6 +182,7 @@ BEGIN
     BEGIN
         receivedByteFlag <= '0';
         outByteBuffer <= "000000000000000000000000";
+        outPPrinting(0 to 23) <= "000000000000000000000000";
         
         IF (seqDone = '1' AND (cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P)) OR (dataReady = '1' AND cur_state = DATA_READY) THEN
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
