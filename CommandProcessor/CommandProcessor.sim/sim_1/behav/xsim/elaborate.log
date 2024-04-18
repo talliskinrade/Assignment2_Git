@@ -1,14 +1,9 @@
 Vivado Simulator v2023.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_cmdProc_interim_behav xil_defaultlib.tb_cmdProc_interim -log elaborate.log 
+Running: C:/Vivado/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_cmdProc_interim_behav xil_defaultlib.tb_cmdProc_interim -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-<<<<<<< HEAD
-WARNING: [VRFC 10-1378] slice direction differs from its index type range [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/cmdProc.vhd:124]
-=======
-WARNING: [VRFC 10-1378] slice direction differs from its index type range [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:138]
->>>>>>> 9a96bf9107f583be666d3047a411be3dee62d96b
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
