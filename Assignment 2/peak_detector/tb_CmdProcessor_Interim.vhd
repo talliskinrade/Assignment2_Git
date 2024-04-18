@@ -104,10 +104,10 @@ architecture testbench of tb_cmdProc_interim is
     port (
       clk:		in std_logic;
       reset:		in std_logic;
-      rxNow:		in std_logic;
+      rxnow:		in std_logic;
       rxData:			in std_logic_vector (7 downto 0);
       txData:			out std_logic_vector (7 downto 0);
-      rxDone:		out std_logic;
+      rxdone:		out std_logic;
       ovErr:		in std_logic;
       framErr:	in std_logic;
       txnow:		out std_logic;
@@ -176,16 +176,6 @@ architecture testbench of tb_cmdProc_interim is
   
   
 begin
---  sig_rx <= '0' after 50 ns,
---       '1' after 55 ns,
---        '0' after 60 ns,
---        '0' after 65 ns,
---        '1' after 70 ns,
---        '0' after 75 ns,
---        '1' after 80 ns,
---        '1' after 85 ns,
---        '0' after 90 ns,
---        '1' after 95 ns;
   clk <= NOT clk after 5 ns when now <2000 ms else clk;
   reset <= '0', '1' after 2 ns, '0' after 15 ns, '0' after 3600 ns, '0' after 3615 ns;
 

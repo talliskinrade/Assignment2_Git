@@ -34,32 +34,27 @@ ARCHITECTURE behavioural OF cmdProc IS
 	   RECEIVE_DATA,
 	   ECHO_DATA,
 	   CHECK_COMMANDS,
-	   RESET_COUNT,
-	   INCREMENT_COUNT,
 	   RECEIVE_DATA_A,
 	   ECHO_DATA_A,
 	   CHECK_BYTE_A,
 	   BYTE_TO_BCD_A,
 	   INCREMENT_COUNT_A,
-	   SEND_TO_DP,
-	   BYTE_TO_ASCII,
-	   SEND_TX_A,
-	   SET_TX_A,
-	   SET_TX,
-	   SEND_TX,
-	   STORE_RESULTS,
+	   UPDATE_COUNTER_A,
 	   BYTE_TO_ASCII_L,
 	   RESET_COUNTER_3,
 	   SET_TX_L,
 	   SEND_TX_L,
-	   BYTE_AND_BCD_TO_ASCII,
 	   RESET_COUNTER_6,
 	   SET_TX_P,
 	   SEND_TX_P,
 	   BYTE_TO_ASCII_P,
 	   BCD_TO_ASCII_P,
-	   DONE,
-	   BYTE_TO_BCD, RX_DONE_LOW, SEND_TO_DP_A, START_HIGH, DATA_READY, SEND_TX_1, SEND_TX_2, SEND_SPACE   
+	   BYTE_TO_BCD, 
+	   SEND_TO_DP_A,
+	   DATA_READY, 
+	   SEND_TX_1, 
+	   SEND_TX_2, 
+	   SEND_SPACE
 	);
  
 -- Signal Declaration
@@ -70,7 +65,6 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL counterA3: integer range 0 to 3;
 	SIGNAL receivedDataFlag, sentDataFlag, byteToBCDFlag: std_logic;
 	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
-	SIGNAL numWordsBuffer: std_logic_vector (11 downto 0) := "000000000000";
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
@@ -108,13 +102,13 @@ BEGIN
 	    END IF;
     END PROCESS;
 
-    combi_out: PROCESS (cur_state)
+    combi_out: PROCESS (cur_state, txDone)
     BEGIN
         txNow <= '0';
         sentDataFlag <= '0';
         txData <= "00000000";
         
-	    IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P OR cur_state = SEND_TX_1 OR cur_state = SEND_TX_2 OR cur_state = SEND_SPACE THEN
+	    IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P THEN
 	       txNow <= '1';
 	    ELSIF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
 	       txData <= dataBuffer;
@@ -124,8 +118,14 @@ BEGIN
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
         ELSIF cur_State = SET_TX_P THEN
             txData <= outPPrinting(counter6*8 to counter6*8 + 7);
-        ELSIF cur_state = SEND_TX_A THEN
-           txData <= outByteBuffer(counterA3*8 to counterA3*8 + 7);
+        ELSIF cur_state = SEND_TX_1 AND txDone = '1' THEN
+           txData <= ASCII1;
+           txNow <= '1';
+        ELSIF cur_state = SEND_TX_2 AND txDone = '1' THEN
+           txData <= ASCII2;
+           txNow <= '1';
+        ELSIF cur_state = SEND_SPACE AND txDone = '1' THEN
+           txData <= "00100000";
            txNow <= '1';
 	    END IF;
     END PROCESS;
@@ -135,9 +135,12 @@ BEGIN
         IF cur_state = BYTE_TO_BCD_A AND counterA3 < 3 THEN
             -- Byte in dataBuffer is an ASCII code between 00110000 and 00111001.
             -- Last 4 bits denote the BCD digit, hence we can extract this and store it in the BCD array.
-            numWordsBuffer(counterA3*4 + 3 downto counterA3*4) <= dataBuffer(7 downto 4);
-            numWords_bcd(counterA3) <= numWordsBuffer(counterA3*4 + 3 downto counterA3*4);
+            numWords_bcd(2-counterA3) <= dataBuffer(3 downto 0);
             -- Repeat for all three bytes received.
+        ELSIF cur_state = INIT THEN
+            numWords_bcd(0) <= "0000";
+            numWords_bcd(1) <= "0000";
+            numWords_bcd(2) <= "0000";
         END IF;
     END PROCESS;
     
@@ -171,7 +174,7 @@ BEGIN
             ELSIF dataReady = '1' AND cur_state = DATA_READY THEN
                 dataResultBuffer <= byte;
             END IF;
-        ELSIF cur_state = SET_TX_A OR cur_state = SEND_TX_A THEN
+        ELSIF cur_state = SEND_TX_1 OR cur_state = SEND_TX_2 OR cur_state = SEND_SPACE THEN
             dataResultBuffer <= dataResultBuffer;
         ELSE
             dataResultBuffer <= "00000000";
@@ -220,30 +223,19 @@ BEGIN
 -- This PROCESS increment counter when a number is received from rxData and reset otherwise
 combi_countA3: PROCESS(cur_state)
 BEGIN
-    IF cur_state = CHECK_BYTE_A AND (dataBuffer = "00110000" OR 
-                    dataBuffer = "00110001" OR 
-                    dataBuffer = "00110010" OR 
-                    dataBuffer = "00110011" OR 
-                    dataBuffer = "00110100" OR 
-                    dataBuffer = "00110101" OR 
-                    dataBuffer = "00110110" OR 
-                    dataBuffer = "00110111" OR 
-                    dataBuffer = "00111000" OR 
-                    dataBuffer = "00111001") THEN
+    IF cur_state = UPDATE_COUNTER_A THEN
         counterA3 <= counterA3 + 1;
-    ELSIF cur_state = SEND_TX_A THEN
-        counterA3 <= counterA3 + 1;
-    ELSIF cur_state = RECEIVE_DATA_A OR cur_state = BYTE_TO_BCD_A OR cur_state = ECHO_DATA_A OR cur_state = SET_TX_A THEN
+    ELSIF cur_state = RECEIVE_DATA_A OR cur_state = CHECK_BYTE_A OR cur_state = ECHO_DATA_A OR cur_state = BYTE_TO_BCD_A THEN
         counterA3 <= counterA3;
     ELSE
         counterA3 <= 0;
     END IF;
 END PROCESS;
 
-combi_driveStart: PROCESS(cur_state)
+combi_driveStart: PROCESS(cur_state, txDone)
 BEGIN
     start <= '0';
-    IF cur_state = SEND_TO_DP_A OR cur_state = DATA_READY OR cur_state = SET_TX_A OR cur_state = SEND_TX_A THEN
+    IF cur_state = SEND_TO_DP_A OR (cur_state = SEND_SPACE AND txDone = '1') THEN
         start <= '1';
     END IF;
 END PROCESS;
@@ -371,7 +363,7 @@ byte_to_ASCII_proc: PROCESS(byte)
     	       next_state <= RESET_COUNTER_6;
     	       
     	   WHEN RESET_COUNTER_6 =>
-    	       next_state <= SET_TX;
+    	       next_state <= SET_TX_P;
     	       
     	   WHEN SET_TX_P =>
     	       IF txDone = '1' THEN
@@ -382,7 +374,7 @@ byte_to_ASCII_proc: PROCESS(byte)
     	           
     	   WHEN SEND_TX_P => 
     	       IF counter6 < 6 THEN 
-    	           next_state <= SET_TX;
+    	           next_state <= SET_TX_P;
     	       ELSE   --counter6 = 6
     	           next_state <= ECHO_DATA;
     	       END IF;
@@ -422,86 +414,55 @@ byte_to_ASCII_proc: PROCESS(byte)
                END IF;
                
            WHEN BYTE_TO_BCD_A =>
-               IF counterA3 < 3 THEN
-                   next_state <= RECEIVE_DATA_A;
+               next_state <= UPDATE_COUNTER_A;
+--               IF counterA3 < 3 THEN
+--                   next_state <= RECEIVE_DATA_A;
+--               ELSE
+--                   next_state <= SEND_TO_DP_A;
+--               END IF;
+               
+           WHEN UPDATE_COUNTER_A =>
+               IF counterA3 < 2 THEN
+                  next_state <= RECEIVE_DATA_A;
                ELSE
-                   next_state <= SEND_TO_DP_A;
+                  next_state <= SEND_TO_DP_A;
                END IF;
 
            WHEN SEND_TO_DP_A =>
                next_state <= DATA_READY;
                
            WHEN DATA_READY =>
-               IF receivedByteFlag = '1' THEN
-                   next_state <= SET_TX_A;
+               IF dataReady = '1' THEN
+                   next_state <= SEND_TX_1;
                ELSE
                    next_state <= DATA_READY;
                END IF;
                
-           WHEN SET_TX_A =>
-               IF txDone = '1' AND counterA3 < 3 THEN
-                   next_state <= SEND_TX_A;
-               ELSIF counterA3 < 3 THEN
-                   next_state <= SET_TX_A;
+           WHEN SEND_TX_1 =>
+               IF txDone = '1' AND seqDone = '0' THEN
+                   next_state <= SEND_TX_2;
+               ELSIF seqDone = '0' THEN
+                   next_state <= SEND_TX_1;
                ELSE
-                   next_state <= DATA_READY;
+                   next_state <= INIT;
                END IF;
-                   
-           WHEN SEND_TX_A =>
-               next_state <= SET_TX_A;
            
---           WHEN SEND_TX_1 =>
---               IF txDone = '1' THEN
---                   txData <= ASCII1;
---                   next_state <= SEND_TX_2;
---                   IF seqDone = '1' THEN
---                       start <= '0';
---                   END IF;
---               ELSE
---                   next_state <= SEND_TX_1;
---               END IF;
---               IF seqDone = '1' THEN
---                   start <= '0';
---                   byte_complete <= '1';
---               END IF;
---           WHEN SEND_TX_2 =>
---               IF txDone = '1' THEN
---                   --txnow <= '1';
---                   txData <= ASCII2;
---                   count_send <= count_send + 1;
---                   next_state <= SEND_SPACE;
---               ELSE
---                   next_state <= SEND_TX_2;
---               END IF;
---               IF seqDone = '1' THEN
---                   start <= '0';
---                   byte_complete <= '1';
---               END IF;
---           WHEN SEND_SPACE =>
---               IF txDone = '1' THEN
---                   --txnow <= '1';
---                   txData <= "00100000";
---                   IF seqDone = '1' then
---                       start <= '0';
---                       byte_complete <= '1';
---                       next_state <= INIT;
---                   ELSE
---                       next_state <= DATA_READY;
---                   END IF;
---               END IF;
+           WHEN SEND_TX_2 =>
+               IF txDone = '1' THEN
+                   next_state <= SEND_SPACE;
+               ELSE
+                   next_state <= SEND_TX_2;
+               END IF;
+               
+           WHEN SEND_SPACE =>
+               IF txDone = '1' THEN
+                   next_state <= DATA_READY;
+               ELSE
+                   next_state <= SEND_SPACE;
+               END IF;
 -----------------------------------------------
 	       WHEN OTHERS =>
 	           next_state <= INIT;
         END CASE;
     END PROCESS;
-    
---seqstate: PROCESS(clk, reset)
---BEGIN
---   IF reset = '1' THEN
---      cur_state <= INIT;
---   ELSIF clk'EVENT AND clk = '1' THEN
---      cur_state <= next_state;
---   END IF;
---END PROCESS;
-    
 END behavioural;
