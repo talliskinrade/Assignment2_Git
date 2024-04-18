@@ -13,7 +13,7 @@ use work.common_pack.all;
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
 --library UNISIM;
---use UNISIM.VComponents.all;
+--use UNISIM.VComponents.all; 
 
 ENTITY cmdProc IS
    pORt (
