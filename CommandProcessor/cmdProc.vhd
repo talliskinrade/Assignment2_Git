@@ -418,7 +418,7 @@ byte_to_ASCII_proc: PROCESS(byte)
                ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN
                    next_state <= RECEIVE_DATA_A;
                ELSE
-                   next_state <= INIT;
+                   next_state <= RECEIVE_DATA;
                END IF;
                
            WHEN BYTE_TO_BCD_A =>
@@ -444,7 +444,7 @@ byte_to_ASCII_proc: PROCESS(byte)
                ELSIF counterA3 < 3 THEN
                    next_state <= SET_TX_A;
                ELSE
-                   next_state <= INIT;
+                   next_state <= DATA_READY;
                END IF;
                    
            WHEN SEND_TX_A =>
