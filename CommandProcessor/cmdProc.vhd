@@ -154,11 +154,11 @@ BEGIN
             -- Every decimal character begins with the ASCII code "0011".
             outMaxIndexBuffer(0 to 3) <= "0011";
             -- First BCD digit in maxIndex
-            outMaxIndexBuffer(4 to 7) <= maxIndexBuffer(0);
+            outMaxIndexBuffer(4 to 7) <= maxIndexBuffer(2);
             outMaxIndexBuffer(8 to 11) <= "0011";
             outMaxIndexBuffer(12 to 15) <= maxIndexBuffer(1);
             outMaxIndexBuffer(16 to 19) <= "0011";
-            outMaxIndexBuffer(20 to 23) <= maxIndexBuffer(2);
+            outMaxIndexBuffer(20 to 23) <= maxIndexBuffer(0);
             -- outMaxIndexBuffer contains all three ASCII codes for the BCD digits that must be output for the max index.
         ELSIF cur_state = BCD_TO_ASCII_P OR cur_state = RESET_COUNTER_6 OR cur_state = SET_TX_P OR cur_state = SEND_TX_P THEN
             outMaxIndexBuffer <= outMaxIndexBuffer;
@@ -235,7 +235,7 @@ BEGIN
             -- Set third byte of outByteBuffer to the ASCII value for the space character.
             outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
             receivedByteFlag <= '1';
-        ELSIF cur_state = SET_TX_L OR cur_state = SEND_TX_L OR cur_state = RESET_COUNTER_3 THEN
+        ELSIF cur_state = SET_TX_L OR cur_state = SEND_TX_L OR cur_state = RESET_COUNTER_3 OR cur_state = BCD_TO_ASCII_P OR cur_state = RESET_COUNTER_6 OR cur_state = SET_TX_P OR cur_state = SEND_TX_P THEN
             outByteBuffer <= outByteBuffer;
         ELSE
             outByteBuffer <= "000000000000000000000000";
