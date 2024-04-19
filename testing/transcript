@@ -1,6 +1,12 @@
+# Compile of dataController.vhd was successful.
+# Compile of tb_dataController.vhd was successful.
+# Compile of dataGen.vhd was successful.
+# Compile of common_pack.vhd was successful.
+# Compile of dataControllerWrapper.vhd was successful.
+# 5 compiles, 0 failed with no errors.
 vsim -gui work.tb_datagencontroller
 # vsim -gui work.tb_datagencontroller 
-# Start time: 15:01:36 on Apr 17,2024
+# Start time: 15:18:55 on Apr 19,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -8,27 +14,76 @@ vsim -gui work.tb_datagencontroller
 # Loading work.common_pack
 # Loading work.tb_datagencontroller(test)
 # Loading work.datagen(behav)
+# Loading work.datacontrollerwrapper(behavioral)
+# Loading ieee.numeric_std(body)
+# Loading work.datacontroller(behavioural)
+# ** Fatal: (vsim-3817) Port "numWords_bcd" of entity "datacontroller" is not in the component being instantiated.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1/cmdProc_struct1 File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd Line: 17
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 15:18:56 on Apr 19,2024, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 3
+# Compile of dataController.vhd was successful.
+# Compile of tb_dataController.vhd was successful.
+# Compile of dataGen.vhd was successful.
+# Compile of common_pack.vhd was successful.
+# Compile of dataControllerWrapper.vhd was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_datagencontroller
+# vsim -gui work.tb_datagencontroller 
+# Start time: 15:25:27 on Apr 19,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# Loading work.datacontrollerwrapper(behavioral)
+# Loading ieee.numeric_std(body)
+# Loading work.datacontroller(behavioural)
+# ** Fatal: (vsim-3817) Port "numWords_bcd" of entity "datacontroller" is not in the component being instantiated.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1/dataControllerWrapper File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd Line: 17
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 15:25:27 on Apr 19,2024, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 2
+# Compile of dataController.vhd was successful.
+# Compile of tb_dataController.vhd was successful.
+# Compile of dataGen.vhd was successful.
+# Compile of common_pack.vhd was successful.
+# Compile of dataControllerWrapper.vhd was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_datagencontroller
+# vsim -gui work.tb_datagencontroller 
+# Start time: 15:29:07 on Apr 19,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading work.common_pack
+# Loading work.tb_datagencontroller(test)
+# Loading work.datagen(behav)
+# Loading work.datacontrollerwrapper(behavioral)
 # Loading ieee.numeric_std(body)
 # Loading work.datacontroller(behavioural)
 add wave -position insertpoint sim:/tb_datagencontroller/*
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: talli  Hostname: LAPTOP-79ULQ39M  ProcessID: 24420
-#           Attempting to use alternate WLF file "./wlfth6tx4x".
+#           Attempting to use alternate WLF file "./wlftigkqgd".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlfth6tx4x
+#           Using alternate file: ./wlftigkqgd
 run -all
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1/dataControllerWrapper
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1/dataControllerWrapper
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1
+#    Time: 0 ps  Iteration: 0  Instance: /tb_datagencontroller/dataController1/dataControllerWrapper
 # ** Fatal: (vsim-3421) Value 1000 is out of range 0 to 999.
-#    Time: 80010 ns  Iteration: 0  Process: /tb_datagencontroller/dataController1/seq_state File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd Line: 157
-# Fatal error in Process seq_state at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd line 157
+#    Time: 80010 ns  Iteration: 0  Process: /tb_datagencontroller/dataController1/dataControllerWrapper/seq_state File: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd Line: 174
+# Fatal error in Process seq_state at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd line 174
 # 
 # HDL call sequence:
-# Stopped at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd 157 Process seq_state
+# Stopped at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd 174 Process seq_state
 # 
-# End time: 16:13:44 on Apr 17,2024, Elapsed time: 1:12:08
-# Errors: 1, Warnings: 6

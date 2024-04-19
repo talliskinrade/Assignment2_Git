@@ -18,7 +18,7 @@ architecture test of tb_dataGenController is
   	);
   end component;
   
-  component dataController is
+  component dataControllerWrapper is
   	port (
 	  	clk: in std_logic;
 		reset: in std_logic; -- synchronous reset
@@ -145,7 +145,7 @@ begin
       data => readData
     );
     
-  dataController1: dataController
+  dataController1: dataControllerWrapper
     port map (
       clk => clk,
       reset => reset,

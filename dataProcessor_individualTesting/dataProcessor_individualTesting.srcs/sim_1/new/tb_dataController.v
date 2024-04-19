@@ -1,3 +1,26 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 19.04.2024 13:27:19
+// Design Name: 
+// Module Name: tb_dataController
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
@@ -11,18 +34,18 @@ architecture test of tb_dataGenController is
   component dataGen is
   	port (
   		clk: in std_logic;
-  		reset: in std_logic; -- synchronous reset
+  		reset: in std_logic; // synchronous reset
   		ctrlIn: in std_logic;
   		ctrlOut: out std_logic;
   		data: out std_logic_vector(7 downto 0)
   	);
   end component;
   
-  component dataController is
+  component dataConsumeWrapper is
   	port (
 	  	clk: in std_logic;
-		reset: in std_logic; -- synchronous reset
-		start: in std_logic; -- goes high to signal data transfer
+		reset: in std_logic; // synchronous reset
+		start: in std_logic; // goes high to signal data transfer
 		numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
 		ctrlIn: in std_logic;
 		ctrlOut: out std_logic;
@@ -31,11 +54,11 @@ architecture test of tb_dataGenController is
 		byte: out std_logic_vector(7 downto 0);
 		seqDone: out std_logic;
 		maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
-		dataResults: out CHAR_ARRAY_TYPE(0 to RESULT_BYTE_NUM-1) -- index 3 holds the peak
+		dataResults: out CHAR_ARRAY_TYPE(0 to RESULT_BYTE_NUM-1) // index 3 holds the peak
   	);
   end component;
   
-  constant SEQ_COUNT_MAX : integer := 5; -- defines how many runs to test
+  constant SEQ_COUNT_MAX : integer := 5; // defines how many runs to test
   type ARRAY3D_TYPE is array (0 to SEQ_COUNT_MAX) of CHAR_ARRAY_TYPE(0 to RESULT_BYTE_NUM-1);
   type ARRAY3D_BCD_TYPE is array (0 to SEQ_COUNT_MAX) of BCD_ARRAY_TYPE(2 downto 0);
   
@@ -49,10 +72,10 @@ architecture test of tb_dataGenController is
    constant peak : ARRAY3D_BCD_TYPE :=((X"2",X"2",X"8"),(X"0",X"8",X"1"),(X"0",X"8",X"8"),
                                       (X"0",X"2",X"8"),(X"0",X"3",X"1"),(X"0",X"6",X"4")); 
                                       
-   constant maxCycleCount : integer := 4500; -- the sequences shoudn't take more than about 4200 cycles
+   constant maxCycleCount : integer := 4500; // the sequences shoudn't take more than about 4200 cycles
   
-  -- function to convert std_logic_vector having '1's and '0's to string
-  -- for use in assert statements
+  // function to convert std_logic_vector having '1's and '0's to string
+  // for use in assert statements
   function vec2str(vec : std_logic_vector) return string is
     variable str : string(vec'LEFT+1 DOWNTO 1);
   begin
@@ -84,14 +107,14 @@ begin
     variable curCount: integer :=0;
   begin
       start <= '0';
-      wait until tbCount=2; -- wait a few clock cycles after reset
-      numWords <=(X"5",X"0",X"0"); -- 500
+      wait until tbCount=2; // wait a few clock cycles after reset
+      numWords <=(X"5",X"0",X"0"); // 500
       start <= '1';
       wait until seqDone='1';
       start <='0';
       curCount:= tbCount;
-      wait until tbCount=curCount+10; -- wait for a few clock cycles
-      numWords <=(X"1",X"0",X"0"); -- 100
+      wait until tbCount=curCount+10; // wait for a few clock cycles
+      numWords <=(X"1",X"0",X"0"); // 100
       start <= '1';      
       wait;
   end process;
@@ -113,14 +136,14 @@ begin
   begin
     if reset = '1' then
       seqCount <= 0;
-    elsif rising_edge(seqDone) then -- clearly only acceptable in a TB
+    elsif rising_edge(seqDone) then // clearly only acceptable in a TB
        seqCount <= seqCount + 1;
 
        assert false report "Sequence No." & INTEGER'IMAGE(seqCount) & "; Cycle count:" & INTEGER'IMAGE(tbCount) severity note;
        
        for i in 0 to RESULT_BYTE_NUM-1 loop
-          -- byte ordering may be different in different implementations
-          -- try changing (RESULT_BYTE_NUM-1-i) to (i) if there is a mismatch between all bytes except the peak
+          // byte ordering may be different in different implementations
+          // try changing (RESULT_BYTE_NUM-1-i) to (i) if there is a mismatch between all bytes except the peak
           assert dataResults(RESULT_BYTE_NUM-1-i) = RESULTS(seqCount)(i) report "Mismatch for seq " & INTEGER'IMAGE(seqCount) 
           & ":" & CR & "byte " & INTEGER'IMAGE(i) & " should be " & vec2str(RESULTS(seqCount)(i))
           & CR & "but is           " & vec2str(dataResults(RESULT_BYTE_NUM-1-i)) severity warning;
@@ -161,3 +184,6 @@ begin
       dataResults => dataResults
     );
  end test;
+module tb_dataController(
+    );
+endmodule

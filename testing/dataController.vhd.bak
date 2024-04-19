@@ -9,26 +9,39 @@ USE ieee.numeric_std.ALL;
 USE work.ALL;
 USE work.common_pack.all;
 
-entity dataController is
+entity dataConsume_synthesised is
 port (
   clk: in std_logic;
   reset: in std_logic; -- synchronous reset
   start: in std_logic; -- goes high to signal data transfer
-  numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
+  --numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
+  \numWords_bcd[2]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
+  \numWords_bcd[1]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
+  \numWords_bcd[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
   ctrlIn: in std_logic;
   ctrlOut: out std_logic;
   data: in std_logic_vector(7 downto 0);
   dataReady: out std_logic;
   byte: out std_logic_vector(7 downto 0);
   seqDone: out std_logic;
-  maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
-  dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
+  --maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
+  \maxIndex[2]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+  \maxIndex[1]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+  \maxIndex[0]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+  --dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
+  \dataResults[0]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[1]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[2]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[3]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[4]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[5]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+  \dataResults[6]\ : out STD_LOGIC_VECTOR ( 7 downto 0 )
 );
-end dataController;
+end dataConsume_synthesised;
 
 -----------------------------------------------------------------
 
-ARCHITECTURE behavioural OF dataController IS
+ARCHITECTURE behavioural OF dataConsume_synthesised IS
 
 -- State Declaration
 -- ALL STATE TYPES
@@ -54,6 +67,7 @@ ARCHITECTURE behavioural OF dataController IS
 
 	SIGNAL ctrlOut_reg: std_logic;
 	SIGNAL dataResults_reg: CHAR_ARRAY_TYPE(0 to 6);
+	--SIGNAL \dataResults_reg[0]\, \dataResults_reg[1]\, \dataResults_reg[2]\, \dataResults_reg[3]\, \dataResults_reg[4]\, \dataResults_reg[5]\, \dataResults_reg[6]\: STD_LOGIC_VECTOR ( 7 downto 0 );
 BEGIN
 
 -------------------------------------------------------------------
@@ -107,7 +121,7 @@ BEGIN
 
 
 
-  bcd_to_integer: PROCESS(numWords_bcd)
+  bcd_to_integer: PROCESS(\numWords_bcd[2]\,\numWords_bcd[1]\,\numWords_bcd[0]\ )
 	    -- variable of type integer with constrained range and initial value
 
   VARIABLE tmp:INTEGER RANGE 0 TO 999:=0;  -- store the sum
@@ -115,10 +129,13 @@ BEGIN
   BEGIN
   tmp := 0;
 
-  FOR i IN 0 TO 2 LOOP
-    tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
+  --FOR i IN 0 TO 2 LOOP
+    --tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
+   tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[0]\))*(10**(0)));
+   tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[1]\))*(10**(1)));
+   tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[2]\))*(10**(2)));
   
-  END LOOP;
+  --END LOOP;
 
   numWords_int <= tmp;    
   numWords_add3 <= (tmp +3);
@@ -130,12 +147,12 @@ BEGIN
   Integer_to_bcd: Process(maxIndex_int)
 	Variable tmp: integer range 0 to 99;
   Begin
-	maxIndex(0) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
+	\maxIndex[0]\ <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
 -- can I convert this to vector in same line?
 --vhdl integers really round down?
 	tmp:= maxIndex_int rem 100;
-	maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
-	maxIndex(2) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
+	\maxIndex[1]\ <= std_logic_vector(to_unsigned((tmp / 10), 4));
+	\maxIndex[2]\ <= std_logic_vector(to_unsigned((tmp mod 10), 4));
   End process;
 
 
@@ -158,10 +175,18 @@ seq_state:  PROCESS (clk, reset, start)
 	ELSIF cur_state = INIT THEN
 	  counter <= 0;
 	END IF;
-        cur_state <= next_state after 1ns;
+        cur_state <= next_state after 1 ns;
 	prev_state <= cur_state;
 	start_reg <= start;
-        dataResults <= dataResults_reg;
+        --dataResults <= dataResults_reg;
+        \dataResults[0]\ <= dataResults_reg(0);
+        \dataResults[1]\ <= dataResults_reg(1);
+        \dataResults[2]\ <= dataResults_reg(2);
+        \dataResults[3]\ <= dataResults_reg(3);
+        \dataResults[4]\ <= dataResults_reg(4);
+        \dataResults[5]\ <= dataResults_reg(5);
+        \dataResults[6]\ <= dataResults_reg(6);
+        
 	ctrlOut <= ctrlOut_reg;
     END IF;
    

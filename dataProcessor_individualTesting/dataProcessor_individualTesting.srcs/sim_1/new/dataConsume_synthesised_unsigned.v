@@ -1,7 +1,29 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 19.04.2024 13:27:19
+// Design Name: 
+// Module Name: dataConsume_synthesised_unsigned
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
--- Data Processor (DataController.vhd)
--- Asynchronous reset, active high
-------------------------------------------------------
+
+
+// Data Processor (DataController.vhd)
+// Asynchronous reset, active high
+//--------------------------------------------------
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -9,12 +31,12 @@ USE ieee.numeric_std.ALL;
 USE work.ALL;
 USE work.common_pack.all;
 
-entity dataController is
+entity dataConsume_synthesised is
 port (
   clk: in std_logic;
-  reset: in std_logic; -- synchronous reset
-  start: in std_logic; -- goes high to signal data transfer
-  --numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
+  reset: in std_logic; // synchronous reset
+  start: in std_logic; // goes high to signal data transfer
+  //numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
   \numWords_bcd[2]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
   \numWords_bcd[1]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
   \numWords_bcd[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -24,11 +46,11 @@ port (
   dataReady: out std_logic;
   byte: out std_logic_vector(7 downto 0);
   seqDone: out std_logic;
-  --maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
+  //maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
   \maxIndex[2]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
   \maxIndex[1]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
   \maxIndex[0]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
-  --dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
+  //dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
   \dataResults[0]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
   \dataResults[1]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
   \dataResults[2]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -37,40 +59,40 @@ port (
   \dataResults[5]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
   \dataResults[6]\ : out STD_LOGIC_VECTOR ( 7 downto 0 )
 );
-end dataController;
+end dataConsume_synthesised;
 
------------------------------------------------------------------
+//---------------------------------------------------------------
 
-ARCHITECTURE behavioural OF dataController IS
+ARCHITECTURE behavioural OF dataConsume_synthesised IS
 
--- State Declaration
--- ALL STATE TYPES
+// State Declaration
+// ALL STATE TYPES
 	TYPE state_type IS (INIT, DONE, FIRST_THREE_ctrlSet, FIRST_THREE_ctrlWait,
 		FIRST_THREE_regOn, FIRST_THREE_decision, MAIN_LOOP_ctrlSet, MAIN_LOOP_ctrlWait,
 		MAIN_LOOP_regOn, MAIN_LOOP_decision, LOOP_END_regOn, LOOP_END_decision, STORE_reg
 	);
  
--- Signal Declaration
+// Signal Declaration
 	SIGNAL cur_state, next_state, prev_state: state_type;
 	SIGNAL ctrlIn_delayed, ctrlIn_detected: std_logic;
 	SIGNAL start_reg: std_logic;
 
 	SIGNAL reg6, reg5, reg4, reg3, reg2, reg1, reg0: unsigned(7 DOWNTO 0);
-        --SIGNAL data0, data1, data2, data3, data4, data5, data6: UNSIGNED(7 DOWNTO 0);
+        //SIGNAL data0, data1, data2, data3, data4, data5, data6: UNSIGNED(7 DOWNTO 0);
 
 	SIGNAL numWords_add3: integer range 3 to 1002;
 	SIGNAL numWords_int: integer range 0 to 999;
 	SIGNAL counter: integer range 0 to 999;
-	--SIGNAL maxValue: unsigned(7 DOWNTO 0);
+	//SIGNAL maxValue: unsigned(7 DOWNTO 0);
 
 	SIGNAL maxIndex_int: integer range 0 to 999;
 
 	SIGNAL ctrlOut_reg: std_logic;
 	SIGNAL dataResults_reg: CHAR_ARRAY_TYPE(0 to 6);
-	--SIGNAL \dataResults_reg[0]\, \dataResults_reg[1]\, \dataResults_reg[2]\, \dataResults_reg[3]\, \dataResults_reg[4]\, \dataResults_reg[5]\, \dataResults_reg[6]\: STD_LOGIC_VECTOR ( 7 downto 0 );
+	//SIGNAL \dataResults_reg[0]\, \dataResults_reg[1]\, \dataResults_reg[2]\, \dataResults_reg[3]\, \dataResults_reg[4]\, \dataResults_reg[5]\, \dataResults_reg[6]\: STD_LOGIC_VECTOR ( 7 downto 0 );
 BEGIN
 
--------------------------------------------------------------------
+//-----------------------------------------------------------------
   combi_out: PROCESS(cur_state)
   BEGIN
 	dataReady <= '0';
@@ -87,8 +109,8 @@ BEGIN
 	END IF;
   END PROCESS;
 
---- there is a potential issue with this combi_out state stuff. If the max Value is the very final one in the sequence, it may not actually output this. However,
--- I think this is unlikely because the last three digits are always 0. However, it is worth trying this to see.
+// there is a potential issue with this combi_out state stuff. If the max Value is the very final one in the sequence, it may not actually output this. However,
+// I think this is unlikely because the last three digits are always 0. However, it is worth trying this to see.
 
 
 
@@ -96,13 +118,13 @@ BEGIN
 
 
 
---fill in list
+//fill in list
 
--------------------------------------------------------------------
---Component Instantiation
+//-----------------------------------------------------------------
+//Component Instantiation
 
 
---Data Generation Two-Phase Protocol
+//Data Generation Two-Phase Protocol
 
   delay_CtrlIn: process(clk)     
     begin
@@ -113,43 +135,43 @@ BEGIN
   
   ctrlIn_detected <= ctrlIn xor ctrlIn_delayed;
 
--- Registers:
+// Registers:
 
--- use this to get the reg6_in.
+// use this to get the reg6_in.
 
 
 
 
 
   bcd_to_integer: PROCESS(\numWords_bcd[2]\,\numWords_bcd[1]\,\numWords_bcd[0]\ )
-	    -- variable of type integer with constrained range and initial value
+	    // variable of type integer with constrained range and initial value
 
-  VARIABLE tmp:INTEGER RANGE 0 TO 999:=0;  -- store the sum
+  VARIABLE tmp:INTEGER RANGE 0 TO 999:=0;  // store the sum
 
   BEGIN
   tmp := 0;
 
-  --FOR i IN 0 TO 2 LOOP
-    --tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
+  //FOR i IN 0 TO 2 LOOP
+    //tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
    tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[0]\))*(10**(0)));
    tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[1]\))*(10**(1)));
    tmp:=tmp+(TO_INTEGER(unsigned(\numWords_bcd[2]\))*(10**(2)));
   
-  --END LOOP;
+  //END LOOP;
 
   numWords_int <= tmp;    
   numWords_add3 <= (tmp +3);
   END PROCESS;
 	  
---make something that converts the integer back to a thing.
+//make something that converts the integer back to a thing.
 
 
   Integer_to_bcd: Process(maxIndex_int)
 	Variable tmp: integer range 0 to 99;
   Begin
 	\maxIndex[0]\ <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
--- can I convert this to vector in same line?
---vhdl integers really round down?
+// can I convert this to vector in same line?
+//vhdl integers really round down?
 	tmp:= maxIndex_int rem 100;
 	\maxIndex[1]\ <= std_logic_vector(to_unsigned((tmp / 10), 4));
 	\maxIndex[2]\ <= std_logic_vector(to_unsigned((tmp mod 10), 4));
@@ -161,11 +183,11 @@ BEGIN
 
 
 
--------------------------------------------------------------------
+//-----------------------------------------------------------------
 seq_state:  PROCESS (clk, reset, start)
 
---setting up sequential state logic and putting the 'start' signal
--- through a register.
+//setting up sequential state logic and putting the 'start' signal
+// through a register.
  BEGIN
     IF reset = '1' THEN
       cur_state <= INIT;
@@ -178,7 +200,7 @@ seq_state:  PROCESS (clk, reset, start)
         cur_state <= next_state after 1 ns;
 	prev_state <= cur_state;
 	start_reg <= start;
-        --dataResults <= dataResults_reg;
+        //dataResults <= dataResults_reg;
         \dataResults[0]\ <= dataResults_reg(0);
         \dataResults[1]\ <= dataResults_reg(1);
         \dataResults[2]\ <= dataResults_reg(2);
@@ -200,17 +222,17 @@ seq_state:  PROCESS (clk, reset, start)
 
  
 
-------------------------------------------------------------------
+//----------------------------------------------------------------
 combi_nextState: PROCESS(cur_state, start_reg, ctrlIn_detected, numWords_int, numWords_add3)
 
 BEGIN
 
   CASE cur_state IS
 
------INIT and DONE states:
+//---INIT and DONE states:
 
       WHEN INIT =>
-	--reset all registers
+	//reset all registers
 	reg6 <= TO_UNSIGNED(0,8);
 	reg5 <= TO_UNSIGNED(0,8);
 	reg4 <= TO_UNSIGNED(0,8);
@@ -218,19 +240,19 @@ BEGIN
 	reg2 <= TO_UNSIGNED(0,8);
 	reg1 <= TO_UNSIGNED(0,8);
 	reg0 <= TO_UNSIGNED(0,8);
-	--data0 <= TO_UNSIGNED(0,8);
-	--data1 <= TO_UNSIGNED(0,8);
-	--data2 <= TO_UNSIGNED(0,8);
-	--data3 <= TO_UNSIGNED(0,8);
-	--data4 <= TO_UNSIGNED(0,8);
-	--data5 <= TO_UNSIGNED(0,8);
-	--data6 <= TO_UNSIGNED(0,8);
-	--maxValue <= TO_UNSIGNED(0,8);
-	--counter <= 0;
+	//data0 <= TO_UNSIGNED(0,8);
+	//data1 <= TO_UNSIGNED(0,8);
+	//data2 <= TO_UNSIGNED(0,8);
+	//data3 <= TO_UNSIGNED(0,8);
+	//data4 <= TO_UNSIGNED(0,8);
+	//data5 <= TO_UNSIGNED(0,8);
+	//data6 <= TO_UNSIGNED(0,8);
+	//maxValue <= TO_UNSIGNED(0,8);
+	//counter <= 0;
 	ctrlOut_reg <= '0';
 	dataResults_reg <= (others => (others => '0'));
 
---all registers to zero, then:
+//all registers to zero, then:
 	if start_reg = '1' then
 	  next_state <= FIRST_THREE_ctrlSet;
 	else
@@ -242,10 +264,10 @@ BEGIN
 	next_state <= INIT;
 	
 	  
--------- maybe there's a way to streamline these? like just three, one before the 
--- max test, one with the max test, one with the end loop.
---------------------------------------------------------------------
--------- Register 6 States (NORMAL CONDITIONS)
+//------ maybe there's a way to streamline these? like just three, one before the 
+// max test, one with the max test, one with the end loop.
+//------------------------------------------------------------------
+//------ Register 6 States (NORMAL CONDITIONS)
       WHEN FIRST_THREE_ctrlSet =>
 	ctrlOut_reg <= not ctrlOut_reg;
 	next_state <= FIRST_THREE_ctrlWait;
@@ -263,8 +285,8 @@ BEGIN
 	reg6 <= UNSIGNED(data) after 2 ns;
 	reg5 <= reg6 after 1 ns;
 	reg4 <= reg5;
-	--??--reg3 <= reg4;
-	--counter <= counter + 1;
+	//??--reg3 <= reg4;
+	//counter <= counter + 1;
 	next_state <= FIRST_THREE_decision;
       
 
@@ -272,7 +294,7 @@ BEGIN
 	if start_reg = '1' then
 	  if counter < numWords_int then
 	    if counter < 3 then
---or should it be 4?
+//or should it be 4?
 	      next_state <= FIRST_THREE_ctrlSet;
 
 	    else
@@ -285,8 +307,8 @@ BEGIN
 	  next_state <= FIRST_THREE_decision;
 	end if;
 
---------------------------------------------------------------------
------- Registers 3 to 0 (Main Loop)
+//------------------------------------------------------------------
+//---- Registers 3 to 0 (Main Loop)
 
       WHEN MAIN_LOOP_ctrlSet =>
 	ctrlOut_reg <= not ctrlOut_reg;
@@ -317,7 +339,7 @@ BEGIN
 	if start_reg = '1' then
 	  if counter < numWords_int then
 	    next_state <= MAIN_LOOP_ctrlSet;
------ loop back to the start of MAIN_LOOP_ctrlSet.
+//--- loop back to the start of MAIN_LOOP_ctrlSet.
 	  else
 	    next_state <= LOOP_END_regOn;
 	  end if;
@@ -325,9 +347,9 @@ BEGIN
 	  next_state <= MAIN_LOOP_decision;
 	end if;	
 	  
---------------------------------------------------------------------
--------- Register states AT FINAL THREE bytes:
----Register 6
+//------------------------------------------------------------------
+//------ Register states AT FINAL THREE bytes:
+//-Register 6
 
 
       WHEN LOOP_END_regOn =>
@@ -350,8 +372,8 @@ BEGIN
 	end if;
 
 
------------------------------------------------------------------------------
--- COMPARING REGISTER TO DATARESULT_REG AND STORE VALUES
+//---------------------------------------------------------------------------
+// COMPARING REGISTER TO DATARESULT_REG AND STORE VALUES
       WHEN STORE_reg =>
 	if reg3 > unsigned(dataResults_reg(3)) then
 	  dataResults_reg(0) <= std_logic_vector(reg0);
@@ -375,3 +397,6 @@ BEGIN
 END PROCESS;
 
 END behavioural;
+module dataConsume_synthesised_unsigned(
+    );
+endmodule
