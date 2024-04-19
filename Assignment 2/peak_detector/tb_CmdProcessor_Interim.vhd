@@ -250,9 +250,13 @@ begin
   '1' after 135020 us,  '1' after 135124 us,  '0' after 135228 us,  '0' after 135332 us,  '1' after 135436 us,  
   -- 3: 0, 11001100, 1 (start bit - 0, decimal 2 (0011_0011) in order of LSB first, stop bit -1)
   '0' after 135800 us, '1' after 135904 us, '1' after 136008 us, '0' after 136112 us, '0' after 136216 us, 
-  '1' after 136320 us, '1' after 136424 us, '0' after 136528 us, '0' after 136632 us, '1' after 136736 us;
-  ------------------------------
+  '1' after 136320 us, '1' after 136424 us, '0' after 136528 us, '0' after 136632 us, '1' after 136736 us,
  
+  ------------------------------
+  -- p: 1, 0, 00001110, 1
+  '1' after 180000 us, '0' after 180001 us, '0' after 180105 us, '0' after 180209 us, '0' after 180313 us, '0' after 180417 us,
+  '1' after 180521 us, '1' after 180625 us, '1' after 180729 us, '0' after 180833 us, '1' after 180937 us;
+
 
 
 ----------------------------------------

@@ -66,6 +66,8 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL receivedDataFlag, sentDataFlag, byteToBCDFlag: std_logic;
 	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
+	SIGNAL dataResultsBuffer: CHAR_ARRAY_TYPE (0 to RESULT_BYTE_NUM-1);
+	SIGNAL maxIndexBuffer: BCD_ARRAY_TYPE (2 downto 0);
 	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL hexASCIIMapping: std_logic_vector (0 to 127) := "00110000001100010011001000110011001101000011010100110110001101110011100000111001010000010100001001000011010001000100010101000110";
@@ -108,16 +110,15 @@ BEGIN
         sentDataFlag <= '0';
         txData <= "00000000";
         
-	    IF cur_state = SEND_TX_L OR cur_state = SEND_TX_P THEN
-	       txNow <= '1';
-	    ELSIF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
+	    IF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
 	       txData <= dataBuffer;
 	       txNow <= '1';
 	       sentDataFlag <= '1';
 	    ELSIF cur_state = SET_TX_L THEN
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
-        ELSIF cur_State = SET_TX_P THEN
-            txData <= outPPrinting(counter6*8 to counter6*8 + 7);
+        ELSIF cur_state = SEND_TX_P AND txDone = '1' THEN
+           txData <= outPPrinting(counter6*8 to counter6*8 + 7);
+           txNow <= '1';
         ELSIF cur_state = SEND_TX_1 AND txDone = '1' THEN
            txData <= ASCII1;
            txNow <= '1';
@@ -152,32 +153,72 @@ BEGIN
             -- Every decimal character begins with the ASCII code "0011".
             outMaxIndexBuffer(0 to 3) <= "0011";
             -- First BCD digit in maxIndex
-            outMaxIndexBuffer(4 to 7) <= maxIndex(0);
+            outMaxIndexBuffer(4 to 7) <= maxIndexBuffer(0);
             outMaxIndexBuffer(8 to 11) <= "0011";
-            outMaxIndexBuffer(12 to 15) <= maxIndex(1);
+            outMaxIndexBuffer(12 to 15) <= maxIndexBuffer(1);
             outMaxIndexBuffer(16 to 19) <= "0011";
-            outMaxIndexBuffer(20 to 23) <= maxIndex(2);
+            outMaxIndexBuffer(20 to 23) <= maxIndexBuffer(2);
             -- outMaxIndexBuffer contains all three ASCII codes for the BCD digits that must be output for the max index.
-            
-            outPPrinting(24 to 47) <= outMaxIndexBuffer;
-            -- outPPrinting now contains all 6 bytes that must be printed in turn to complete P printing.
+        ELSIF cur_state = BCD_TO_ASCII_P OR cur_state = RESET_COUNTER_6 OR cur_state = SET_TX_P OR cur_state = SEND_TX_P THEN
+            outMaxIndexBuffer <= outMaxIndexBuffer;
+        ELSE
+            outMaxIndexBuffer <= "000000000000000000000000";
         END IF;
     END PROCESS;
     
-    combi_readDataResults: PROCESS (cur_state, regDataReady)
+    combi_setOutPPrinting: PROCESS (cur_state)
     BEGIN
-        IF (seqDone = '1' AND (cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P)) OR (dataReady = '1' AND cur_state = DATA_READY) THEN
-            IF seqDone = '1' AND cur_state = BYTE_TO_ASCII_L THEN
-                dataResultBuffer <= dataResults(counter7);
-            ELSIF seqDone = '1' AND cur_state = BYTE_TO_ASCII_P THEN
-                dataResultBuffer <= dataResults(3);
-            ELSIF dataReady = '1' AND cur_state = DATA_READY THEN
-                dataResultBuffer <= byte;
-            END IF;
-        ELSIF cur_state = SEND_TX_1 OR cur_state = SEND_TX_2 OR cur_state = SEND_SPACE THEN
-            dataResultBuffer <= dataResultBuffer;
+        IF cur_state = SET_TX_P THEN
+            outPPrinting(0 to 23) <= outByteBuffer;
+            outPPrinting(24 to 47) <= outMaxIndexBuffer;
+        ELSIF cur_state = BYTE_TO_ASCII_P OR cur_state = BCD_TO_ASCII_P OR cur_state = SEND_TX_P THEN
+            outPPrinting <= outPPrinting;
         ELSE
-            dataResultBuffer <= "00000000";
+            outPPrinting <= "0000000000000000000000000000000000000000000000000";
+        END IF;
+    END PROCESS;
+    
+    combi_count6: PROCESS (cur_state)
+    BEGIN
+        IF cur_state = SEND_TX_P THEN
+            counter6 <= counter6 + 1;
+        ELSIF cur_state = BYTE_TO_ASCII_P OR cur_state = BCD_TO_ASCII_P OR cur_state = SET_TX_P THEN
+            counter6 <= counter6;
+        ELSE
+            counter6 <= 0;
+        END IF;
+    END PROCESS;
+    
+    combi_setDataResultBuffer: PROCESS (cur_state)
+    BEGIN
+        dataResultBuffer <= "00000000";
+        IF cur_state = BYTE_TO_ASCII_L THEN
+            dataResultBuffer <= dataResultsBuffer(counter7);
+        ELSIF cur_state = BYTE_TO_ASCII_P THEN
+            dataResultBuffer <= dataResultsBuffer(3);
+        END IF;
+    END PROCESS;
+    
+    combi_readDataResults: PROCESS (seqDone)
+    BEGIN
+        IF cur_state = SEND_TX_1 AND seqDone = '1' THEN
+            dataResultsBuffer <= dataResults;
+            maxIndexBuffer <= maxIndex;
+        ELSIF cur_state = INIT THEN
+            dataResultsBuffer(0) <= "00000000";
+            dataResultsBuffer(1) <= "00000000";
+            dataResultsBuffer(2) <= "00000000";
+            dataResultsBuffer(3) <= "00000000";
+            dataResultsBuffer(4) <= "00000000";
+            dataResultsBuffer(5) <= "00000000";
+            dataResultsBuffer(6) <= "00000000";
+            
+            maxIndexBuffer(0) <= "0000";
+            maxIndexBuffer(1) <= "0000";
+            maxIndexBuffer(2) <= "0000";
+        ELSE
+            dataResultsBuffer <= dataResultsBuffer;
+            maxIndexBuffer <= maxIndexBuffer;
         END IF;
     END PROCESS;
     
@@ -185,18 +226,18 @@ BEGIN
     BEGIN
         receivedByteFlag <= '0';
         outByteBuffer <= "000000000000000000000000";
-        outPPrinting(0 to 23) <= "000000000000000000000000";
+--        outPPrinting(0 to 23) <= "000000000000000000000000";
         
-        IF (seqDone = '1' AND (cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P)) OR (dataReady = '1' AND cur_state = DATA_READY) THEN
+        IF cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P THEN
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
             outByteBuffer(0 to 7) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 + 7);
             -- Set second byte of outByteBuffer to the ASCII value for the hex value of the last 4 bits of the incoming byte.
             outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 + 7);
             -- Set third byte of outByteBuffer to the ASCII value for the space character.
             outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
-            IF cur_state = BYTE_TO_ASCII_P THEN
-                outPPrinting(0 to 23) <= outByteBuffer;
-            END IF;
+--            IF cur_state = BYTE_TO_ASCII_P THEN
+--                outPPrinting(0 to 23) <= outByteBuffer;
+--            END IF;
             receivedByteFlag <= '1';
         END IF;
     END PROCESS;
@@ -366,18 +407,16 @@ byte_to_ASCII_proc: PROCESS(byte)
     	       next_state <= SET_TX_P;
     	       
     	   WHEN SET_TX_P =>
-    	       IF txDone = '1' THEN
+    	       IF txDone = '1' AND counter6 < 6 THEN
     	           next_state <= SEND_TX_P;
-    	       ELSE
+    	       ELSIF txDone = '0' AND counter6 < 6 THEN
     	           next_state <= SET_TX_P;
+    	       ELSE
+    	           next_state <= RECEIVE_DATA;
     	       END IF;
     	           
     	   WHEN SEND_TX_P => 
-    	       IF counter6 < 6 THEN 
-    	           next_state <= SET_TX_P;
-    	       ELSE   --counter6 = 6
-    	           next_state <= ECHO_DATA;
-    	       END IF;
+               next_state <= SET_TX_P;
 	 
 ---A Printing States--------------------------------------------
 
@@ -444,7 +483,7 @@ byte_to_ASCII_proc: PROCESS(byte)
                ELSIF seqDone = '0' THEN
                    next_state <= SEND_TX_1;
                ELSE
-                   next_state <= INIT;
+                   next_state <= RECEIVE_DATA;
                END IF;
            
            WHEN SEND_TX_2 =>
