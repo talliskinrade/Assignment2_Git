@@ -114,8 +114,9 @@ BEGIN
 	       txData <= dataBuffer;
 	       txNow <= '1';
 	       sentDataFlag <= '1';
-	    ELSIF cur_state = SET_TX_L THEN
+	    ELSIF cur_state = SEND_TX_L THEN
            txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
+           txNow <= '1';
         ELSIF cur_state = SEND_TX_P AND txDone = '1' THEN
            txData <= outPPrinting(counter6*8 to counter6*8 + 7);
            txNow <= '1';
@@ -225,8 +226,6 @@ BEGIN
     combi_setOutByte: PROCESS (dataResultBuffer)
     BEGIN
         receivedByteFlag <= '0';
-        outByteBuffer <= "000000000000000000000000";
---        outPPrinting(0 to 23) <= "000000000000000000000000";
         
         IF cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P THEN
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
@@ -235,10 +234,33 @@ BEGIN
             outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 + 7);
             -- Set third byte of outByteBuffer to the ASCII value for the space character.
             outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
---            IF cur_state = BYTE_TO_ASCII_P THEN
---                outPPrinting(0 to 23) <= outByteBuffer;
---            END IF;
             receivedByteFlag <= '1';
+        ELSIF cur_state = SET_TX_L OR cur_state = SEND_TX_L OR cur_state = RESET_COUNTER_3 THEN
+            outByteBuffer <= outByteBuffer;
+        ELSE
+            outByteBuffer <= "000000000000000000000000";
+        END IF;
+    END PROCESS;
+    
+    combi_count7: PROCESS (cur_state)
+    BEGIN
+        IF cur_state = RESET_COUNTER_3 THEN
+            counter7 <= counter7 + 1;
+        ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = SEND_TX_L OR cur_state = SET_TX_L THEN
+            counter7 <= counter7;
+        ELSE
+            counter7 <= 0;
+        END IF;
+    END PROCESS;
+    
+    combi_count3: PROCESS (cur_state)
+    BEGIN
+        IF cur_state = SEND_TX_L THEN
+            counter3 <= counter3 + 1;
+        ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = SET_TX_L THEN
+            counter3 <= counter3;
+        ELSE
+            counter3 <= 0;
         END IF;
     END PROCESS;
 
@@ -349,7 +371,6 @@ byte_to_ASCII_proc: PROCESS(byte)
 	       WHEN CHECK_COMMANDS =>
 	           IF dataBuffer = "01001100" OR dataBuffer = "01101100" THEN -- L
 	               next_state <= BYTE_TO_ASCII_L;
-	               counter7 <= 0;
 	           ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN -- A
 	               next_state <= RECEIVE_DATA_A;
 	           ELSIF dataBuffer = "01010000" OR dataBuffer = "01110000" THEN -- P
@@ -367,14 +388,11 @@ byte_to_ASCII_proc: PROCESS(byte)
     	       END IF;
 	
 	       WHEN RESET_COUNTER_3 =>
-	           counter7 <= counter7 + 1;
-	           counter3 <= 0;
 	           next_state <= SET_TX_L;
 	
 	       WHEN SET_TX_L =>
 	           IF txDone = '1' THEN
 	               next_state <= SEND_TX_L;
-	               counter3 <= counter3 + 1;
 	           ELSE
 	               next_state <= SET_TX_L;
 	           END IF;
