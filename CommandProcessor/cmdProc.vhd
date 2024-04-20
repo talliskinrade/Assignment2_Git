@@ -67,13 +67,15 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL dataResultsBuffer: CHAR_ARRAY_TYPE (0 to RESULT_BYTE_NUM-1);
 	SIGNAL maxIndexBuffer: BCD_ARRAY_TYPE (2 downto 0);
-	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
+--	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL outMaxIndexBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL outPPrinting: std_logic_vector (0 to 48) := "0000000000000000000000000000000000000000000000000";
 	-------- A Printing -------
     SIGNAL ASCII1, ASCII2 : std_logic_vector(7 downto 0);
     SIGNAL regDataReady: std_logic := '0';
+    SIGNAL dataResultPBuffer: std_logic_vector(0 to 7);
+    SIGNAL dataResultLBuffer: std_logic_vector(0 to 7);
 -------------------------------------------------------------------
 --Component Instantiation
 
@@ -179,15 +181,24 @@ BEGIN
         END IF;
     END PROCESS;
     
-    seq_setDataResultBuffer: PROCESS (clk)
+    seq_setDataResultPBuffer: PROCESS (clk)
     BEGIN
         IF clk'EVENT AND clk='1' THEN
             IF reset = '1' THEN
-                dataResultBuffer <= "00000000";
-            ELSIF cur_state = BYTE_TO_ASCII_L THEN
-                dataResultBuffer <= dataResultsBuffer(counterL7);
-            ELSIF cur_state = BYTE_TO_ASCII_P THEN
-                dataResultBuffer <= dataResultsBuffer(3);
+                dataResultPBuffer <= "00000000";
+            ELSE
+                dataResultPBuffer <= dataResultsBuffer(3);
+            END IF;
+        END IF;
+    END PROCESS;
+    
+    seq_setDataResultLBuffer: PROCESS (clk)
+    BEGIN
+        IF clk'EVENT AND clk='1' THEN
+            IF reset = '1' THEN
+                dataResultLBuffer <= "00000000";
+            ELSIF counterL7 < 7 THEN
+                dataResultLBuffer <= dataResultsBuffer(counterL7);
             END IF;
         END IF;
     END PROCESS;
@@ -274,11 +285,10 @@ BEGIN
     END IF;
 END PROCESS;
 
-combi_byteToASCII: PROCESS(byte, dataResultBuffer, cur_state)
+combi_byteToASCII: PROCESS(byte, dataResultPBuffer, cur_state)
 BEGIN
     ASCII1 <= "00000000";
     ASCII2 <= "00000000";
-    outByteBuffer <= "000000000000000000000000";
     
     IF cur_state = SEND_TX_1 THEN
         CASE byte(7 downto 4) is
@@ -320,45 +330,97 @@ BEGIN
             WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
             WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
         END CASE;
-    ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = BCD_TO_ASCII_P THEN
-        CASE dataResultBuffer(0 to 3) is
-            WHEN "0000" => outByteBuffer(0 to 7) <= "00110000";  -- '0'
-            WHEN "0001" => outByteBuffer(0 to 7) <= "00110001";  -- '1'
-            WHEN "0010" => outByteBuffer(0 to 7) <= "00110010";  -- '2'
-            WHEN "0011" => outByteBuffer(0 to 7) <= "00110011";  -- '3'
-            WHEN "0100" => outByteBuffer(0 to 7) <= "00110100";  -- '4'
-            WHEN "0101" => outByteBuffer(0 to 7) <= "00110101";  -- '5'
-            WHEN "0110" => outByteBuffer(0 to 7) <= "00110110";  -- '6'
-            WHEN "0111" => outByteBuffer(0 to 7) <= "00110111";  -- '7'
-            WHEN "1000" => outByteBuffer(0 to 7) <= "00111000";  -- '8'
-            WHEN "1001" => outByteBuffer(0 to 7) <= "00111001";  -- '9'
-            WHEN "1010" => outByteBuffer(0 to 7) <= "01000001";  -- 'A'
-            WHEN "1011" => outByteBuffer(0 to 7) <= "01000010";  -- 'B'
-            WHEN "1100" => outByteBuffer(0 to 7) <= "01000011";  -- 'C'
-            WHEN "1101" => outByteBuffer(0 to 7) <= "01000100";  -- 'D'
-            WHEN "1110" => outByteBuffer(0 to 7) <= "01000101";  -- 'E'
-            WHEN "1111" => outByteBuffer(0 to 7) <= "01000110";  -- 'F'
-            WHEN others => outByteBuffer(0 to 7) <= "01000110";  -- '?' (default fOR unknown values)
+    ELSIF cur_state = BYTE_TO_ASCII_P THEN
+        CASE dataResultPBuffer(0 to 3) is
+            WHEN "0000" => ASCII1 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII1 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII1 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII1 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII1 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII1 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII1 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII1 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII1 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII1 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII1 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII1 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII1 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII1 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII1 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII1 <= "01000110";  -- 'F'
+            WHEN others => ASCII1 <= "01000110";  -- '?' (default fOR unknown values)
         END CASE;
-        CASE dataResultBuffer(4 to 7) is
-            WHEN "0000" => outByteBuffer(8 to 15) <= "00110000";  -- '0'
-            WHEN "0001" => outByteBuffer(8 to 15) <= "00110001";  -- '1'
-            WHEN "0010" => outByteBuffer(8 to 15) <= "00110010";  -- '2'
-            WHEN "0011" => outByteBuffer(8 to 15) <= "00110011";  -- '3'
-            WHEN "0100" => outByteBuffer(8 to 15) <= "00110100";  -- '4'
-            WHEN "0101" => outByteBuffer(8 to 15) <= "00110101";  -- '5'
-            WHEN "0110" => outByteBuffer(8 to 15) <= "00110110";  -- '6'
-            WHEN "0111" => outByteBuffer(8 to 15) <= "00110111";  -- '7'
-            WHEN "1000" => outByteBuffer(8 to 15) <= "00111000";  -- '8'
-            WHEN "1001" => outByteBuffer(8 to 15) <= "00111001";  -- '9'
-            WHEN "1010" => outByteBuffer(8 to 15) <= "01000001";  -- 'A'
-            WHEN "1011" => outByteBuffer(8 to 15) <= "01000010";  -- 'B'
-            WHEN "1100" => outByteBuffer(8 to 15) <= "01000011";  -- 'C'
-            WHEN "1101" => outByteBuffer(8 to 15) <= "01000100";  -- 'D'
-            WHEN "1110" => outByteBuffer(8 to 15) <= "01000101";  -- 'E'
-            WHEN "1111" => outByteBuffer(8 to 15) <= "01000110";  -- 'F'
-            WHEN others => outByteBuffer(8 to 15) <= "01000110";  -- '?' (default fOR unknown values)
+        CASE dataResultPBuffer(4 to 7) is
+            WHEN "0000" => ASCII2 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII2 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII2 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII2 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII2 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII2 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII2 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII2 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII2 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII2 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII2 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII2 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII2 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII2 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII2 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
+            WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
         END CASE;
+    ELSIF cur_state = BYTE_TO_ASCII_L THEN
+        CASE dataResultLBuffer(0 to 3) is
+            WHEN "0000" => ASCII1 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII1 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII1 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII1 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII1 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII1 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII1 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII1 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII1 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII1 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII1 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII1 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII1 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII1 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII1 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII1 <= "01000110";  -- 'F'
+            WHEN others => ASCII1 <= "01000110";  -- '?' (default fOR unknown values)
+        END CASE;
+        CASE dataResultLBuffer(4 to 7) IS
+            WHEN "0000" => ASCII2 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII2 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII2 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII2 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII2 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII2 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII2 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII2 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII2 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII2 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII2 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII2 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII2 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII2 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII2 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
+            WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
+        END CASE;
+    END IF;
+END PROCESS;
+
+seq_setOutByteBuffer: PROCESS (clk)
+BEGIN
+    IF clk'EVENT AND clk='1' THEN
+        IF reset='1' THEN
+            outByteBuffer <= "000000000000000000000000";
+        ELSIF cur_state = BYTE_TO_ASCII_P OR cur_state = BYTE_TO_ASCII_L THEN
+            outByteBuffer(0 to 7) <= ASCII1;
+            outByteBuffer(8 to 15) <= ASCII2;
+            outByteBuffer(16 to 23) <= "01000000";
+        END IF;
     END IF;
 END PROCESS;
   
@@ -396,10 +458,10 @@ END PROCESS;
 	
 	--- L printing:
 	       WHEN BYTE_TO_ASCII_L =>
-    	       next_state <= RESET_COUNTER_3;
+               next_state <= RESET_COUNTER_3;
 	
 	       WHEN RESET_COUNTER_3 =>
-	           next_state <= SET_TX_L;
+    	       next_state <= SET_TX_L;
 	
 	       WHEN SET_TX_L =>
 	           IF txDone = '1' THEN
