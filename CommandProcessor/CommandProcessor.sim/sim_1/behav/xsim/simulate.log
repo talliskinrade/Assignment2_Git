@@ -1,0 +1,57 @@
+Time resolution is 1 ps
+Note: =====Process of Sequence No.1 starts.
+Time: 4790555 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(1) character(1) should be 00111001
+Time: 5832225 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(1) character(2) should be 00110101
+Time: 6873935 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(2) character(1) should be 00110001
+Time: 11040775 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(2) character(2) should be 00110011
+Time: 12082485 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(3) character(1) should be 00110110
+Time: 14165905 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(3) character(2) should be 00110000
+Time: 15207615 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(4) character(1) should be 00110000
+Time: 17291035 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(4) character(2) should be 00111001
+Time: 18332745 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(5) character(1) should be 00110110
+Time: 20416165 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(5) character(2) should be 00111000
+Time: 21457875 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(6) character(1) should be 01000001
+Time: 23541295 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(6) character(2) should be 00111000
+Time: 24583005 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(7) character(1) should be 00111001
+Time: 26666425 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(7) character(2) should be 00110011
+Time: 27708135 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(8) character(1) should be 01000110
+Time: 29791555 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(8) character(2) should be 00111001
+Time: 30833265 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(9) character(1) should be 00110111
+Time: 32916685 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(9) character(2) should be 00110001
+Time: 33958395 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(10) character(1) should be 01000011
+Time: 36041815 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(10) character(2) should be 00110111
+Time: 37083525 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(11) character(1) should be 00111001
+Time: 39166945 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.1 is done.
+Time: 39166995100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====A total of 12 bytes has been processed; 
+Time: 39166995100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 01000001; while byte(11) character(2) should be 00110010
+Time: 132991515 ns  Iteration: 2  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.2 starts.
+Time: 136790555 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(12) character(1) should be 00110000
+Time: 137832225 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00000000; while byte(12) character(2) should be 00110110
+Time: 138873935 ns  Iteratio

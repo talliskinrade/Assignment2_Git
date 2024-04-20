@@ -59,30 +59,20 @@ ARCHITECTURE behavioural OF cmdProc IS
  
 -- Signal Declaration
     SIGNAL cur_state, next_state: state_type;
-	SIGNAL counter7: integer range 0 to 7;
-	SIGNAL counter3: integer range 0 to 3;
-	SIGNAL counter6: integer range 0 to 5;
-	SIGNAL counterA3: integer range 0 to 3;
-	SIGNAL receivedDataFlag, sentDataFlag, byteToBCDFlag: std_logic;
-	SIGNAL dataBuffer: std_logic_vector (7 downto 0) := "11111111";
+	SIGNAL counterL7: integer range 0 to 7;
+	SIGNAL counterL3: integer range 0 to 3;
+	SIGNAL counterP6: integer range 0 to 5;
+	SIGNAL counterA3: integer range 2 downto 0;
+	SIGNAL sentDataFlag, byteToBCDFlag: std_logic;
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL dataResultsBuffer: CHAR_ARRAY_TYPE (0 to RESULT_BYTE_NUM-1);
 	SIGNAL maxIndexBuffer: BCD_ARRAY_TYPE (2 downto 0);
 	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
-	SIGNAL hexASCIIMapping: std_logic_vector (0 to 127) := "00110000001100010011001000110011001101000011010100110110001101110011100000111001010000010100001001000011010001000100010101000110";
-	-- Have faith in the mega array!!!!!
-	SIGNAL receivedByteFlag: std_logic := '0';
 	SIGNAL outMaxIndexBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL outPPrinting: std_logic_vector (0 to 48) := "0000000000000000000000000000000000000000000000000";
 	-------- A Printing -------
-    SIGNAL count_numbers, count_send : integer := 0;
-    SIGNAL tem_BCD : std_logic_vector(11 downto 0);
-    SIGNAL tem_Data_to_BCD : std_logic_vector(11 downto 0) := "000000000000";
-    SIGNAL rxdone_temp : std_logic := '0';
     SIGNAL ASCII1, ASCII2 : std_logic_vector(7 downto 0);
-    signal prev_seqDone, seqDone_temp : std_logic := '0';
-    signal byte_complete, count_reset : std_logic := '0';
     SIGNAL regDataReady: std_logic := '0';
 -------------------------------------------------------------------
 --Component Instantiation
@@ -92,52 +82,46 @@ ARCHITECTURE behavioural OF cmdProc IS
 	
 BEGIN
 
-    combi_terminalEcho: PROCESS(cur_state, rxNow, txDone)
+    combi_setRXDone_echoing: PROCESS(cur_state, rxNow)
     BEGIN
         rxDone <= '0';
-        receivedDataFlag <= '0';
-	   
         IF (cur_state = RECEIVE_DATA OR cur_state = RECEIVE_DATA_A) AND rxNow = '1' THEN
-	       dataBuffer <= rxData;
 	       rxDone <= '1';
-	       receivedDataFlag <= '1';
 	    END IF;
     END PROCESS;
 
-    combi_out: PROCESS (cur_state, txDone)
+    combi_sendTX: PROCESS (cur_state, txDone)
     BEGIN
         txNow <= '0';
-        sentDataFlag <= '0';
         txData <= "00000000";
-        
-	    IF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
-	       txData <= dataBuffer;
-	       txNow <= '1';
-	       sentDataFlag <= '1';
-	    ELSIF cur_state = SEND_TX_L THEN
-           txData <= outByteBuffer(counter3*8 to counter3*8 + 7);
-           txNow <= '1';
-        ELSIF cur_state = SEND_TX_P AND txDone = '1' THEN
-           txData <= outPPrinting(counter6*8 to counter6*8 + 7);
-           txNow <= '1';
+
+        IF (cur_state = ECHO_DATA OR cur_state = ECHO_DATA_A) AND txDone = '1' THEN
+            txData <= rxData;
+            txNow <= '1';
+        ELSIF cur_state = SEND_TX_L THEN
+            txData <= outByteBuffer(counterL3*8 to counterL3*8 + 7);
+            txNow <= '1';
+        ELSIF cur_state = SEND_TX_P THEN
+            txData <= outPPrinting(counterP6*8 to counterP6*8 + 7);
+            txNow <= '1';
         ELSIF cur_state = SEND_TX_1 AND txDone = '1' THEN
-           txData <= ASCII1;
-           txNow <= '1';
+            txData <= ASCII1;
+            txNow <= '1';
         ELSIF cur_state = SEND_TX_2 AND txDone = '1' THEN
-           txData <= ASCII2;
-           txNow <= '1';
+            txData <= ASCII2;
+            txNow <= '1';
         ELSIF cur_state = SEND_SPACE AND txDone = '1' THEN
-           txData <= "00100000";
-           txNow <= '1';
+            txData <= "00100000";
+            txNow <= '1';
 	    END IF;
     END PROCESS;
     
-    combi_byteToBCD_A: PROCESS (cur_state, dataBuffer)
+    combi_byteToBCD_A: PROCESS (cur_state, rxData)
     BEGIN
-        IF cur_state = BYTE_TO_BCD_A AND counterA3 < 3 THEN
+        IF cur_state = BYTE_TO_BCD_A THEN
             -- Byte in dataBuffer is an ASCII code between 00110000 and 00111001.
             -- Last 4 bits denote the BCD digit, hence we can extract this and store it in the BCD array.
-            numWords_bcd(2-counterA3) <= dataBuffer(3 downto 0);
+            numWords_bcd(counterA3) <= rxData(3 downto 0);
             -- Repeat for all three bytes received.
         ELSIF cur_state = INIT THEN
             numWords_bcd(0) <= "0000";
@@ -179,14 +163,14 @@ BEGIN
         END IF;
     END PROCESS;
     
-    combi_count6: PROCESS (cur_state)
+    combi_count6_P: PROCESS (cur_state)
     BEGIN
         IF cur_state = SEND_TX_P THEN
-            counter6 <= counter6 + 1;
+            counterP6 <= counterP6 + 1;
         ELSIF cur_state = BYTE_TO_ASCII_P OR cur_state = BCD_TO_ASCII_P OR cur_state = SET_TX_P THEN
-            counter6 <= counter6;
+            counterP6 <= counterP6;
         ELSE
-            counter6 <= 0;
+            counterP6 <= 0;
         END IF;
     END PROCESS;
     
@@ -194,7 +178,7 @@ BEGIN
     BEGIN
         dataResultBuffer <= "00000000";
         IF cur_state = BYTE_TO_ASCII_L THEN
-            dataResultBuffer <= dataResultsBuffer(counter7);
+            dataResultBuffer <= dataResultsBuffer(counterL7);
         ELSIF cur_state = BYTE_TO_ASCII_P THEN
             dataResultBuffer <= dataResultsBuffer(3);
         END IF;
@@ -223,18 +207,16 @@ BEGIN
         END IF;
     END PROCESS;
     
-    combi_setOutByte: PROCESS (dataResultBuffer)
+    combi_setOutByte_L_P: PROCESS (cur_state, ASCII1, ASCII2)
     BEGIN
-        receivedByteFlag <= '0';
         
         IF cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P THEN
             -- Set first byte of outByteBuffer to the ASCII value for the hex value of the first 4 bits of the incoming byte.
-            outByteBuffer(0 to 7) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(0 to 3)))*8 + 7);
+            outByteBuffer(0 to 7) <= ASCII1;
             -- Set second byte of outByteBuffer to the ASCII value for the hex value of the last 4 bits of the incoming byte.
-            outByteBuffer(8 to 15) <= hexASCIIMapping(TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 to TO_INTEGER(UNSIGNED(dataResultBuffer(4 to 7)))*8 + 7);
+            outByteBuffer(8 to 15) <= ASCII2;
             -- Set third byte of outByteBuffer to the ASCII value for the space character.
             outByteBuffer(16 to 23) <= "00100000"; -- Space ASCII value
-            receivedByteFlag <= '1';
         ELSIF cur_state = SET_TX_L OR cur_state = SEND_TX_L OR cur_state = RESET_COUNTER_3 OR cur_state = BCD_TO_ASCII_P OR cur_state = RESET_COUNTER_6 OR cur_state = SET_TX_P OR cur_state = SEND_TX_P THEN
             outByteBuffer <= outByteBuffer;
         ELSE
@@ -242,25 +224,25 @@ BEGIN
         END IF;
     END PROCESS;
     
-    combi_count7: PROCESS (cur_state)
+    combi_countL7: PROCESS (cur_state)
     BEGIN
         IF cur_state = RESET_COUNTER_3 THEN
-            counter7 <= counter7 + 1;
+            counterL7 <= counterL7 + 1;
         ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = SEND_TX_L OR cur_state = SET_TX_L THEN
-            counter7 <= counter7;
+            counterL7 <= counterL7;
         ELSE
-            counter7 <= 0;
+            counterL7 <= 0;
         END IF;
     END PROCESS;
     
-    combi_count3: PROCESS (cur_state)
+    combi_countL3: PROCESS (cur_state)
     BEGIN
         IF cur_state = SEND_TX_L THEN
-            counter3 <= counter3 + 1;
+            counterL3 <= counterL3 + 1;
         ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = SET_TX_L THEN
-            counter3 <= counter3;
+            counterL3 <= counterL3;
         ELSE
-            counter3 <= 0;
+            counterL3 <= 0;
         END IF;
     END PROCESS;
 
@@ -277,8 +259,7 @@ BEGIN
             cur_state <= INIT;
         ELSIF rising_edge(clk) THEN
             cur_state <= next_state;
-	   END IF;
-   
+        END IF;
     END PROCESS;
     
 ---A Printing Processes----------------------------------------
@@ -287,11 +268,11 @@ BEGIN
 combi_countA3: PROCESS(cur_state)
 BEGIN
     IF cur_state = UPDATE_COUNTER_A THEN
-        counterA3 <= counterA3 + 1;
+        counterA3 <= counterA3 - 1;
     ELSIF cur_state = RECEIVE_DATA_A OR cur_state = CHECK_BYTE_A OR cur_state = ECHO_DATA_A OR cur_state = BYTE_TO_BCD_A THEN
         counterA3 <= counterA3;
     ELSE
-        counterA3 <= 0;
+        counterA3 <= 2;
     END IF;
 END PROCESS;
 
@@ -303,77 +284,120 @@ BEGIN
     END IF;
 END PROCESS;
 
-byte_to_ASCII_proc: PROCESS(byte)
-  BEGIN
-      CASE byte(7 downto 4) is
-        WHEN "0000" => ASCII1 <= "00110000";  -- '0'
-        WHEN "0001" => ASCII1 <= "00110001";  -- '1'
-        WHEN "0010" => ASCII1 <= "00110010";  -- '2'
-        WHEN "0011" => ASCII1 <= "00110011";  -- '3'
-        WHEN "0100" => ASCII1 <= "00110100";  -- '4'
-        WHEN "0101" => ASCII1 <= "00110101";  -- '5'
-        WHEN "0110" => ASCII1 <= "00110110";  -- '6'
-        WHEN "0111" => ASCII1 <= "00110111";  -- '7'
-        WHEN "1000" => ASCII1 <= "00111000";  -- '8'
-        WHEN "1001" => ASCII1 <= "00111001";  -- '9'
-        WHEN "1010" => ASCII1 <= "01000001";  -- 'A'
-        WHEN "1011" => ASCII1 <= "01000010";  -- 'B'
-        WHEN "1100" => ASCII1 <= "01000011";  -- 'C'
-        WHEN "1101" => ASCII1 <= "01000100";  -- 'D'
-        WHEN "1110" => ASCII1 <= "01000101";  -- 'E'
-        WHEN "1111" => ASCII1 <= "01000110";  -- 'F'
-        WHEN others => ASCII1 <= "01000110";  -- '?' (default fOR unknown values)
-      END CASE;
-            CASE byte(3 downto 0) is
-        WHEN "0000" => ASCII2 <= "00110000";  -- '0'
-        WHEN "0001" => ASCII2 <= "00110001";  -- '1'
-        WHEN "0010" => ASCII2 <= "00110010";  -- '2'
-        WHEN "0011" => ASCII2 <= "00110011";  -- '3'
-        WHEN "0100" => ASCII2 <= "00110100";  -- '4'
-        WHEN "0101" => ASCII2 <= "00110101";  -- '5'
-        WHEN "0110" => ASCII2 <= "00110110";  -- '6'
-        WHEN "0111" => ASCII2 <= "00110111";  -- '7'
-        WHEN "1000" => ASCII2 <= "00111000";  -- '8'
-        WHEN "1001" => ASCII2 <= "00111001";  -- '9'
-        WHEN "1010" => ASCII2 <= "01000001";  -- 'A'
-        WHEN "1011" => ASCII2 <= "01000010";  -- 'B'
-        WHEN "1100" => ASCII2 <= "01000011";  -- 'C'
-        WHEN "1101" => ASCII2 <= "01000100";  -- 'D'
-        WHEN "1110" => ASCII2 <= "01000101";  -- 'E'
-        WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
-        WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
-      END CASE;
-  END PROCESS;
+combi_byteToASCII: PROCESS(byte, dataResultBuffer)
+BEGIN
+    IF cur_state = SEND_TX_1 THEN
+        CASE byte(7 downto 4) is
+            WHEN "0000" => ASCII1 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII1 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII1 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII1 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII1 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII1 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII1 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII1 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII1 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII1 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII1 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII1 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII1 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII1 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII1 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII1 <= "01000110";  -- 'F'
+            WHEN others => ASCII1 <= "01000110";  -- '?' (default fOR unknown values)
+        END CASE;
+    ELSIF cur_state = SEND_TX_2 THEN
+        CASE byte(3 downto 0) is
+            WHEN "0000" => ASCII2 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII2 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII2 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII2 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII2 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII2 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII2 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII2 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII2 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII2 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII2 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII2 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII2 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII2 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII2 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
+            WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
+        END CASE;
+    ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = BYTE_TO_ASCII_P THEN
+        CASE dataResultBuffer(0 to 3) is
+            WHEN "0000" => ASCII1 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII1 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII1 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII1 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII1 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII1 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII1 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII1 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII1 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII1 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII1 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII1 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII1 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII1 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII1 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII1 <= "01000110";  -- 'F'
+            WHEN others => ASCII1 <= "01000110";  -- '?' (default fOR unknown values)
+        END CASE;
+        CASE dataResultBuffer(4 to 7) is
+            WHEN "0000" => ASCII2 <= "00110000";  -- '0'
+            WHEN "0001" => ASCII2 <= "00110001";  -- '1'
+            WHEN "0010" => ASCII2 <= "00110010";  -- '2'
+            WHEN "0011" => ASCII2 <= "00110011";  -- '3'
+            WHEN "0100" => ASCII2 <= "00110100";  -- '4'
+            WHEN "0101" => ASCII2 <= "00110101";  -- '5'
+            WHEN "0110" => ASCII2 <= "00110110";  -- '6'
+            WHEN "0111" => ASCII2 <= "00110111";  -- '7'
+            WHEN "1000" => ASCII2 <= "00111000";  -- '8'
+            WHEN "1001" => ASCII2 <= "00111001";  -- '9'
+            WHEN "1010" => ASCII2 <= "01000001";  -- 'A'
+            WHEN "1011" => ASCII2 <= "01000010";  -- 'B'
+            WHEN "1100" => ASCII2 <= "01000011";  -- 'C'
+            WHEN "1101" => ASCII2 <= "01000100";  -- 'D'
+            WHEN "1110" => ASCII2 <= "01000101";  -- 'E'
+            WHEN "1111" => ASCII2 <= "01000110";  -- 'F'
+            WHEN others => ASCII2 <= "01000110";  -- '?' (default fOR unknown values)
+        END CASE;
+    ELSE
+        ASCII1 <= "00000000";
+        ASCII2 <= "00000000";
+    END IF;
+END PROCESS;
   
 ------------------------------------------------------------------
-    combi_nextState: PROCESS(cur_state, receivedDataFlag, sentDataFlag, rxData, txDone, counter3, counter7, byte, txdone, dataReady, seqDone) --[other states necessary]--
+    combi_nextState: PROCESS(cur_state, rxData, txDone, counterL3, counterL7, byte, txdone, dataReady, seqDone, rxNow) --[other states necessary]--
     BEGIN
         CASE cur_state IS
 	       WHEN INIT =>
 	           next_state <= RECEIVE_DATA;
 	
 	       WHEN RECEIVE_DATA =>
-	           IF receivedDataFlag = '1' THEN
-	               next_state <= ECHO_DATA;
-	           ELSE
-	               next_state <= RECEIVE_DATA;
-	           END IF;
+               IF rxNow = '1' THEN
+                   next_state <= ECHO_DATA;
+               ELSE
+                   next_state <= RECEIVE_DATA;
+               END IF;
 	  
 	       WHEN ECHO_DATA =>
-	           IF sentDataFlag = '1' THEN
+	           IF txDone = '1' THEN
 	               next_state <= CHECK_COMMANDS;
---	           ELSIF sentDataFlag = '1' THEN
---	               next_state <= CHECK_BYTE_A;
 	           ELSE
 	               next_state <= ECHO_DATA;
 	           END IF;
 
 	       WHEN CHECK_COMMANDS =>
-	           IF dataBuffer = "01001100" OR dataBuffer = "01101100" THEN -- L
+               IF rxData = "01001100" OR rxData = "01101100" THEN -- L
 	               next_state <= BYTE_TO_ASCII_L;
-	           ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN -- A
+	           ELSIF rxData = "01000001" OR rxData = "01100001" THEN -- A
 	               next_state <= RECEIVE_DATA_A;
-	           ELSIF dataBuffer = "01010000" OR dataBuffer = "01110000" THEN -- P
+	           ELSIF rxData = "01010000" OR rxData = "01110000" THEN -- P
 	               next_state <= BYTE_TO_ASCII_P;
 	           ELSE
 	               next_state <= RECEIVE_DATA;
@@ -381,11 +405,7 @@ byte_to_ASCII_proc: PROCESS(byte)
 	
 	--- L printing:
 	       WHEN BYTE_TO_ASCII_L =>
-	           IF receivedByteFlag = '1' THEN
-    	           next_state <= RESET_COUNTER_3;
-    	       ELSE
-    	           next_state <= BYTE_TO_ASCII_L;
-    	       END IF;
+    	       next_state <= RESET_COUNTER_3;
 	
 	       WHEN RESET_COUNTER_3 =>
 	           next_state <= SET_TX_L;
@@ -398,9 +418,9 @@ byte_to_ASCII_proc: PROCESS(byte)
 	           END IF;
 	
 	       WHEN SEND_TX_L =>
-	           IF counter3 < 3 THEN
+	           IF counterL3 < 3 THEN
 	               next_state <= SET_TX_L;
-	           ELSIF counter7 < 7 THEN
+	           ELSIF counterL7 < 7 THEN
 	               next_state <= BYTE_TO_ASCII_L;
 	           ELSE
 	               next_state <= RECEIVE_DATA;
@@ -412,11 +432,7 @@ byte_to_ASCII_proc: PROCESS(byte)
     	       -- Because in combi_byteToASCII we wait for seqDone to = 1, we do not know if this 
     	       -- will be completed in a single clock cycle. Hence, we must wait for it to finish 
     	       -- before moving to the next state.
-    	       IF receivedByteFlag = '1' THEN
-    	           next_state <= BCD_TO_ASCII_P;
-    	       ELSE
-    	           next_state <= BYTE_TO_ASCII_P;
-    	       END IF;
+               next_state <= BCD_TO_ASCII_P;
     	   
     	   WHEN BCD_TO_ASCII_P =>
     	       next_state <= RESET_COUNTER_6;
@@ -425,9 +441,9 @@ byte_to_ASCII_proc: PROCESS(byte)
     	       next_state <= SET_TX_P;
     	       
     	   WHEN SET_TX_P =>
-    	       IF txDone = '1' AND counter6 < 6 THEN
+    	       IF txDone = '1' AND counterP6 < 6 THEN
     	           next_state <= SEND_TX_P;
-    	       ELSIF txDone = '0' AND counter6 < 6 THEN
+    	       ELSIF txDone = '0' AND counterP6 < 6 THEN
     	           next_state <= SET_TX_P;
     	       ELSE
     	           next_state <= RECEIVE_DATA;
@@ -439,32 +455,33 @@ byte_to_ASCII_proc: PROCESS(byte)
 ---A Printing States--------------------------------------------
 
            WHEN RECEIVE_DATA_A =>
-               IF receivedDataFlag = '1' THEN
+               IF rxNow = '1' THEN
                    next_state <= ECHO_DATA_A;
                ELSE
                    next_state <= RECEIVE_DATA_A;
                END IF;
                
            WHEN ECHO_DATA_A =>
-               IF sentDataFlag = '1' THEN
+	           IF txDone = '1' THEN
+--               IF sentDataFlag = '1' THEN
                    next_state <= CHECK_BYTE_A;
                ELSE
                    next_state <= ECHO_DATA_A;
                END IF;
 
            WHEN CHECK_BYTE_A =>
-               IF dataBuffer = "00110000" OR 
-                    dataBuffer = "00110001" OR 
-                    dataBuffer = "00110010" OR 
-                    dataBuffer = "00110011" OR 
-                    dataBuffer = "00110100" OR 
-                    dataBuffer = "00110101" OR 
-                    dataBuffer = "00110110" OR 
-                    dataBuffer = "00110111" OR 
-                    dataBuffer = "00111000" OR 
-                    dataBuffer = "00111001" THEN
+               IF rxData = "00110000" OR 
+                    rxData = "00110001" OR 
+                    rxData = "00110010" OR 
+                    rxData = "00110011" OR 
+                    rxData = "00110100" OR 
+                    rxData = "00110101" OR 
+                    rxData = "00110110" OR 
+                    rxData = "00110111" OR 
+                    rxData = "00111000" OR 
+                    rxData = "00111001" THEN
                    next_state <= BYTE_TO_BCD_A;
-               ELSIF dataBuffer = "01000001" OR dataBuffer = "01100001" THEN
+               ELSIF rxData = "01000001" OR rxData = "01100001" THEN
                    next_state <= RECEIVE_DATA_A;
                ELSE
                    next_state <= RECEIVE_DATA;
@@ -472,14 +489,9 @@ byte_to_ASCII_proc: PROCESS(byte)
                
            WHEN BYTE_TO_BCD_A =>
                next_state <= UPDATE_COUNTER_A;
---               IF counterA3 < 3 THEN
---                   next_state <= RECEIVE_DATA_A;
---               ELSE
---                   next_state <= SEND_TO_DP_A;
---               END IF;
                
            WHEN UPDATE_COUNTER_A =>
-               IF counterA3 < 2 THEN
+               IF counterA3 > 0 THEN
                   next_state <= RECEIVE_DATA_A;
                ELSE
                   next_state <= SEND_TO_DP_A;
