@@ -59,7 +59,7 @@ ARCHITECTURE behavioural OF cmdProc IS
  
 -- Signal Declaration
     SIGNAL cur_state, next_state: state_type;
-	SIGNAL counterL7: integer range 0 to 7;
+	SIGNAL counterL7: integer range 6 downto -1;
 	SIGNAL counterL3: integer range 0 to 3;
 	SIGNAL counterP6: integer range 0 to 5;
 	SIGNAL counterA3: integer range 2 downto 0;
@@ -67,7 +67,6 @@ ARCHITECTURE behavioural OF cmdProc IS
 	SIGNAL byteBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL dataResultsBuffer: CHAR_ARRAY_TYPE (0 to RESULT_BYTE_NUM-1);
 	SIGNAL maxIndexBuffer: BCD_ARRAY_TYPE (2 downto 0);
---	SIGNAL dataResultBuffer: std_logic_vector (0 to 7) := "00000000";
 	SIGNAL outByteBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL outMaxIndexBuffer: std_logic_vector (0 to 23) := "000000000000000000000000";
 	SIGNAL outPPrinting: std_logic_vector (0 to 48) := "0000000000000000000000000000000000000000000000000";
@@ -197,7 +196,7 @@ BEGIN
         IF clk'EVENT AND clk='1' THEN
             IF reset = '1' THEN
                 dataResultLBuffer <= "00000000";
-            ELSIF counterL7 < 7 THEN
+            ELSIF counterL7 > -1 THEN
                 dataResultLBuffer <= dataResultsBuffer(counterL7);
             END IF;
         END IF;
@@ -228,11 +227,11 @@ BEGIN
     combi_countL7: PROCESS (cur_state)
     BEGIN
         IF cur_state = RESET_COUNTER_3 THEN
-            counterL7 <= counterL7 + 1;
+            counterL7 <= counterL7 - 1;
         ELSIF cur_state = BYTE_TO_ASCII_L OR cur_state = SEND_TX_L OR cur_state = SET_TX_L THEN
             counterL7 <= counterL7;
         ELSE
-            counterL7 <= 0;
+            counterL7 <= 6;
         END IF;
     END PROCESS;
     
@@ -473,7 +472,7 @@ END PROCESS;
 	       WHEN SEND_TX_L =>
 	           IF counterL3 < 3 THEN
 	               next_state <= SET_TX_L;
-	           ELSIF counterL7 < 7 THEN
+	           ELSIF counterL7 > -1 THEN
 	               next_state <= BYTE_TO_ASCII_L;
 	           ELSE
 	               next_state <= RECEIVE_DATA;
