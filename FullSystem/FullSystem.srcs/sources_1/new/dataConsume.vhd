@@ -160,7 +160,7 @@ BEGIN
 --vhdl integers really round down?
 	tmp:= maxIndex_int rem 100;
 	maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
-	maxIndex(0) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
+	maxIndex(0) <= std_logic_vector(to_unsigned(((tmp mod 10)-1), 4));
   End process;
 
 
