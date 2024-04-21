@@ -1,29 +1,64 @@
 Time resolution is 1 ps
 Note: =====Process of Sequence No.1 starts.
-Time: 3490555 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 4790555 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(2) character(1) should be 00110001
-Time: 9740775 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 11040775 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00110110; while byte(2) character(2) should be 00110011
-Time: 10782485 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 12082485 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(3) character(1) should be 00110110
-Time: 12865905 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 14165905 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(4) character(1) should be 00110000
-Time: 15991035 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 17291035 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00110110; while byte(4) character(2) should be 00111001
-Time: 17032745 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 18332745 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(5) character(1) should be 00110110
-Time: 19116165 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 20416165 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 01000001; while byte(5) character(2) should be 00111000
-Time: 20157875 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 21457875 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(6) character(1) should be 01000001
-Time: 22241295 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 23541295 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00111001; while byte(6) character(2) should be 00111000
-Time: 23283005 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 24583005 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(7) character(1) should be 00111001
-Time: 25366425 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 26666425 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 01000110; while byte(7) character(2) should be 00110011
-Time: 26408135 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 27708135 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00100000; while byte(8) character(1) should be 01000110
-Time: 28491555 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Time: 29791555 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Error: txData is 00110111; while byte(8) character(2) should be 00111001
-Time: 29533265 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive
+Time: 30833265 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(9) character(1) should be 00110111
+Time: 32916685 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 01000011; while byte(9) character(2) should be 00110001
+Time: 33958395 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(10) character(1) should be 01000011
+Time: 36041815 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00111001; while byte(10) character(2) should be 00110111
+Time: 37083525 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(11) character(1) should be 00111001
+Time: 39166945 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.1 is done.
+Time: 39166995100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====A total of 12 bytes has been processed; 
+Time: 39166995100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00110000; while byte(11) character(2) should be 00110010
+Time: 40208655 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.2 starts.
+Time: 41250375 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 00100000; while byte(12) character(1) should be 00110000
+Time: 42292075 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.3 starts.
+Time: 42292075 ns  Iteration: 3  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Error: txData is 01000001; while byte(12) character(2) should be 00110110
+Time: 132991515 ns  Iteration: 2  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.3 is done.
+Time: 174292125100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====A total of 13 bytes has been processed; 
+Time: 174292125100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Warning: numWords_BCD = 12 at the start of this sequence
+Time: 174292125100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.4 starts.
+Time: 176375505 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+Note: =====Process of Sequence No.5 starts.
+Time: 177417205 ns  Iteration: 3  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
+INFO: xsimkernel Simulation Memory Usage: 17220 KB (Peak: 17220 KB), Simulation CPU Usage: 174140 ms

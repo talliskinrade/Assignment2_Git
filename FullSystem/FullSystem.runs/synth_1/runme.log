@@ -14,33 +14,53 @@ ECHO is off.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source top.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 485.629 ; gain = 182.379
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/utils_1/imports/synth_1/top.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/utils_1/imports/synth_1/top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 21404
+INFO: [Synth 8-7075] Helper process launched with PID 18224
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1328.695 ; gain = 439.426
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1330.160 ; gain = 439.832
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'top' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:15]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/.Xil/Vivado-20148-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6' bound to instance 'clk_wiz' of component 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:108]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/.Xil/Vivado-20148-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/.Xil/Vivado-20148-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
-INFO: [Synth 8-637] synthesizing blackbox instance 'dataGen1' of component 'dataGen' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:115]
-INFO: [Synth 8-637] synthesizing blackbox instance 'dataConsume1' of component 'dataConsume' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:124]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/.Xil/Vivado-7488-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6' bound to instance 'clk_wiz' of component 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:108]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/.Xil/Vivado-7488-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/.Xil/Vivado-7488-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-3491] module 'dataGen' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd:5' bound to instance 'dataGen1' of component 'dataGen' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:115]
+INFO: [Synth 8-638] synthesizing module 'dataGen' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'dataGen' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd:15]
+INFO: [Synth 8-3491] module 'dataConsume' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:11' bound to instance 'dataConsume1' of component 'dataConsume' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:124]
+INFO: [Synth 8-638] synthesizing module 'dataConsume' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:43]
+WARNING: [Synth 8-614] signal 'ctrlOut_reg' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'data' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg6' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg5' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'counter' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg4' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg3' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg2' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg1' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'dataResults_reg' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg0' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'prev_state' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+INFO: [Synth 8-256] done synthesizing module 'dataConsume' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:43]
 INFO: [Synth 8-3491] module 'cmdProc' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:7' bound to instance 'cmdProc1' of component 'cmdProc' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:140]
 INFO: [Synth 8-638] synthesizing module 'cmdProc' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:29]
-INFO: [Synth 8-3491] module 'terminal_echo' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:5' bound to instance 'behavTerminalEcho' of component 'terminal_echo' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:152]
-INFO: [Synth 8-638] synthesizing module 'terminal_echo' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:18]
-WARNING: [Synth 8-614] signal 'reset' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:39]
-WARNING: [Synth 8-614] signal 'dataReady' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:48]
-WARNING: [Synth 8-614] signal 'rxData' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:48]
-WARNING: [Synth 8-614] signal 'dataBuffer' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:48]
-WARNING: [Synth 8-614] signal 'txDone' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:48]
-INFO: [Synth 8-256] done synthesizing module 'terminal_echo' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:18]
+INFO: [Synth 8-226] default block is never used [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:342]
+INFO: [Synth 8-226] default block is never used [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:362]
+INFO: [Synth 8-226] default block is never used [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:382]
+INFO: [Synth 8-226] default block is never used [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:401]
+INFO: [Synth 8-226] default block is never used [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:421]
+INFO: [Synth 8-226] default block is never used [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:440]
 INFO: [Synth 8-256] done synthesizing module 'cmdProc' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:29]
 INFO: [Synth 8-3491] module 'UART_TX_CTRL' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_TX_CTRL.vhd:42' bound to instance 'tx' of component 'UART_TX_CTRL' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:161]
 INFO: [Synth 8-638] synthesizing module 'UART_TX_CTRL' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_TX_CTRL.vhd:50]
@@ -49,117 +69,21 @@ INFO: [Synth 8-3491] module 'UART_RX_CTRL' declared at 'C:/Users/astee/OneDrive 
 INFO: [Synth 8-638] synthesizing module 'UART_RX_CTRL' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_RX_CTRL.vhd:84]
 INFO: [Synth 8-256] done synthesizing module 'UART_RX_CTRL' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_RX_CTRL.vhd:84]
 INFO: [Synth 8-256] done synthesizing module 'top' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:15]
-WARNING: [Synth 8-6014] Unused sequential element cur_state_reg was removed.  [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:92]
-WARNING: [Synth 8-3848] Net start in module/entity cmdProc does not have driver. [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:19]
-WARNING: [Synth 8-3848] Net numWords_bcd[2] in module/entity cmdProc does not have driver. [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:20]
-WARNING: [Synth 8-3848] Net numWords_bcd[1] in module/entity cmdProc does not have driver. [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:20]
-WARNING: [Synth 8-3848] Net numWords_bcd[0] in module/entity cmdProc does not have driver. [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd:20]
-WARNING: [Synth 8-7129] Port start in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[2][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[2][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[2][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[2][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[1][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[1][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[1][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[1][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[0][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[0][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[0][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port numWords_bcd[0][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port rxnow in module cmdProc is either unconnected or has no load
 WARNING: [Synth 8-7129] Port ovErr in module cmdProc is either unconnected or has no load
 WARNING: [Synth 8-7129] Port framErr in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port byte[0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[2][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[2][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[2][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[2][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[1][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[1][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[1][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[1][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[0][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[0][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[0][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port maxIndex[0][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[0][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[1][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[2][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[3][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[4][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[5][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][7] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][6] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][5] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][4] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][3] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][2] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][1] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port dataResults[6][0] in module cmdProc is either unconnected or has no load
-WARNING: [Synth 8-7129] Port seqDone in module cmdProc is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1439.508 ; gain = 550.238
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1449.367 ; gain = 559.039
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1439.508 ; gain = 550.238
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1449.367 ; gain = 559.039
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1439.508 ; gain = 550.238
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1449.367 ; gain = 559.039
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1439.508 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1449.367 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -172,21 +96,23 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1476.812 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1544.469 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 Access is denied.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1476.812 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1544.469 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -195,21 +121,56 @@ Applied set_property IO_BUFFER_TYPE = NONE for clk. (constraint file  {c:/Users/
 Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  {c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for clk_wiz. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'currentState_reg' in module 'terminal_echo'
+WARNING: [Synth 8-6040] Register index_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'cmdProc'
 INFO: [Synth 8-802] inferred FSM for state register 'txState_reg' in module 'UART_TX_CTRL'
 INFO: [Synth 8-802] inferred FSM for state register 'currentState_reg' in module 'UART_RX_CTRL'
+WARNING: [Synth 8-327] inferring latch for variable 'ctrlOut_reg_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:198]
+WARNING: [Synth 8-327] inferring latch for variable 'maxIndex_int_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:373]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[0]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[1]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[2]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[3]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[4]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[5]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[6]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
+WARNING: [Synth 8-327] inferring latch for variable 'reg3_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:225]
+WARNING: [Synth 8-327] inferring latch for variable 'reg0_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:228]
+WARNING: [Synth 8-327] inferring latch for variable 'reg1_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:227]
+WARNING: [Synth 8-327] inferring latch for variable 'reg2_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:226]
+WARNING: [Synth 8-327] inferring latch for variable 'reg4_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:224]
+WARNING: [Synth 8-327] inferring latch for variable 'reg5_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:223]
+WARNING: [Synth 8-327] inferring latch for variable 'reg6_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:222]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    init |                              001 |                               00
-                set_data |                              010 |                               01
-            sending_data |                              100 |                               10
+                    init |          00000000000010000000000 |                            00000
+            receive_data |          00000000000000000100000 |                            00001
+               echo_data |          00000000000100000000000 |                            00010
+          check_commands |          00000000000000010000000 |                            00011
+         byte_to_ascii_l |          00000000000000000010000 |                            01010
+         reset_counter_3 |          00000010000000000000000 |                            01011
+                set_tx_l |          00000000000000000001000 |                            01100
+               send_tx_l |          00000000000000000000100 |                            01101
+          receive_data_a |          00000000000000100000000 |                            00100
+             echo_data_a |          10000000000000000000000 |                            00101
+            check_byte_a |          00100000000000000000000 |                            00110
+           byte_to_bcd_a |          00001000000000000000000 |                            00111
+        update_counter_a |          00010000000000000000000 |                            01001
+            send_to_dp_a |          01000000000000000000000 |                            10100
+              data_ready |          00000100000000000000000 |                            10101
+               send_tx_1 |          00000001000000000000000 |                            10110
+               send_tx_2 |          00000000010000000000000 |                            10111
+              send_space |          00000000100000000000000 |                            11000
+         byte_to_ascii_p |          00000000000001000000000 |                            10001
+          bcd_to_ascii_p |          00000000000000001000000 |                            10010
+         reset_counter_6 |          00000000000000000000001 |                            01110
+                set_tx_p |          00000000000000000000010 |                            01111
+               send_tx_p |          00000000001000000000000 |                            10000
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'currentState_reg' using encoding 'one-hot' in module 'terminal_echo'
-WARNING: [Synth 8-327] inferring latch for variable 'txData_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:61]
-WARNING: [Synth 8-327] inferring latch for variable 'dataBuffer_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.srcs/sources_1/new/terminal_echo.vhd:59]
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encoding 'one-hot' in module 'cmdProc'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -230,7 +191,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'txState_reg' using encodin
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'currentState_reg' using encoding 'sequential' in module 'UART_RX_CTRL'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:25 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -238,23 +199,46 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input   11 Bit       Adders := 1     
-	   2 Input    4 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 2     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 3     
+	   2 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 2     
++---XORs : 
+	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
+	               49 Bit    Registers := 1     
+	               24 Bit    Registers := 2     
 	               11 Bit    Registers := 1     
-	               10 Bit    Registers := 2     
-	                8 Bit    Registers := 1     
-	                4 Bit    Registers := 2     
-	                1 Bit    Registers := 3     
+	               10 Bit    Registers := 3     
+	                9 Bit    Registers := 2     
+	                8 Bit    Registers := 20    
+	                4 Bit    Registers := 11    
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 10    
 +---Muxes : 
+	   2 Input   49 Bit        Muxes := 2     
+	   2 Input   24 Bit        Muxes := 2     
+	  23 Input   23 Bit        Muxes := 1     
+	   2 Input   23 Bit        Muxes := 21    
 	   2 Input   11 Bit        Muxes := 1     
-	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 1     
+	  14 Input    8 Bit        Muxes := 14    
+	   2 Input    8 Bit        Muxes := 4     
+	   4 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 2     
+	   5 Input    7 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 6     
+	   2 Input    3 Bit        Muxes := 7     
 	   6 Input    3 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 5     
 	   3 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 9     
+	   2 Input    1 Bit        Muxes := 22    
+	  14 Input    1 Bit        Muxes := 6     
 	   3 Input    1 Bit        Muxes := 2     
-	   6 Input    1 Bit        Muxes := 3     
+	   6 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -271,26 +255,42 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-6040] Register dataGen1/index_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:27 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1544.469 ; gain = 654.141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|dataGen     | rom        | 512x8         | LUT            | 
+|top         | byte0      | 512x8         | LUT            | 
++------------+------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:34 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:34 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:34 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -308,37 +308,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -349,60 +349,55 @@ Report BlackBoxes:
 |      |BlackBox name |Instances |
 +------+--------------+----------+
 |1     |clk_wiz_0     |         1|
-|2     |dataGen       |         1|
-|3     |dataConsume   |         1|
 +------+--------------+----------+
 
 Report Cell Usage: 
-+------+-----------------+------+
-|      |Cell             |Count |
-+------+-----------------+------+
-|1     |clk_wiz          |     1|
-|2     |dataConsume_bbox |     1|
-|3     |dataGen_bbox     |     1|
-|4     |CARRY4           |    12|
-|5     |LUT1             |     4|
-|6     |LUT2             |     9|
-|7     |LUT3             |    11|
-|8     |LUT4             |    24|
-|9     |LUT5             |     6|
-|10    |LUT6             |    13|
-|11    |FDCE             |     2|
-|12    |FDPE             |     1|
-|13    |FDRE             |    77|
-|14    |FDSE             |    19|
-|15    |LD               |    16|
-|16    |IBUF             |     2|
-|17    |OBUF             |     1|
-+------+-----------------+------+
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |clk_wiz |     1|
+|2     |BUFG    |     2|
+|3     |CARRY4  |    33|
+|4     |LUT1    |    11|
+|5     |LUT2    |   106|
+|6     |LUT3    |    60|
+|7     |LUT4    |    88|
+|8     |LUT5    |    74|
+|9     |LUT6    |   179|
+|10    |MUXF7   |    38|
+|11    |MUXF8   |    16|
+|12    |FDCE    |    26|
+|13    |FDPE    |     1|
+|14    |FDRE    |   352|
+|15    |FDSE    |    22|
+|16    |LD      |   123|
+|17    |IBUF    |     2|
+|18    |OBUF    |     1|
++------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1544.469 ; gain = 654.141
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1476.812 ; gain = 550.238
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 1476.812 ; gain = 587.543
+Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:43 . Memory (MB): peak = 1544.469 ; gain = 559.039
+Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:46 . Memory (MB): peak = 1544.469 ; gain = 654.141
 INFO: [Project 1-571] Translating synthesized netlist
-Parsing EDIF File [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume.edn]
-Finished Parsing EDIF File [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume.edn]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1476.812 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 29 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2018.1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 1544.469 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 210 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1476.812 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1544.469 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 16 instances were transformed.
-  LD => LDCE: 16 instances
+  A total of 123 instances were transformed.
+  LD => LDCE: 123 instances
 
 Access is denied.
-Synth Design complete | Checksum: 2d99183
+Synth Design complete | Checksum: 20aa5b73
 INFO: [Common 17-83] Releasing license: Synthesis
-41 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+53 Infos, 33 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-INFO: [Common 17-600] The following parameters have non-default value.
-tcl.statsThreshold
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1476.812 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:52 . Memory (MB): peak = 1544.469 ; gain = 1047.395
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1544.469 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Apr  1 17:24:30 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 21 18:06:37 2024...

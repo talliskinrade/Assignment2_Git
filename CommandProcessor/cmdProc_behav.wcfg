@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="177.578435000 ms"></ZoomStartTime>
-      <ZoomEndTime time="198.998435001 ms"></ZoomEndTime>
-      <Cursor1Time time="185.158435000 ms"></Cursor1Time>
+      <ZoomStartTime time="187,241,764.600 ns"></ZoomStartTime>
+      <ZoomEndTime time="187,241,870.701 ns"></ZoomEndTime>
+      <Cursor1Time time="187,241,845.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="247"></NameColumnWidth>
-      <ValueColumnWidth column_width="147"></ValueColumnWidth>
+      <ValueColumnWidth column_width="129"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="28" />
    <wvobject fp_name="/tb_cmdProc_interim/clk" type="logic">
@@ -36,6 +36,10 @@
       <obj_property name="ElementShortName">rxData[7:0]</obj_property>
       <obj_property name="ObjectShortName">rxData[7:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/rxNow" type="logic">
+      <obj_property name="ElementShortName">rxNow</obj_property>
+      <obj_property name="ObjectShortName">rxNow</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_cmdProc_interim/rx/setOE" type="logic">
       <obj_property name="ElementShortName">setOE</obj_property>
@@ -60,11 +64,6 @@
    <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/txData" type="array">
       <obj_property name="ElementShortName">txData[7:0]</obj_property>
       <obj_property name="ObjectShortName">txData[7:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/dataBuffer" type="array">
-      <obj_property name="ElementShortName">dataBuffer[7:0]</obj_property>
-      <obj_property name="ObjectShortName">dataBuffer[7:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/cur_state" type="other">
@@ -96,19 +95,10 @@
       <obj_property name="ElementShortName">maxIndexBuffer[2:0][3:0]</obj_property>
       <obj_property name="ObjectShortName">maxIndexBuffer[2:0][3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/dataResultBuffer" type="array">
-      <obj_property name="ElementShortName">dataResultBuffer[0:7]</obj_property>
-      <obj_property name="ObjectShortName">dataResultBuffer[0:7]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/outByteBuffer" type="array">
       <obj_property name="ElementShortName">outByteBuffer[0:23]</obj_property>
       <obj_property name="ObjectShortName">outByteBuffer[0:23]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/receivedByteFlag" type="logic">
-      <obj_property name="ElementShortName">receivedByteFlag</obj_property>
-      <obj_property name="ObjectShortName">receivedByteFlag</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/seqDone" type="logic">
       <obj_property name="ElementShortName">seqDone</obj_property>
@@ -128,16 +118,26 @@
       <obj_property name="ElementShortName">next_state</obj_property>
       <obj_property name="ObjectShortName">next_state</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/counter6" type="other">
-      <obj_property name="ElementShortName">counter6</obj_property>
-      <obj_property name="ObjectShortName">counter6</obj_property>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/ASCII1" type="array">
+      <obj_property name="ElementShortName">ASCII1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ASCII1[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/counter3" type="other">
-      <obj_property name="ElementShortName">counter3</obj_property>
-      <obj_property name="ObjectShortName">counter3</obj_property>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/ASCII2" type="array">
+      <obj_property name="ElementShortName">ASCII2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ASCII2[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/counter7" type="other">
-      <obj_property name="ElementShortName">counter7</obj_property>
-      <obj_property name="ObjectShortName">counter7</obj_property>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/counterL7" type="other">
+      <obj_property name="ElementShortName">counterL7</obj_property>
+      <obj_property name="ObjectShortName">counterL7</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/numWords_bcd" type="array">
+      <obj_property name="ElementShortName">numWords_bcd[2:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">numWords_bcd[2:0][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmdProc_interim/cmdProc1/counterP6" type="other">
+      <obj_property name="ElementShortName">counterP6</obj_property>
+      <obj_property name="ObjectShortName">counterP6</obj_property>
    </wvobject>
 </wave_config>
