@@ -87,3 +87,5 @@ run -all
 # HDL call sequence:
 # Stopped at C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/testing/dataController.vhd 174 Process seq_state
 # 
+# End time: 16:00:11 on Apr 19,2024, Elapsed time: 0:31:04
+# Errors: 1, Warnings: 7

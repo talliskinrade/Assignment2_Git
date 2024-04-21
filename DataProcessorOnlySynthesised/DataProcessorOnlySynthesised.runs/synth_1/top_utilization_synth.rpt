@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun Apr 21 18:17:52 2024
-| Host         : DESKTOP-5CTLBIO running 64-bit major release  (build 9200)
+| Date         : Sun Apr 21 18:51:01 2024
+| Host         : LAPTOP-79ULQ39M running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
 | Device       : xc7a35tcpg236-1
@@ -155,10 +155,10 @@ Warning! LUT value is adjusted to account for LUT combining.
 | LUT6     |  202 |                 LUT |
 | FDSE     |  124 |        Flop & Latch |
 | LDCE     |  123 |        Flop & Latch |
-| LUT2     |  114 |                 LUT |
-| LUT4     |   81 |                 LUT |
-| LUT5     |   65 |                 LUT |
-| LUT3     |   54 |                 LUT |
+| LUT2     |  112 |                 LUT |
+| LUT4     |   83 |                 LUT |
+| LUT5     |   67 |                 LUT |
+| LUT3     |   53 |                 LUT |
 | MUXF7    |   41 |               MuxFx |
 | CARRY4   |   33 |          CarryLogic |
 | MUXF8    |   16 |               MuxFx |

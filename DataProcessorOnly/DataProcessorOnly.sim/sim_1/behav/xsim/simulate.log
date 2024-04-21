@@ -1,4 +1,0 @@
-Time resolution is 1 ps
-Failure: Cycle count exceeded 4500; Cycle count:4500
-Time: 90030 ns  Iteration: 0  Process: /tb_dataGenConsume/tbCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/tb_dataConsume_unsigned.vhd
-$finish called at time : 90030 ns : File "C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/tb_dataConsume_unsigned.vhd" Line 107
