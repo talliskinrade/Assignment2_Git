@@ -247,7 +247,11 @@ BEGIN
 
 
       WHEN DONE =>
-	next_state <= INIT;
+      if start = '1' then
+	   next_state <= INIT;
+	  else
+	   next_state <= DONE;
+	  end if;
 	
 	  
 -------- maybe there's a way to streamline these? like just three, one before the 
