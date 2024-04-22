@@ -183,10 +183,10 @@ seq_state:  PROCESS (clk, reset, start)
 	ELSIF cur_state = INIT THEN
 	  counter <= 0;
 	END IF;
-        cur_state <= next_state after 1 ns;
+    cur_state <= next_state after 1 ns;
 	prev_state <= cur_state;
 	start_reg <= start;
-        dataResults <= dataResults_reg;
+    dataResults <= dataResults_reg;
 --        \dataResults[0]\ <= dataResults_reg(0);
 --        \dataResults[1]\ <= dataResults_reg(1);
 --        \dataResults[2]\ <= dataResults_reg(2);
@@ -255,8 +255,12 @@ BEGIN
 --------------------------------------------------------------------
 -------- Register 6 States (NORMAL CONDITIONS)
       WHEN FIRST_THREE_ctrlSet =>
-	ctrlOut_reg <= not ctrlOut_reg;
-	next_state <= FIRST_THREE_ctrlWait;
+      if start_reg = '1' then
+	   ctrlOut_reg <= not ctrlOut_reg;
+	   next_state <= FIRST_THREE_ctrlWait;
+	  else
+	   next_state <= FIRST_THREE_ctrlSet;
+	  end if;
 
 
       WHEN FIRST_THREE_ctrlWait =>
@@ -297,8 +301,12 @@ BEGIN
 ------ Registers 3 to 0 (Main Loop)
 
       WHEN MAIN_LOOP_ctrlSet =>
-	ctrlOut_reg <= not ctrlOut_reg;
-	next_state <= MAIN_LOOP_ctrlWait;
+      if start_reg = '1' then
+	   ctrlOut_reg <= not ctrlOut_reg;
+	   next_state <= MAIN_LOOP_ctrlWait;
+	  else
+	   next_state <= MAIN_LOOP_ctrlSet;
+	  end if;
 
 
       WHEN MAIN_LOOP_ctrlWait =>
