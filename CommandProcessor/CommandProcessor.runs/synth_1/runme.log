@@ -14,16 +14,16 @@ ECHO is off.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source tb_cmdProc_interim.tcl -notrace
-create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:15 . Memory (MB): peak = 485.012 ; gain = 179.473
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 485.086 ; gain = 179.523
 Command: synth_design -top tb_cmdProc_interim -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 3420
+INFO: [Synth 8-7075] Helper process launched with PID 23260
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 931.336 ; gain = 443.324
+Starting Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 933.035 ; gain = 444.953
 ---------------------------------------------------------------------------------
 ERROR: [Synth 8-5832] source file was generated for simulation and is not permitted as input to synthesis [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume_synthesised_unsigned.vhd:182]
 INFO: [Synth 8-638] synthesizing module 'tb_cmdProc_interim' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:51]
@@ -33,11 +33,11 @@ WARNING: [Synth 8-312] ignoring unsynthesizable construct: wait statement with n
 ERROR: [Synth 8-27] nested clocked statements not supported [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:215]
 ERROR: [Synth 8-285] failed synthesizing module 'tb_cmdProc_interim' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:51]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1039.977 ; gain = 551.965
+Finished Synthesize : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1039.062 ; gain = 550.980
 ---------------------------------------------------------------------------------
 synthesize failed
 INFO: [Common 17-83] Releasing license: Synthesis
 6 Infos, 3 Warnings, 0 Critical Warnings and 4 Errors encountered.
 synth_design failed
 ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 23 19:15:25 2024...
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 24 12:02:01 2024...

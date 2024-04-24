@@ -1,2 +1,0 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/dataProcessor_individualTesting/dataProcessor_individualTesting.srcs/sim_1/new/tb_dataController.v" into library xil_defaultlib
-ERROR: [VRFC 10-4982] syntax error near ';' [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/dataProcessor_individualTesting/dataProcessor_individualTesting.srcs/sim_1/new/tb_dataController.v:24]

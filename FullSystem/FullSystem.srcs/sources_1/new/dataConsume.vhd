@@ -10,31 +10,18 @@ USE work.common_pack.all;
 
 entity dataConsume is
 port (
-  clk: in std_logic;
-  reset: in std_logic; -- synchronous reset
-  start: in std_logic; -- goes high to signal data transfer
-  numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
---  \numWords_bcd[2]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
---  \numWords_bcd[1]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
---  \numWords_bcd[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
-  ctrlIn: in std_logic;
-  ctrlOut: out std_logic;
-  data: in std_logic_vector(7 downto 0);
-  dataReady: out std_logic;
-  byte: out std_logic_vector(7 downto 0);
-  seqDone: out std_logic;
-  maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
---  \maxIndex[2]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
---  \maxIndex[1]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
---  \maxIndex[0]\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
-  dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
---  \dataResults[0]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
---  \dataResults[1]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
---  \dataResults[2]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
---  \dataResults[3]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
---  \dataResults[4]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
---  \dataResults[5]\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
---  \dataResults[6]\ : out STD_LOGIC_VECTOR ( 7 downto 0 )
+    clk: in std_logic;
+    reset: in std_logic; -- synchronous reset
+    start: in std_logic; -- goes high to signal data transfer
+    numWords_bcd: in BCD_ARRAY_TYPE(2 downto 0);
+    ctrlIn: in std_logic;
+    ctrlOut: out std_logic;
+    data: in std_logic_vector(7 downto 0);
+    dataReady: out std_logic;
+    byte: out std_logic_vector(7 downto 0);
+    seqDone: out std_logic;
+    maxIndex: out BCD_ARRAY_TYPE(2 downto 0);
+    dataResults: out CHAR_ARRAY_TYPE(0 to 6) -- index 3 holds the peak
 );
 end dataConsume;
 
@@ -44,65 +31,42 @@ ARCHITECTURE behavioural OF dataConsume IS
 
 -- State Declaration
 -- ALL STATE TYPES
-	TYPE state_type IS (INIT, DONE, MAIN_LOOP_ctrlSet, MAIN_LOOP_ctrlWait,
-		MAIN_LOOP_regOn, MAIN_LOOP_decision, LOOP_END_regOn, LOOP_END_decision, STORE_reg
-	);
+      TYPE state_type IS (INIT, DONE, MAIN_LOOP_ctrlSet, MAIN_LOOP_ctrlWait,
+            MAIN_LOOP_regOn, MAIN_LOOP_decision, LOOP_END_regOn, LOOP_END_decision, STORE_reg
+      );
  
 -- Signal Declaration
-	SIGNAL cur_state, next_state, prev_state: state_type;
-	SIGNAL ctrlIn_delayed, ctrlIn_detected: std_logic;
-	SIGNAL start_reg: std_logic;
+      SIGNAL cur_state, next_state, prev_state: state_type;
+      SIGNAL ctrlIn_delayed, ctrlIn_detected, reg_ctrlIn_detected: std_logic;
+      SIGNAL start_reg: std_logic;
+      SIGNAL seqDone_reg: std_logic;
 
-	SIGNAL reg6, reg5, reg4, reg3, reg2, reg1, reg0: unsigned(7 DOWNTO 0);
-        --SIGNAL data0, data1, data2, data3, data4, data5, data6: UNSIGNED(7 DOWNTO 0);
+      SIGNAL reg6, reg5, reg4, reg3, reg2, reg1, reg0: std_logic_vector(7 DOWNTO 0);
+      SIGNAL numWords_int: integer range 0 to 999;
+      SIGNAL counter: integer range 0 to 999;
 
-	SIGNAL numWords_add3: integer range 3 to 1002;
-	SIGNAL numWords_int: integer range 0 to 999;
-	SIGNAL counter: integer range 0 to 999;
-	--SIGNAL maxValue: unsigned(7 DOWNTO 0);
+      SIGNAL maxIndex_int: integer range 0 to 999;
 
-	SIGNAL maxIndex_int: integer range 0 to 999;
-
-	SIGNAL ctrlOut_reg: std_logic;
-	SIGNAL dataResults_reg: CHAR_ARRAY_TYPE(0 to 6);
-	--SIGNAL \dataResults_reg[0]\, \dataResults_reg[1]\, \dataResults_reg[2]\, \dataResults_reg[3]\, \dataResults_reg[4]\, \dataResults_reg[5]\, \dataResults_reg[6]\: STD_LOGIC_VECTOR ( 7 downto 0 );
+      SIGNAL ctrlOut_reg: std_logic;
+      SIGNAL dataResults_reg: CHAR_ARRAY_TYPE(0 to 6);
+      SIGNAL numWords_bcd_reg: BCD_ARRAY_TYPE(2 downto 0);
 BEGIN
 
 -------------------------------------------------------------------
-  combi_out: PROCESS(cur_state)
-  BEGIN
-	dataReady <= '0';
---	byte <= "00000000";
-	seqDone <= '0';
-	
-	IF cur_state = MAIN_LOOP_regOn THEN
---	  byte <= data;
-	  dataReady <= '1';
-	END IF;
+    combi_out: PROCESS(cur_state)
+    BEGIN
+        dataReady <= '0';
+        seqDone <= '0';
+      
+        IF cur_state = MAIN_LOOP_regOn THEN
+            dataReady <= '1';
+        END IF;
 
-	IF cur_state = DONE THEN
-	  seqDone <= '1';
-	END IF;
-	
-  END PROCESS;
-  
-  
---  combi_out: PROCESS(clk)
---  BEGIN
---    IF clk'EVENT AND clk = '1' THEN
---        IF reset = '1' THEN
---            dataReady <= '0';
---            seqDone <= '0';
---        ELSIF cur_state = MAIN_LOOP_regOn THEN
---            dataReady <= '1';
---        ELSIF cur_state = DONE THEN
---	        seqDone <= '1';
---	    END IF;
---	 END IF;
---  END PROCESS;
-
--- there is a potential issue with this combi_out state stuff. If the max Value is the very final one in the sequence, it may not actually output this. However,
--- I think this is unlikely because the last three digits are always 0. However, it is worth trying this to see.
+        IF cur_state = DONE THEN
+            seqDone <= '1';
+        END IF;
+      
+    END PROCESS;
 
     seq_byteLatch: PROCESS (clk)
     BEGIN
@@ -114,473 +78,280 @@ BEGIN
             END IF;
         END IF;
     END PROCESS;
-
-
-
-
-
---fill in list
-
--------------------------------------------------------------------
---Component Instantiation
-
-
+    
+--    detect_ctrlIn: PROCESS(clk, ctrlIn)
+--    -- Alternative way to detect ctrlIn
+--    BEGIN
+--        IF reset = '1' OR cur_state = INIT THEN
+--            ctrlIn_detected <= '0';
+--        ELSIF ctrlIn'EVENT THEN
+--            ctrlIn_detected <= '1';
+--        ELSIF clk'EVENT AND clk='1' THEN
+--            ctrlIn_detected <= '0';
+--        END IF;
+--    END PROCESS;
+    
 --Data Generation Two-Phase Protocol
+    delay_CtrlIn: PROCESS (clk)    
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF reset = '1' THEN
+                ctrlIn_delayed <= '0';
+            ELSE
+                ctrlIn_delayed <= ctrlIn;
+            END IF;
+        END IF;
+    END PROCESS;
+    
+    detect_ctrlIn: PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF reset = '1' THEN
+                ctrlIn_detected <= '0';
+            ELSE
+                ctrlIn_detected <= ctrlIn XOR ctrlIn_delayed;
+            END IF;
+        END IF;
+    END PROCESS;
 
-  delay_CtrlIn: process(clk)     
-    begin
-      if rising_edge(clk) then
-        ctrlIn_delayed <= ctrlIn;
-      end if;
-    end process;
-  
-  ctrlIn_detected <= ctrlIn xor ctrlIn_delayed;
+    bcd_to_integer: PROCESS(numWords_bcd_reg)
+    BEGIN
+        numWords_int <= TO_INTEGER(unsigned(numWords_bcd_reg(0))) + TO_INTEGER(unsigned(numWords_bcd_reg(1)))*10 + TO_INTEGER(unsigned(numWords_bcd_reg(2)))*100;
+    END PROCESS;
 
--- Registers:
-
--- use this to get the reg6_in.
-
-
-
-
-
-  bcd_to_integer: PROCESS(numWords_bcd)
-	    -- variable of type integer with constrained range and initial value
-
-  VARIABLE tmp:INTEGER RANGE 0 TO 999:=0;  -- store the sum
-
-  BEGIN
-  tmp := 0;
-
-  --FOR i IN 0 TO 2 LOOP
-    --tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(i)))*(10**(i)));
-   tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(0)))*(10**(0)));
-   tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(1)))*(10**(1)));
-   tmp:=tmp+(TO_INTEGER(unsigned(numWords_bcd(2)))*(10**(2)));
-  
-  --END LOOP;
-
-  numWords_int <= tmp;    
-  numWords_add3 <= (tmp +3);
-  END PROCESS;
-	  
---make something that converts the integer back to a thing.
-
-
-  Integer_to_bcd: Process(maxIndex_int)
-	Variable tmp: integer range 0 to 99;
-  Begin
-	maxIndex(2) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
--- can I convert this to vector in same line?
---vhdl integers really round down?
-	tmp:= maxIndex_int rem 100;
-	maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
-<<<<<<< HEAD
-	maxIndex(0) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
-=======
-	maxIndex(0) <= std_logic_vector(to_unsigned(((tmp mod 10)-1), 4));
->>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
-  End process;
-
-
-
-
-
-
+    Integer_to_bcd: PROCESS(maxIndex_int)
+        VARIABLE tmp: integer range 0 to 99;
+    BEGIN
+        maxIndex(2) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
+        tmp:= maxIndex_int rem 100;
+        maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
+        maxIndex(0) <= std_logic_vector(to_unsigned(((tmp mod 10)-1), 4));
+    END PROCESS;
 
 -------------------------------------------------------------------
-seq_state:  PROCESS (clk, reset)
---SHOULD MAYBE BE RESTE ANDE START HERE.
+    updateCounter:  PROCESS (clk, reset, start)
+    BEGIN
+        IF clk'EVENT AND clk='1' THEN
+            IF reset = '1' OR cur_state = INIT THEN
+                counter <= 0;
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                counter <= counter + 1;
+            END IF;
+        END IF;
+    END PROCESS;
+    
+    seq_start_reg: PROCESS (clk)
+    BEGIN
+        IF clk'EVENT AND clk='1' THEN
+            start_reg <= start;
+        END IF;
+    END PROCESS;
+    
+    seq_numWords_bcd_reg: PROCESS (clk)
+    BEGIN
+        IF clk'EVENT AND clk='1' THEN
+            numWords_bcd_reg <= numWords_bcd;
+        END IF;
+    END PROCESS;
+    
+    seq_dataResults: PROCESS (clk)
+    BEGIN
+        IF clk'EVENT AND clk='1' THEN
+            dataResults <= dataResults_reg;
+        END IF;
+    END PROCESS;
+    
+    seq_ctrlOut: PROCESS (clk)
+    BEGIN
+        IF clk'EVENT AND clk='1' THEN
+            ctrlOut <= ctrlOut_reg;
+        END IF;
+    END PROCESS;
+    
+    seq_state: PROCESS (clk, reset)
+    BEGIN
+        IF reset = '1' THEN
+            cur_state <= INIT;
+        ELSIF rising_edge(clk) THEN
+            cur_state <= next_state;
+        END IF;
+    END PROCESS;
 
---setting up sequential state logic and putting the 'start' signal
--- through a register.
- BEGIN
-    IF reset = '1' THEN
-      cur_state <= INIT;
-    ELSIF rising_edge(clk) THEN
-	IF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
-	  counter <= counter + 1;
-	ELSIF cur_state = INIT THEN
-	  counter <= 0;
-	END IF;
-    cur_state <= next_state;
-	start_reg <= start;
-    dataResults <= dataResults_reg;
---        \dataResults[0]\ <= dataResults_reg(0);
---        \dataResults[1]\ <= dataResults_reg(1);
---        \dataResults[2]\ <= dataResults_reg(2);
---        \dataResults[3]\ <= dataResults_reg(3);
---        \dataResults[4]\ <= dataResults_reg(4);
---        \dataResults[5]\ <= dataResults_reg(5);
---        \dataResults[6]\ <= dataResults_reg(6);
-        
-	ctrlOut <= ctrlOut_reg;
-    END IF;
-   
-  END PROCESS;
+    transit_reg_0: PROCESS(clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT OR cur_state = LOOP_END_regOn THEN
+                reg0 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn THEN
+                reg0 <= data;
+            END IF;
+        END IF;
+    END PROCESS;
 
+    transit_reg_1: PROCESS(clk, reg0)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT THEN
+                reg1 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                reg1 <= reg0; 
+            END IF;
+        END IF;
+    END PROCESS;
 
-transit_reg_0: PROCESS(clk)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg0 <= TO_UNSIGNED(0,8);
+    transit_reg_2: PROCESS(clk, reg1)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT THEN
+                reg2 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                reg2 <= reg1;
+            END IF;
+        END IF;
+    END PROCESS;
 
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg0 <= UNSIGNED(data) after 6 ns;
+    transit_reg_3: PROCESS(clk, reg2)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT THEN
+                reg3 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                reg3 <= reg2;
+            END IF;
+        END IF;
+    END PROCESS;
 
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg0 <= TO_UNSIGNED(0,8);
+    transit_reg_4: PROCESS(clk, reg3)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT THEN
+                reg4 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                reg4 <= reg3;
+            END IF;
+        END IF;
+    END PROCESS;
 
-    END IF;
-END IF;
-END PROCESS;
+    transit_reg_5: PROCESS(clk, reg4)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT THEN
+                reg5 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                reg5 <= reg4;
+            END IF;
+        END IF;
+    END PROCESS;
 
-transit_reg_1: PROCESS(clk, reg0)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg1 <= TO_UNSIGNED(0,8);
+    transit_reg_6: PROCESS(clk, reg5)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' OR cur_state = INIT THEN
+                reg6 <= "00000000";
+            ELSIF cur_state = MAIN_LOOP_regOn OR cur_state = LOOP_END_regOn THEN
+                reg6 <= reg5;
+            END IF;
+        END IF;
+    END PROCESS;
 
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg1 <= reg0;
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg1 <= reg0;
- 
-    END IF;
-END IF;
-END PROCESS;
+    seq_ctrl_out: PROCESS(clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' or cur_state = INIT THEN
+                ctrlOut_reg <= '0';
+            ELSIF cur_state = MAIN_LOOP_ctrlSet THEN
+                IF start_reg = '1' THEN
+                    ctrlOut_reg <= not ctrlOut_reg;
+                END IF;
+            END IF;
+        END IF;
+    END PROCESS;
 
-transit_reg_2: PROCESS(clk, reg1)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg2 <= TO_UNSIGNED(0,8);
-
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg2 <= reg1;
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg2 <= reg1;
- 
-    END IF;
-END IF;
-END PROCESS;
-
-transit_reg_3: PROCESS(clk, reg2)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg3 <= TO_UNSIGNED(0,8);
-
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg3 <= reg2;
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg3 <= reg2;
- 
-    END IF;
-END IF;
-END PROCESS;
-
-transit_reg_4: PROCESS(clk, reg3)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg4 <= TO_UNSIGNED(0,8);
-        
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg4 <= reg3;
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg4 <= reg3;
- 
-    END IF;
-END IF;
-END PROCESS;
-
-transit_reg_5: PROCESS(clk, reg4)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg5 <= TO_UNSIGNED(0,8);
-        
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg5 <= reg4;
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg5 <= reg4;
- 
-    END IF;
-END IF;
-END PROCESS;
-
-transit_reg_6: PROCESS(clk, reg5)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' OR cur_state = INIT THEN
-        reg6 <= TO_UNSIGNED(0,8);
-        
-    ELSIF cur_state = MAIN_LOOP_regOn THEN
-        reg6 <= reg5;
-        
-    ELSIF cur_state = LOOP_END_regOn THEN
-        reg6 <= reg5;
- 
-    END IF;
-END IF;
-END PROCESS;
-
-Ctrl_out: PROCESS(clk)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' or cur_state = INIT THEN
-        ctrlOut_reg <= '0';
-    ELSIF cur_state = MAIN_LOOP_ctrlSet THEN
-      if start_reg = '1' then
-	    ctrlOut_reg <= not ctrlOut_reg;
-	  END IF;
-	END IF;
-END IF;
-END PROCESS;
-
-Max_Index: process(clk)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' or cur_state = INIT THEN
-        maxIndex_int <= 0;
-    Elsif cur_state = MAIN_LOOP_regOn or cur_state = LOOP_END_regOn THEN
-        if reg3 > unsigned(dataResults_reg(3)) then
-	       maxIndex_int <= counter - 3;
-	    END IF;
-	END IF;
-END IF;
-END PROCESS;
+    seq_max_Index: process(clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' or cur_state = INIT THEN
+                maxIndex_int <= 0;
+            ELSIF cur_state = MAIN_LOOP_regOn or cur_state = LOOP_END_regOn THEN
+                IF reg3 > dataResults_reg(3) THEN
+                    maxIndex_int <= counter - 3;
+                END IF;
+            END IF;
+        END IF;
+    END PROCESS;
 
 
-data_reg: process(clk)
-BEGIN
-IF rising_edge(clk) THEN 
-    IF RESET = '1' or cur_state = INIT THEN
-      dataResults_reg <= (others => (others => '0'));
+    data_reg: process(clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF RESET = '1' or cur_state = INIT THEN
+                dataResults_reg <= (others => (others => '0'));
 
-	ELSIF cur_state = MAIN_LOOP_regOn or cur_state = LOOP_END_regOn THEN
-        if reg3 > unsigned(dataResults_reg(3)) then
-
-          dataResults_reg(0) <= std_logic_vector(reg0);
-          dataResults_reg(1) <= std_logic_vector(reg1);
-          dataResults_reg(2) <= std_logic_vector(reg2);
-          dataResults_reg(3) <= std_logic_vector(reg3);
-          dataResults_reg(4) <= std_logic_vector(reg4);
-          dataResults_reg(5) <= std_logic_vector(reg5);
-          dataResults_reg(6) <= std_logic_vector(reg6);
-      
-	     END if;
-	    
-	end if;
-END IF;
-END PROCESS;	
-
-       
-                
-        
-
-
-
-
-
- 
+            ELSIF cur_state = MAIN_LOOP_regOn or cur_state = LOOP_END_regOn THEN
+                IF reg3 > dataResults_reg(3) THEN
+                    dataResults_reg(0) <= reg0;
+                    dataResults_reg(1) <= reg1;
+                    dataResults_reg(2) <= reg2;
+                    dataResults_reg(3) <= reg3;
+                    dataResults_reg(4) <= reg4;
+                    dataResults_reg(5) <= reg5;
+                    dataResults_reg(6) <= reg6;
+                END IF;
+            END IF;
+        END IF;
+    END PROCESS;
 
 ------------------------------------------------------------------
-combi_nextState: PROCESS(cur_state, start_reg, ctrlIn_detected, numWords_int, numWords_add3, counter)
-BEGIN
+    combi_nextState: PROCESS(cur_state, start_reg, ctrlIn_detected, numWords_int, counter)
+    BEGIN
 
-  CASE cur_state IS
-
+        CASE cur_state IS
 -----INIT and DONE states:
+            WHEN INIT =>
+                next_state <= MAIN_LOOP_ctrlSet;
 
-      WHEN INIT =>
-	--reset all registers
---	reg6 <= TO_UNSIGNED(0,8);
---	reg5 <= TO_UNSIGNED(0,8);
---	reg4 <= TO_UNSIGNED(0,8);
---	reg3 <= TO_UNSIGNED(0,8);
---	reg2 <= TO_UNSIGNED(0,8);
---	reg1 <= TO_UNSIGNED(0,8);
---	reg0 <= TO_UNSIGNED(0,8);
-	--data0 <= TO_UNSIGNED(0,8);
-	--data1 <= TO_UNSIGNED(0,8);
-	--data2 <= TO_UNSIGNED(0,8);
-	--data3 <= TO_UNSIGNED(0,8);
-	--data4 <= TO_UNSIGNED(0,8);
-	--data5 <= TO_UNSIGNED(0,8);
-	--data6 <= TO_UNSIGNED(0,8);
-	--maxValue <= TO_UNSIGNED(0,8);
-	--counter <= 0;
-	--ctrlOut_reg <= '0';
-	--dataResults_reg <= (others => (others => '0'));
+            WHEN DONE =>
+                next_state <= INIT;
 
---all registers to zero, then:
-	if start_reg = '1' then
-	  next_state <= MAIN_LOOP_ctrlSet;
-	else
-	  next_state <= INIT;
-	end if;
+            WHEN MAIN_LOOP_ctrlSet =>
+                IF start_reg = '1' THEN
+                    next_state <= MAIN_LOOP_ctrlWait;
+                END IF;
+
+            WHEN MAIN_LOOP_ctrlWait =>
+                IF ctrlIn_detected = '1' THEN
+                    next_state <= MAIN_LOOP_regOn;
+                ELSE
+                    next_state <= MAIN_LOOP_ctrlWait;
+                END IF;
+
+            WHEN MAIN_LOOP_regOn =>
+                next_state <= MAIN_LOOP_decision;
 
 
-      WHEN DONE =>
-      if start_reg = '1' then
-	   next_state <= INIT;
-	  else
-	   next_state <= DONE;
-	  end if;
-	
-	  
--------- maybe there's a way to streamline these? like just three, one before the 
--- max test, one with the max test, one with the end loop.
---------------------------------------------------------------------
--------- Register 6 States (NORMAL CONDITIONS)
-      
-
--------------------------------------------------------------------
------- Registers 3 to 0 (Main Loop)
-
-      WHEN MAIN_LOOP_ctrlSet =>
-      if start_reg = '1' then
-	   --ctrlOut_reg <= not ctrlOut_reg;
-	   next_state <= MAIN_LOOP_ctrlWait;
-	  else
-	   next_state <= MAIN_LOOP_ctrlSet;
-	  end if;
-
-
-      WHEN MAIN_LOOP_ctrlWait =>
-	if ctrlIn_detected = '1' then 
-	  next_state <= MAIN_LOOP_regOn;
-	else
-	  next_state <= MAIN_LOOP_ctrlWait;
-	end if;
-
-
-      WHEN MAIN_LOOP_regOn =>
-<<<<<<< HEAD
-	--reg6 <= UNSIGNED(data) after 6 ns;
-	--reg5 <= reg6 after 5 ns;
-	--reg4 <= reg5 after 4 ns;
-	--reg3 <= reg4 after 3 ns;
-	--reg2 <= reg3 after 2 ns;
-	--reg1 <= reg2 after 1 ns;
-	--reg0 <= reg1;
-	reg0 <= UNSIGNED(data) after 6 ns;
-	reg1 <= reg0 after 5 ns;
-	reg2 <= reg1 after 4 ns;
-	reg3 <= reg2 after 3 ns;
-	reg4 <= reg3 after 2 ns;
-	reg5 <= reg4 after 1 ns;
-	reg6 <= reg5;
-=======
-	--
---	reg0 <= UNSIGNED(data) after 6 ns;
---	reg1 <= reg0 after 5 ns;
---	reg2 <= reg1 after 4 ns;
---	reg3 <= reg2 after 3 ns;
---	reg4 <= reg3 after 2 ns;
---	reg5 <= reg4 after 1 ns;
---	reg6 <= reg5;
->>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
-
-	next_state <= MAIN_LOOP_decision;
-
-
-      WHEN MAIN_LOOP_decision =>
-	if start_reg = '1' then
-	  if counter < numWords_int then
-	    next_state <= MAIN_LOOP_ctrlSet;
+            WHEN MAIN_LOOP_decision =>
+                IF counter < numWords_int THEN
+                    next_state <= MAIN_LOOP_ctrlSet;
 ----- loop back to the start of MAIN_LOOP_ctrlSet.
-	  else
-	    next_state <= LOOP_END_regOn;
-	  end if;
-	else
-	  next_state <= MAIN_LOOP_decision;
-	end if;	
-	  
+                ELSE
+                    next_state <= LOOP_END_regOn;
+                END IF;
 --------------------------------------------------------------------
 -------- Register states AT FINAL THREE bytes:
 ---Register 6
 
+            WHEN LOOP_END_regOn =>
+                next_state <= LOOP_END_decision;
 
-      WHEN LOOP_END_regOn =>
-	--reg6 <= TO_UNSIGNED(0,8) after 6 ns;
-	--reg5 <= reg6 after 5 ns;
-	--reg4 <= reg5 after 4 ns;
-	--reg3 <= reg4 after 3 ns;
-	--reg2 <= reg3 after 2 ns;
-	--reg1 <= reg2 after 1 ns;
-	--reg0 <= reg1;
-<<<<<<< HEAD
-	reg0 <= TO_UNSIGNED(0,8) after 6 ns;
-	reg1 <= reg0 after 5 ns;
-	reg2 <= reg1 after 4 ns;
-	reg3 <= reg2 after 3 ns;
-	reg4 <= reg3 after 2 ns;
-	reg5 <= reg4 after 1 ns;
-	reg6 <= reg5;
-=======
---	reg0 <= TO_UNSIGNED(0,8) after 6 ns;
---	reg1 <= reg0 after 5 ns;
---	reg2 <= reg1 after 4 ns;
---	reg3 <= reg2 after 3 ns;
---	reg4 <= reg3 after 2 ns;
---	reg5 <= reg4 after 1 ns;
---	reg6 <= reg5;
->>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
+            WHEN LOOP_END_decision =>
+                IF counter < numWords_int THEN
+                    next_state <= LOOP_END_decision;
+                ELSE
+                    next_state <= DONE;
+                END IF;
 
-	next_state <= LOOP_END_decision;
-
-
-      WHEN LOOP_END_decision =>
-	if counter < numWords_int then
-	  next_state <= LOOP_END_decision;
-	else
-	  next_state <= DONE;
-	end if;
-
-
------------------------------------------------------------------------------
--- COMPARING REGISTER TO DATARESULT_REG AND STORE VALUES
---      WHEN STORE_reg =>
-----	if reg3 > unsigned(dataResults_reg(3)) then
-----	  dataResults_reg(0) <= std_logic_vector(reg0);
-----	  dataResults_reg(1) <= std_logic_vector(reg1);
-----	  dataResults_reg(2) <= std_logic_vector(reg2);
-----	  dataResults_reg(3) <= std_logic_vector(reg3);
-----	  dataResults_reg(4) <= std_logic_vector(reg4);
-----	  dataResults_reg(5) <= std_logic_vector(reg5);
-----	  dataResults_reg(6) <= std_logic_vector(reg6);
-	  
-------	  maxIndex_int <= counter - 3;
-----	end if;
-	
-<<<<<<< HEAD
-	if prev_state = MAIN_LOOP_regOn then
-	  next_state <= MAIN_LOOP_decision;
-	else
-	  next_state <= LOOP_END_decision;
-	end if;
-=======
---	if prev_state <= MAIN_LOOP_regOn then
---	  next_state <= MAIN_LOOP_decision;
---	else
---	  next_state <= LOOP_END_decision;
---	end if;
->>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
-
-
-
-        WHEN OTHERS =>
-            next_state <= INIT;
-    END CASE;
-END PROCESS;
+            WHEN OTHERS =>
+                next_state <= INIT;
+        END CASE;
+    END PROCESS;
 END behavioural;
