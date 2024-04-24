@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Apr 24 11:02:50 2024
+# Process ID: 18708
+# Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent27176 C:\Users\astee\OneDrive - University of Bristol\University work\Digital Design\Assignment2_Git\FullSystem\FullSystem.xpr
+# Log file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/vivado.log
+# Journal file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem\vivado.jou
+# Running On: DESKTOP-5CTLBIO, OS: Windows, CPU Frequency: 1797 MHz, CPU Physical cores: 16, Host memory: 7883 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.xpr}
+update_compile_order -fileset sources_1
+open_project {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnly/DataProcessorOnly.xpr}
+update_compile_order -fileset sources_1

@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2023.2
-| Date         : Sun Apr 21 18:20:05 2024
+| Date         : Sun Apr 21 21:43:02 2024
 | Host         : DESKTOP-5CTLBIO
 | Design       : design_1
 | Device       : xc7a35t-cpg236-1--

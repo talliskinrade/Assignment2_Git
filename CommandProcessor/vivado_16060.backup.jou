@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Apr 23 19:13:22 2024
+# Process ID: 16060
+# Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14136 C:\Users\astee\OneDrive - University of Bristol\University work\Digital Design\Assignment2_Git\CommandProcessor\CommandProcessor.xpr
+# Log file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/vivado.log
+# Journal file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor\vivado.jou
+# Running On: DESKTOP-5CTLBIO, OS: Windows, CPU Frequency: 1797 MHz, CPU Physical cores: 16, Host memory: 7883 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.xpr}
+update_compile_order -fileset sources_1
+reset_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1

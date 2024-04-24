@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Sun Apr 21 18:21:14 2024
+| Date             : Sun Apr 21 21:44:10 2024
 | Host             : DESKTOP-5CTLBIO running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.181        |
+| Total On-Chip Power (W)  | 0.182        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.109        |
+| Dynamic (W)              | 0.110        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.1         |
@@ -53,18 +53,18 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        8 |       --- |             --- |
-| Slice Logic    |     0.002 |     1086 |       --- |             --- |
-|   LUT as Logic |     0.001 |      414 |     20800 |            1.99 |
+| Slice Logic    |     0.002 |     1092 |       --- |             --- |
+|   LUT as Logic |     0.002 |      420 |     20800 |            2.02 |
+|   F7/F8 Muxes  |    <0.001 |       57 |     32600 |            0.17 |
 |   Register     |    <0.001 |      457 |     41600 |            1.10 |
 |   CARRY4       |    <0.001 |       33 |      8150 |            0.40 |
-|   F7/F8 Muxes  |    <0.001 |       57 |     32600 |            0.17 |
 |   BUFG         |    <0.001 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |       13 |       --- |             --- |
-| Signals        |     0.002 |      859 |       --- |             --- |
+| Signals        |     0.002 |      869 |       --- |             --- |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
 | I/O            |    <0.001 |        4 |       106 |            3.77 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.181 |          |           |                 |
+| Total          |     0.182 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.015 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.016 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.070 |       0.058 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -148,11 +148,12 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| top            |     0.109 |
+| top            |     0.110 |
 |   clk_wiz      |     0.104 |
 |     inst       |     0.104 |
 |   cmdProc1     |     0.002 |
-|   dataConsume1 |     0.001 |
+|   dataConsume1 |     0.002 |
+|   dataGen1     |     0.001 |
 +----------------+-----------+
 
 

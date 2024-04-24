@@ -3,38 +3,39 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Apr 17 15:10:15 2024
-# Process ID: 4636
-# Current directory: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1
+# Start of session at: Tue Apr 23 19:14:41 2024
+# Process ID: 4980
+# Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1
 # Command line: vivado.exe -log tb_cmdProc_interim.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source tb_cmdProc_interim.tcl
-# Log file: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1/tb_cmdProc_interim.vds
-# Journal file: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1\vivado.jou
-# Running On: LAPTOP-79ULQ39M, OS: Windows, CPU Frequency: 1498 MHz, CPU Physical cores: 4, Host memory: 8350 MB
+# Log file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1/tb_cmdProc_interim.vds
+# Journal file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1\vivado.jou
+# Running On: DESKTOP-5CTLBIO, OS: Windows, CPU Frequency: 1797 MHz, CPU Physical cores: 16, Host memory: 7883 MB
 #-----------------------------------------------------------
 source tb_cmdProc_interim.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 474.184 ; gain = 180.941
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:15 . Memory (MB): peak = 485.012 ; gain = 179.473
 Command: synth_design -top tb_cmdProc_interim -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 7392
+INFO: [Synth 8-7075] Helper process launched with PID 3420
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 921.148 ; gain = 442.941
+Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 931.336 ; gain = 443.324
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'tb_cmdProc_interim' [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:51]
-WARNING: [Synth 8-312] ignoring unsynthesizable construct: non-synthesizable function call [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:189]
-WARNING: [Synth 8-312] ignoring unsynthesizable construct: extra waveform elements [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:190]
-WARNING: [Synth 8-312] ignoring unsynthesizable construct: wait statement with no conditon [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:220]
-ERROR: [Synth 8-27] nested clocked statements not supported [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:225]
-ERROR: [Synth 8-285] failed synthesizing module 'tb_cmdProc_interim' [C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:51]
+ERROR: [Synth 8-5832] source file was generated for simulation and is not permitted as input to synthesis [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume_synthesised_unsigned.vhd:182]
+INFO: [Synth 8-638] synthesizing module 'tb_cmdProc_interim' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:51]
+WARNING: [Synth 8-312] ignoring unsynthesizable construct: non-synthesizable function call [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:179]
+WARNING: [Synth 8-312] ignoring unsynthesizable construct: extra waveform elements [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:180]
+WARNING: [Synth 8-312] ignoring unsynthesizable construct: wait statement with no conditon [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:210]
+ERROR: [Synth 8-27] nested clocked statements not supported [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:215]
+ERROR: [Synth 8-285] failed synthesizing module 'tb_cmdProc_interim' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd:51]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1029.066 ; gain = 550.859
+Finished Synthesize : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1039.977 ; gain = 551.965
 ---------------------------------------------------------------------------------
 synthesize failed
 INFO: [Common 17-83] Releasing license: Synthesis
-6 Infos, 3 Warnings, 0 Critical Warnings and 3 Errors encountered.
+6 Infos, 3 Warnings, 0 Critical Warnings and 4 Errors encountered.
 synth_design failed
 ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
-INFO: [Common 17-206] Exiting Vivado at Wed Apr 17 15:10:35 2024...
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 23 19:15:25 2024...

@@ -155,12 +155,12 @@ BEGIN
   Integer_to_bcd: Process(maxIndex_int)
 	Variable tmp: integer range 0 to 99;
   Begin
-	maxIndex(0) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
+	maxIndex(2) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
 -- can I convert this to vector in same line?
 --vhdl integers really round down?
 	tmp:= maxIndex_int rem 100;
 	maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
-	maxIndex(2) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
+	maxIndex(0) <= std_logic_vector(to_unsigned((tmp mod 10), 4));
   End process;
 
 
@@ -310,13 +310,20 @@ BEGIN
 
 
       WHEN MAIN_LOOP_regOn =>
-	reg6 <= UNSIGNED(data) after 6 ns;
-	reg5 <= reg6 after 5 ns;
-	reg4 <= reg5 after 4 ns;
-	reg3 <= reg4 after 3 ns;
-	reg2 <= reg3 after 2 ns;
-	reg1 <= reg2 after 1 ns;
-	reg0 <= reg1;
+	--reg6 <= UNSIGNED(data) after 6 ns;
+	--reg5 <= reg6 after 5 ns;
+	--reg4 <= reg5 after 4 ns;
+	--reg3 <= reg4 after 3 ns;
+	--reg2 <= reg3 after 2 ns;
+	--reg1 <= reg2 after 1 ns;
+	--reg0 <= reg1;
+	reg0 <= UNSIGNED(data) after 6 ns;
+	reg1 <= reg0 after 5 ns;
+	reg2 <= reg1 after 4 ns;
+	reg3 <= reg2 after 3 ns;
+	reg4 <= reg3 after 2 ns;
+	reg5 <= reg4 after 1 ns;
+	reg6 <= reg5;
 
 	next_state <= STORE_reg;
 
@@ -339,13 +346,20 @@ BEGIN
 
 
       WHEN LOOP_END_regOn =>
-	reg6 <= TO_UNSIGNED(0,8) after 6 ns;
-	reg5 <= reg6 after 5 ns;
-	reg4 <= reg5 after 4 ns;
-	reg3 <= reg4 after 3 ns;
-	reg2 <= reg3 after 2 ns;
-	reg1 <= reg2 after 1 ns;
-	reg0 <= reg1;
+	--reg6 <= TO_UNSIGNED(0,8) after 6 ns;
+	--reg5 <= reg6 after 5 ns;
+	--reg4 <= reg5 after 4 ns;
+	--reg3 <= reg4 after 3 ns;
+	--reg2 <= reg3 after 2 ns;
+	--reg1 <= reg2 after 1 ns;
+	--reg0 <= reg1;
+	reg0 <= TO_UNSIGNED(0,8) after 6 ns;
+	reg1 <= reg0 after 5 ns;
+	reg2 <= reg1 after 4 ns;
+	reg3 <= reg2 after 3 ns;
+	reg4 <= reg3 after 2 ns;
+	reg5 <= reg4 after 1 ns;
+	reg6 <= reg5;
 
 	next_state <= STORE_reg;
 
@@ -376,7 +390,7 @@ BEGIN
 	if prev_state = MAIN_LOOP_regOn then
 	  next_state <= MAIN_LOOP_decision;
 	else
-	  next_state <= LOOP_END_regOn;
+	  next_state <= LOOP_END_decision;
 	end if;
 
     END CASE;

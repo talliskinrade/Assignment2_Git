@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun Apr 21 18:17:52 2024
+| Date         : Sun Apr 21 21:41:24 2024
 | Host         : DESKTOP-5CTLBIO running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -31,8 +31,8 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |  446 |     0 |          0 |     20800 |  2.14 |
-|   LUT as Logic          |  446 |     0 |          0 |     20800 |  2.14 |
+| Slice LUTs*             |  452 |     0 |          0 |     20800 |  2.17 |
+|   LUT as Logic          |  452 |     0 |          0 |     20800 |  2.17 |
 |   LUT as Memory         |    0 |     0 |          0 |      9600 |  0.00 |
 | Slice Registers         |  458 |     0 |          0 |     41600 |  1.10 |
 |   Register as Flip Flop |  335 |     0 |          0 |     41600 |  0.81 |
@@ -152,14 +152,14 @@ Warning! LUT value is adjusted to account for LUT combining.
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     |  207 |        Flop & Latch |
-| LUT6     |  202 |                 LUT |
+| LUT6     |  200 |                 LUT |
 | FDSE     |  124 |        Flop & Latch |
 | LDCE     |  123 |        Flop & Latch |
-| LUT2     |  114 |                 LUT |
-| LUT4     |   81 |                 LUT |
-| LUT5     |   65 |                 LUT |
-| LUT3     |   54 |                 LUT |
+| LUT2     |  110 |                 LUT |
+| LUT4     |   98 |                 LUT |
+| LUT5     |   76 |                 LUT |
 | MUXF7    |   41 |               MuxFx |
+| LUT3     |   38 |                 LUT |
 | CARRY4   |   33 |          CarryLogic |
 | MUXF8    |   16 |               MuxFx |
 | LUT1     |   10 |                 LUT |

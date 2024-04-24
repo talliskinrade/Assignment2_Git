@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1/tb_cmdProc_interim.tcl"
+  variable script "C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.runs/synth_1/tb_cmdProc_interim.tcl"
   variable category "vivado_synth"
 }
 
@@ -76,23 +76,23 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.cache/wt} [current_project]
-set_property parent.project_path {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.xpr} [current_project]
+set_property webtalk.parent_dir {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.cache/wt} [current_project]
+set_property parent.project_path {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo {c:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/CommandProcessor.cache/ip} [current_project]
+set_property ip_output_repo {c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/CommandProcessor.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/UART_RX_CTRL.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/UART_TX_CTRL.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/common_pack.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/CommandProcessor/cmdProc.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/dataConsumeWrapper.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume_synthesised_unsigned.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd}
-  {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_RX_CTRL.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_TX_CTRL.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/common_pack.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/CommandProcessor/cmdProc.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataConsumeWrapper.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/dataConsume_synthesised_unsigned.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd}
+  {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd}
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

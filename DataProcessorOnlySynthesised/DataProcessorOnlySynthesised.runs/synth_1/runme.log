@@ -14,7 +14,7 @@ ECHO is off.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source top.tcl -notrace
-create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 485.484 ; gain = 183.203
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:14 . Memory (MB): peak = 484.914 ; gain = 180.055
 Command: read_checkpoint -auto_incremental -incremental {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.srcs/utils_1/imports/synth_1/top.dcp}
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.srcs/utils_1/imports/synth_1/top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -27,14 +27,14 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 15008
+INFO: [Synth 8-7075] Helper process launched with PID 13260
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1330.090 ; gain = 440.539
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1332.367 ; gain = 441.660
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'top' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:15]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/.Xil/Vivado-11432-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6' bound to instance 'clk_wiz' of component 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:108]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/.Xil/Vivado-11432-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/.Xil/Vivado-11432-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/.Xil/Vivado-18624-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6' bound to instance 'clk_wiz' of component 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:108]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/.Xil/Vivado-18624-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/.Xil/Vivado-18624-DESKTOP-5CTLBIO/realtime/clk_wiz_0_stub.v:6]
 INFO: [Synth 8-3491] module 'dataGen' declared at 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd:5' bound to instance 'dataGen1' of component 'dataGen' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:115]
 INFO: [Synth 8-638] synthesizing module 'dataGen' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd:15]
 INFO: [Synth 8-256] done synthesizing module 'dataGen' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/dataGen.vhd:15]
@@ -45,12 +45,12 @@ WARNING: [Synth 8-614] signal 'data' is read in the process but is not in the se
 WARNING: [Synth 8-614] signal 'reg6' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
 WARNING: [Synth 8-614] signal 'reg5' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
 WARNING: [Synth 8-614] signal 'counter' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
-WARNING: [Synth 8-614] signal 'reg4' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
-WARNING: [Synth 8-614] signal 'reg3' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
-WARNING: [Synth 8-614] signal 'reg2' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
-WARNING: [Synth 8-614] signal 'reg1' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
-WARNING: [Synth 8-614] signal 'dataResults_reg' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
 WARNING: [Synth 8-614] signal 'reg0' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg1' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg2' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg3' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'reg4' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
+WARNING: [Synth 8-614] signal 'dataResults_reg' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
 WARNING: [Synth 8-614] signal 'prev_state' is read in the process but is not in the sensitivity list [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:212]
 INFO: [Synth 8-256] done synthesizing module 'dataConsume' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:43]
 INFO: [Synth 8-637] synthesizing blackbox instance 'cmdProc1' of component 'cmdProc' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:140]
@@ -62,18 +62,18 @@ INFO: [Synth 8-638] synthesizing module 'UART_RX_CTRL' [C:/Users/astee/OneDrive 
 INFO: [Synth 8-256] done synthesizing module 'UART_RX_CTRL' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/UART_RX_CTRL.vhd:84]
 INFO: [Synth 8-256] done synthesizing module 'top' (0#1) [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/top.vhd:15]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:21 . Memory (MB): peak = 1445.750 ; gain = 556.199
+Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1448.629 ; gain = 557.922
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:21 . Memory (MB): peak = 1445.750 ; gain = 556.199
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1448.629 ; gain = 557.922
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:21 . Memory (MB): peak = 1445.750 ; gain = 556.199
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1448.629 ; gain = 557.922
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1445.750 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1448.629 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -86,23 +86,23 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1543.055 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1507.945 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 Access is denied.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1543.055 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1507.945 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:42 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:00:39 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:42 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:00:39 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -111,13 +111,13 @@ Applied set_property IO_BUFFER_TYPE = NONE for clk. (constraint file  {c:/Users/
 Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  {c:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for clk_wiz. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:42 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:39 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-6040] Register index_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
 INFO: [Synth 8-802] inferred FSM for state register 'txState_reg' in module 'UART_TX_CTRL'
 INFO: [Synth 8-802] inferred FSM for state register 'currentState_reg' in module 'UART_RX_CTRL'
 WARNING: [Synth 8-327] inferring latch for variable 'ctrlOut_reg_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:198]
-WARNING: [Synth 8-327] inferring latch for variable 'maxIndex_int_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:373]
+WARNING: [Synth 8-327] inferring latch for variable 'maxIndex_int_reg' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:387]
 WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[0]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
 WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[1]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
 WARNING: [Synth 8-327] inferring latch for variable 'dataResults_reg_reg[2]' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd:189]
@@ -152,7 +152,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'txState_reg' using encodin
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'currentState_reg' using encoding 'sequential' in module 'UART_RX_CTRL'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:43 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:40 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -203,7 +203,7 @@ Start Cross Boundary and Area Optimization
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-6040] Register dataGen1/index_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:56 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:53 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -224,19 +224,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:01:09 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:01:07 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:01:11 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Timing Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:01:08 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:01:12 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Technology Mapping : Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -254,37 +254,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:52 ; elapsed = 00:01:25 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished IO Insertion : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:52 ; elapsed = 00:01:25 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:52 ; elapsed = 00:01:25 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:52 ; elapsed = 00:01:25 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:52 ; elapsed = 00:01:26 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:52 ; elapsed = 00:01:26 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -307,11 +307,11 @@ Report Cell Usage:
 |3     |BUFG         |     2|
 |4     |CARRY4       |    33|
 |5     |LUT1         |    10|
-|6     |LUT2         |   104|
-|7     |LUT3         |    38|
-|8     |LUT4         |    58|
-|9     |LUT5         |    28|
-|10    |LUT6         |   128|
+|6     |LUT2         |   100|
+|7     |LUT3         |    22|
+|8     |LUT4         |    75|
+|9     |LUT5         |    39|
+|10    |LUT6         |   126|
 |11    |MUXF7        |    35|
 |12    |MUXF8        |    16|
 |13    |FDCE         |     4|
@@ -322,32 +322,32 @@ Report Cell Usage:
 |18    |OBUF         |     1|
 +------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:52 ; elapsed = 00:01:26 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:03 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:01:20 . Memory (MB): peak = 1543.055 ; gain = 556.199
-Synthesis Optimization Complete : Time (s): cpu = 00:00:52 ; elapsed = 00:01:26 . Memory (MB): peak = 1543.055 ; gain = 653.504
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:46 ; elapsed = 00:01:17 . Memory (MB): peak = 1507.945 ; gain = 557.922
+Synthesis Optimization Complete : Time (s): cpu = 00:01:04 ; elapsed = 00:01:22 . Memory (MB): peak = 1507.945 ; gain = 617.238
 INFO: [Project 1-571] Translating synthesized netlist
 Parsing EDIF File [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/cmdProc.edn]
 Finished Parsing EDIF File [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/cmdProc.edn]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1543.055 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1507.945 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 213 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2018.2
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1543.055 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1507.945 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 123 instances were transformed.
   LD => LDCE: 123 instances
 
 Access is denied.
-Synth Design complete | Checksum: eac313c2
+Synth Design complete | Checksum: fa3bb841
 INFO: [Common 17-83] Releasing license: Synthesis
 44 Infos, 31 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:00 ; elapsed = 00:01:38 . Memory (MB): peak = 1543.055 ; gain = 1044.938
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1543.055 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:11 ; elapsed = 00:01:36 . Memory (MB): peak = 1507.945 ; gain = 1008.836
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1507.945 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Apr 21 18:17:52 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 21 21:41:24 2024...

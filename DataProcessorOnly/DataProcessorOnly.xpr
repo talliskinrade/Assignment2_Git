@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="65" Path="C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnly/DataProcessorOnly.xpr">
+<Project Product="Vivado" Version="7" Minor="65" Path="C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnly/DataProcessorOnly.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="60d5cb39fcc54cd9acd1958119b6080d"/>
@@ -59,7 +59,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="FeatureSet" Val="FeatureSet_Classic"/>
-    <Option Name="WTXSimLaunchSim" Val="1"/>
+    <Option Name="WTXSimLaunchSim" Val="9"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -90,13 +90,13 @@
   <FileSets Version="1" Minor="32">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd">
+      <File Path="$PPRDIR/../Assignment 2/peak_detector/common_pack.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../Assignment 2/peak_detector/common_pack.vhd">
+      <File Path="$PPRDIR/../FullSystem/FullSystem.srcs/sources_1/new/dataConsume.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
