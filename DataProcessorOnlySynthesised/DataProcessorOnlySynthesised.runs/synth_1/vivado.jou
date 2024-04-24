@@ -3,12 +3,18 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+<<<<<<< HEAD
 # Start of session at: Sun Apr 21 21:39:25 2024
 # Process ID: 18624
 # Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1
+=======
+# Start of session at: Mon Apr 22 11:36:44 2024
+# Process ID: 12852
+# Current directory: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
-# Log file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/top.vds
-# Journal file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1\vivado.jou
-# Running On: DESKTOP-5CTLBIO, OS: Windows, CPU Frequency: 1797 MHz, CPU Physical cores: 16, Host memory: 7883 MB
+# Log file: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1/top.vds
+# Journal file: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1\vivado.jou
+# Running On: LAPTOP-79ULQ39M, OS: Windows, CPU Frequency: 1498 MHz, CPU Physical cores: 4, Host memory: 8350 MB
 #-----------------------------------------------------------
 source top.tcl -notrace

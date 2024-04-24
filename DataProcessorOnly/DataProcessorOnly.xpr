@@ -59,7 +59,11 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="FeatureSet" Val="FeatureSet_Classic"/>
+<<<<<<< HEAD
     <Option Name="WTXSimLaunchSim" Val="9"/>
+=======
+    <Option Name="WTXSimLaunchSim" Val="15"/>
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>

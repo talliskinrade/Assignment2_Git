@@ -1,7 +1,12 @@
 -------------------------------------
 | Tool Version : Vivado v.2023.2
+<<<<<<< HEAD
 | Date         : Sun Apr 21 21:43:02 2024
 | Host         : DESKTOP-5CTLBIO
+=======
+| Date         : Mon Apr 22 11:41:30 2024
+| Host         : LAPTOP-79ULQ39M
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 | Design       : design_1
 | Device       : xc7a35t-cpg236-1--
 -------------------------------------

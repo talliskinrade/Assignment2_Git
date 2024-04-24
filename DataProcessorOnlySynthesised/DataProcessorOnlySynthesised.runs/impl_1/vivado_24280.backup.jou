@@ -3,15 +3,9 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-<<<<<<< HEAD
-# Start of session at: Sun Apr 21 21:44:34 2024
-# Process ID: 21512
-# Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/impl_1
-=======
-# Start of session at: Mon Apr 22 11:44:39 2024
-# Process ID: 4292
+# Start of session at: Sun Apr 21 23:32:43 2024
+# Process ID: 24280
 # Current directory: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/impl_1
->>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 # Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
 # Log file: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/impl_1/top.vdi
 # Journal file: C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/impl_1\vivado.jou

@@ -1,8 +1,13 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+<<<<<<< HEAD
 | Date         : Sun Apr 21 21:43:09 2024
 | Host         : DESKTOP-5CTLBIO running 64-bit major release  (build 9200)
+=======
+| Date         : Mon Apr 22 11:41:39 2024
+| Host         : LAPTOP-79ULQ39M running 64-bit major release  (build 9200)
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
 | Device       : xc7a35t
@@ -58,9 +63,15 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
+<<<<<<< HEAD
 | No           | No                    | No                     |             131 |           50 |
 | No           | No                    | Yes                    |               4 |            4 |
 | No           | Yes                   | No                     |              40 |           20 |
+=======
+| No           | No                    | No                     |             131 |           54 |
+| No           | No                    | Yes                    |               4 |            3 |
+| No           | Yes                   | No                     |              40 |           19 |
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 | Yes          | No                    | No                     |              70 |           20 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |             212 |           62 |
@@ -74,18 +85,26 @@ Table of Contents
 |                Clock Signal               |              Enable Signal              |         Set/Reset Signal        | Slice Load Count | Bel Load Count | Bels / Slice |
 +-------------------------------------------+-----------------------------------------+---------------------------------+------------------+----------------+--------------+
 |  dataConsume1/ctrlOut_reg_reg_i_2_n_0     |                                         |                                 |                1 |              1 |         1.00 |
-|  clk_wiz/inst/clk_out                     | rx/baudClkX8Count[3]_i_1_n_0            | rx/bitTmr[10]_i_1_n_0           |                1 |              4 |         4.00 |
+|  clk_wiz/inst/clk_out                     | cmdProc1/ctrlByteCount                  | reset_IBUF                      |                1 |              4 |         4.00 |
 |  clk_wiz/inst/clk_out                     | rx/rcvShiftReg                          | rx/bitCount[3]_i_1_n_0          |                1 |              4 |         4.00 |
-|  clk_wiz/inst/clk_out                     | cmdProc1/ctrlByteCount                  | reset_IBUF                      |                2 |              4 |         2.00 |
+|  clk_wiz/inst/clk_out                     | rx/baudClkX8Count[3]_i_1_n_0            | rx/bitTmr[10]_i_1_n_0           |                1 |              4 |         4.00 |
 |  clk_wiz/inst/clk_out                     |                                         |                                 |                5 |              8 |         1.60 |
+<<<<<<< HEAD
 |  clk_wiz/inst/clk_out                     | rx/rcvDataReg[7]_i_1_n_0                | reset_IBUF                      |                3 |              8 |         2.67 |
 |  clk_wiz/inst/clk_out                     | cmdProc1/txnow                          |                                 |                4 |              8 |         2.00 |
 |  clk_wiz/inst/clk_out                     | rx/rcvShiftReg                          | reset_IBUF                      |                3 |              9 |         3.00 |
 |  dataConsume1/maxIndex_int_reg[9]_i_2_n_0 |                                         |                                 |                5 |             10 |         2.00 |
+=======
+|  clk_wiz/inst/clk_out                     | cmdProc1/txnow                          |                                 |                4 |              8 |         2.00 |
+|  clk_wiz/inst/clk_out                     | rx/rcvDataReg[7]_i_1_n_0                | reset_IBUF                      |                3 |              8 |         2.67 |
+|  clk_wiz/inst/clk_out                     | rx/rcvShiftReg                          | reset_IBUF                      |                3 |              9 |         3.00 |
+|  dataConsume1/maxIndex_int_reg[9]_i_2_n_0 |                                         |                                 |                4 |             10 |         2.50 |
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 |  clk_wiz/inst/clk_out                     | dataConsume1/counter0                   | dataConsume1/counter[9]_i_1_n_0 |                4 |             10 |         2.50 |
 |  clk_wiz/inst/clk_out                     | rx/bitTmr[10]_i_2_n_0                   | rx/bitTmr[10]_i_1_n_0           |                4 |             11 |         2.75 |
 |  clk_wiz/inst/clk_out                     | cmdProc1/reg_numWords_bcd[2][3]_i_1_n_0 | reset_IBUF                      |                4 |             12 |         3.00 |
 |  clk_wiz/inst/clk_out                     |                                         | tx/bitTmr                       |                4 |             14 |         3.50 |
+<<<<<<< HEAD
 |  clk_wiz/inst/clk_out                     | dataGen1/ctrlIn_detected                | reset_IBUF                      |                5 |             19 |         3.80 |
 |  dataConsume1/reg4_reg[7]_i_2_n_0         |                                         |                                 |                7 |             24 |         3.43 |
 |  clk_wiz/inst/clk_out                     |                                         | reset_IBUF                      |               20 |             30 |         1.50 |
@@ -93,6 +112,15 @@ Table of Contents
 |  reg0__0                                  |                                         |                                 |               12 |             32 |         2.67 |
 |  clk_wiz/inst/clk_out                     | tx/bitIndex                             | tx/txdone                       |                9 |             32 |         3.56 |
 |  dataResults_reg[6]_0                     |                                         |                                 |               20 |             56 |         2.80 |
+=======
+|  clk_wiz/inst/clk_out                     | dataGen1/ctrlIn_detected                | reset_IBUF                      |                6 |             19 |         3.17 |
+|  dataConsume1/reg4__0                     |                                         |                                 |                8 |             24 |         3.00 |
+|  clk_wiz/inst/clk_out                     |                                         | reset_IBUF                      |               18 |             30 |         1.67 |
+|  clk_wiz/inst/clk_out                     | cmdProc1/rxdone                         | cmdProc1/byteNum_reg[0]0        |                6 |             31 |         5.17 |
+|  reg0__0                                  |                                         |                                 |               14 |             32 |         2.29 |
+|  clk_wiz/inst/clk_out                     | tx/bitIndex                             | tx/txdone                       |                9 |             32 |         3.56 |
+|  dataResults_reg[6]_0                     |                                         |                                 |               22 |             56 |         2.55 |
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 |  clk_wiz/inst/clk_out                     | dataConsume1/ctrlOut_i_1_n_0            |                                 |               16 |             62 |         3.88 |
 |  clk_wiz/inst/clk_out                     | dataConsume1/seqDone                    | reset_IBUF                      |               18 |             68 |         3.78 |
 +-------------------------------------------+-----------------------------------------+---------------------------------+------------------+----------------+--------------+

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1713732099">
+=======
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1713782381">
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
   <File Type="ROUTE-PWR" Name="top_power_routed.rpt"/>
   <File Type="PA-TCL" Name="top.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="top_power_summary_routed.pb"/>

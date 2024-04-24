@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <Runs Version="1" Minor="0">
-<<<<<<< HEAD
-	<Run Id="synth_1" LaunchDir="C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-=======
 	<Run Id="synth_1" LaunchDir="C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
->>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
 	<Parameters>
 		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
 		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>

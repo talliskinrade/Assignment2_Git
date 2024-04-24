@@ -211,3 +211,7 @@ dismissDialog("Open Project"); // bq (Open Project Progress)
 // Elapsed time: 520 seconds
 selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dataConsume(behavioural) (dataConsume.vhd)]", 1, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
 selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dataConsume(behavioural) (dataConsume.vhd)]", 1, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 1,213 MB. GUI used memory: 88 MB. Current time: 4/24/24, 11:39:43 AM BST
+// Elapsed time: 1554 seconds
+selectCodeEditor("dataConsume.vhd", 113, 463); // ad (dataConsume.vhd)
+selectCodeEditor("dataConsume.vhd", 94, 484); // ad (dataConsume.vhd)

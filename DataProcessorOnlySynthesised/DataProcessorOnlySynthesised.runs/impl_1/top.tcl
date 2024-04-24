@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/impl_1/top.tcl"
+  variable script "C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.runs/impl_1/top.tcl"
   variable category "vivado_impl"
 }
 
@@ -123,10 +123,16 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
+<<<<<<< HEAD
   set_param chipscope.maxJobs 4
   set_param runs.launchOptions { -jobs 8  }
+=======
+  set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
+  set_param runs.launchOptions { -jobs 4  }
+>>>>>>> 673e012e686b30a6319c3eab34af8695a3397105
   open_checkpoint top_routed.dcp
-  set_property webtalk.parent_dir {C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.cache/wt} [current_project]
+  set_property webtalk.parent_dir {C:/Users/talli/OneDrive/Documents/EEE_Year_2/Digital Design/Assignment2/Assignment2_Git/DataProcessorOnlySynthesised/DataProcessorOnlySynthesised.cache/wt} [current_project]
 set_property TOP top [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }
