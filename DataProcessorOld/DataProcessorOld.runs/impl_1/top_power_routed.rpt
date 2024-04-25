@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Thu Apr 25 01:40:21 2024
+| Date             : Thu Apr 25 03:09:41 2024
 | Host             : DESKTOP-5CTLBIO running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.182        |
+| Total On-Chip Power (W)  | 0.183        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.110        |
+| Dynamic (W)              | 0.111        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.1         |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.002 |        8 |       --- |             --- |
-| Slice Logic    |     0.002 |      967 |       --- |             --- |
-|   LUT as Logic |     0.002 |      399 |     20800 |            1.92 |
-|   Register     |    <0.001 |      403 |     41600 |            0.97 |
+| Clocks         |     0.003 |        8 |       --- |             --- |
+| Slice Logic    |     0.002 |      960 |       --- |             --- |
+|   LUT as Logic |     0.002 |      379 |     20800 |            1.82 |
+|   Register     |    <0.001 |      413 |     41600 |            0.99 |
 |   CARRY4       |    <0.001 |       35 |      8150 |            0.43 |
-|   F7/F8 Muxes  |    <0.001 |       40 |     32600 |            0.12 |
+|   F7/F8 Muxes  |    <0.001 |       42 |     32600 |            0.13 |
 |   Others       |     0.000 |       13 |       --- |             --- |
-| Signals        |     0.003 |      735 |       --- |             --- |
+| Signals        |     0.003 |      739 |       --- |             --- |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
 | I/O            |    <0.001 |        4 |       106 |            3.77 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.182 |          |           |                 |
+| Total          |     0.183 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +73,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.016 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.017 |       0.007 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.070 |       0.058 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -147,11 +147,11 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| top            |     0.110 |
+| top            |     0.111 |
 |   clk_wiz      |     0.104 |
 |     inst       |     0.104 |
 |   cmdProc1     |     0.002 |
-|   dataConsume1 |     0.002 |
+|   dataConsume1 |     0.003 |
 +----------------+-----------+
 
 

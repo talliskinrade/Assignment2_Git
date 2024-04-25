@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Thu Apr 25 01:40:21 2024
+| Date         : Thu Apr 25 03:09:40 2024
 | Host         : DESKTOP-5CTLBIO running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,12 +23,12 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 7
+             Violations found: 17
 +-----------+------------------+------------------------------------------------------------------+------------+
 | Rule      | Severity         | Description                                                      | Violations |
 +-----------+------------------+------------------------------------------------------------------+------------+
 | TIMING-6  | Critical Warning | No common primary clock between related clocks                   | 2          |
-| TIMING-20 | Warning          | Non-clocked latch                                                | 1          |
+| TIMING-20 | Warning          | Non-clocked latch                                                | 11         |
 | TIMING-23 | Warning          | Combinational loop found                                         | 1          |
 | TIMING-56 | Warning          | Missing logically or physically excluded clock groups constraint | 2          |
 | LATCH-1   | Advisory         | Existing latches in the design                                   | 1          |
@@ -51,9 +51,59 @@ Non-clocked latch
 The latch dataConsume1/ctrlOut_reg_reg cannot be properly analyzed as its control pin dataConsume1/ctrlOut_reg_reg/G is not reached by a timing clock
 Related violations: <none>
 
+TIMING-20#2 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[0] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[0]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#3 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[1] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[1]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#4 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[2] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[2]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#5 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[3] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[3]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#6 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[4] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[4]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#7 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[5] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[5]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#8 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[6] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[6]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#9 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[7] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[7]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#10 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[8] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[8]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#11 Warning
+Non-clocked latch  
+The latch dataConsume1/maxIndex_int_reg[9] cannot be properly analyzed as its control pin dataConsume1/maxIndex_int_reg[9]/G is not reached by a timing clock
+Related violations: <none>
+
 TIMING-23#1 Warning
 Combinational loop found  
-A timing loop has been detected on a combinational path. A timing arc has been disabled between dataConsume1/maxIndex_int1_carry/S[0] and dataConsume1/maxIndex_int1_carry/CO[3] to disable the timing loop
+A timing loop has been detected on a combinational path. A timing arc has been disabled between dataConsume1/dataResults_reg[0]1_carry/S[0] and dataConsume1/dataResults_reg[0]1_carry/CO[3] to disable the timing loop
 Related violations: <none>
 
 TIMING-56#1 Warning
@@ -68,7 +118,7 @@ Related violations: <none>
 
 LATCH-1#1 Advisory
 Existing latches in the design  
-There are 1 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
+There are 11 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
 Related violations: <none>
 
 
