@@ -49,16 +49,4 @@ Error: txData is 00100000; while byte(12) character(1) should be 00110000
 Time: 42292075 ns  Iteration: 3  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
 Note: =====Process of Sequence No.3 starts.
 Time: 42292075 ns  Iteration: 3  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-Error: txData is 01000001; while byte(12) character(2) should be 00110110
-Time: 132991515 ns  Iteration: 2  Process: /tb_cmdProc_interim/checkByte  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-Note: =====Process of Sequence No.3 is done.
-Time: 174292125100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-Note: =====A total of 13 bytes has been processed; 
-Time: 174292125100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-Warning: numWords_BCD = 12 at the start of this sequence
-Time: 174292125100 ps  Iteration: 4  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-Note: =====Process of Sequence No.4 starts.
-Time: 176375505 ns  Iteration: 2  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-Note: =====Process of Sequence No.5 starts.
-Time: 177417205 ns  Iteration: 3  Process: /tb_cmdProc_interim/byteCounter  File: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/tb_CmdProcessor_Interim.vhd
-INFO: xsimkernel Simulation Memory Usage: 17220 KB (Peak: 17220 KB), Simulation CPU Usage: 174140 ms
+INFO: xsimkernel Simulation Memory Usage: 17348 KB (Peak: 17348 KB), Simulation CPU Usage: 49624 ms

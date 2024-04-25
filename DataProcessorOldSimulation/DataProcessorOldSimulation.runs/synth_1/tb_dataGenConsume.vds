@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Apr 24 18:37:38 2024
+# Process ID: 21320
+# Current directory: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOldSimulation/DataProcessorOldSimulation.runs/synth_1
+# Command line: vivado.exe -log tb_dataGenConsume.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source tb_dataGenConsume.tcl
+# Log file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOldSimulation/DataProcessorOldSimulation.runs/synth_1/tb_dataGenConsume.vds
+# Journal file: C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/DataProcessorOldSimulation/DataProcessorOldSimulation.runs/synth_1\vivado.jou
+# Running On: DESKTOP-5CTLBIO, OS: Windows, CPU Frequency: 1797 MHz, CPU Physical cores: 16, Host memory: 7883 MB
+#-----------------------------------------------------------
+source tb_dataGenConsume.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 483.961 ; gain = 179.090
+Command: synth_design -top tb_dataGenConsume -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 18000
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 931.004 ; gain = 443.070
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'tb_dataGenConsume' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/tb_dataConsume_unsigned.vhd:10]
+WARNING: [Synth 8-312] ignoring unsynthesizable construct: extra waveform elements [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/tb_dataConsume_unsigned.vhd:81]
+ERROR: [Synth 8-27] non-clocking wait statement not supported [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/tb_dataConsume_unsigned.vhd:88]
+ERROR: [Synth 8-285] failed synthesizing module 'tb_dataGenConsume' [C:/Users/astee/OneDrive - University of Bristol/University work/Digital Design/Assignment2_Git/Assignment 2/peak_detector/unsigned/tb_dataConsume_unsigned.vhd:10]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1037.914 ; gain = 549.980
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+6 Infos, 1 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 24 18:37:54 2024...

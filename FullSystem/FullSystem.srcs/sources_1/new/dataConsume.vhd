@@ -55,17 +55,19 @@ BEGIN
 -------------------------------------------------------------------
     combi_out: PROCESS(cur_state)
     BEGIN
-        dataReady <= '0';
         seqDone <= '0';
-      
-        IF cur_state = MAIN_LOOP_regOn THEN
-            dataReady <= '1';
-        END IF;
 
         IF cur_state = DONE THEN
             seqDone <= '1';
         END IF;
-      
+    END PROCESS;
+    
+    combi_setDataReady: PROCESS (cur_state)
+    BEGIN
+        dataReady <= '0';
+        IF cur_state = MAIN_LOOP_regOn THEN
+            dataReady <= '1';
+        END IF;
     END PROCESS;
 
     seq_byteLatch: PROCESS (clk)
@@ -78,18 +80,6 @@ BEGIN
             END IF;
         END IF;
     END PROCESS;
-    
---    detect_ctrlIn: PROCESS(clk, ctrlIn)
---    -- Alternative way to detect ctrlIn
---    BEGIN
---        IF reset = '1' OR cur_state = INIT THEN
---            ctrlIn_detected <= '0';
---        ELSIF ctrlIn'EVENT THEN
---            ctrlIn_detected <= '1';
---        ELSIF clk'EVENT AND clk='1' THEN
---            ctrlIn_detected <= '0';
---        END IF;
---    END PROCESS;
     
 --Data Generation Two-Phase Protocol
     delay_CtrlIn: PROCESS (clk)    
@@ -114,18 +104,30 @@ BEGIN
         END IF;
     END PROCESS;
 
-    bcd_to_integer: PROCESS(numWords_bcd_reg)
+    bcd_to_integer: PROCESS(clk, numWords_bcd_reg)
     BEGIN
-        numWords_int <= TO_INTEGER(unsigned(numWords_bcd_reg(0))) + TO_INTEGER(unsigned(numWords_bcd_reg(1)))*10 + TO_INTEGER(unsigned(numWords_bcd_reg(2)))*100;
+        IF clk'EVENT AND clk='1' THEN
+            IF reset = '1' THEN
+                numWords_int <= 0;
+            ELSE
+                numWords_int <= TO_INTEGER(unsigned(numWords_bcd_reg(0))) + TO_INTEGER(unsigned(numWords_bcd_reg(1)))*10 + TO_INTEGER(unsigned(numWords_bcd_reg(2)))*100;
+            END IF;
+        END IF;
     END PROCESS;
 
-    Integer_to_bcd: PROCESS(maxIndex_int)
-        VARIABLE tmp: integer range 0 to 99;
+    Integer_to_bcd: PROCESS(clk, maxIndex_int)
     BEGIN
-        maxIndex(2) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
-        tmp:= maxIndex_int rem 100;
-        maxIndex(1) <= std_logic_vector(to_unsigned((tmp / 10), 4));
-        maxIndex(0) <= std_logic_vector(to_unsigned(((tmp mod 10)-1), 4));
+        IF clk'EVENT AND clk='1' THEN
+            IF reset = '1' THEN
+                maxIndex(2) <= "0000";
+                maxIndex(1) <= "0000";
+                maxIndex(0) <= "0000";
+            ELSE
+                maxIndex(2) <= std_logic_vector(to_unsigned((maxIndex_int / 100), 4));
+                maxIndex(1) <= std_logic_vector(to_unsigned(((maxIndex_int rem 100) / 10), 4));
+                maxIndex(0) <= std_logic_vector(to_unsigned((((maxIndex_int rem 100) rem 10)-1), 4));
+            END IF;
+        END IF;
     END PROCESS;
 
 -------------------------------------------------------------------

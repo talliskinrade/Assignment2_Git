@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_dataGenConsume_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="common_pack" />
+            <top_module name="tb_dataGenConsume" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,067.001 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="247"></NameColumnWidth>
+      <ValueColumnWidth column_width="123"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/tb_dataGenConsume/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/ctrl_genDriv" type="logic">
+      <obj_property name="ElementShortName">ctrl_genDriv</obj_property>
+      <obj_property name="ObjectShortName">ctrl_genDriv</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/ctrl_consDriv" type="logic">
+      <obj_property name="ElementShortName">ctrl_consDriv</obj_property>
+      <obj_property name="ObjectShortName">ctrl_consDriv</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataReady" type="logic">
+      <obj_property name="ElementShortName">dataReady</obj_property>
+      <obj_property name="ObjectShortName">dataReady</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/seqDone" type="logic">
+      <obj_property name="ElementShortName">seqDone</obj_property>
+      <obj_property name="ObjectShortName">seqDone</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/readData" type="array">
+      <obj_property name="ElementShortName">readData[7:0]</obj_property>
+      <obj_property name="ObjectShortName">readData[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/curByte" type="array">
+      <obj_property name="ElementShortName">curByte[7:0]</obj_property>
+      <obj_property name="ObjectShortName">curByte[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/numWords" type="array">
+      <obj_property name="ElementShortName">numWords[2:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">numWords[2:0][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/maxIndex" type="array">
+      <obj_property name="ElementShortName">maxIndex[2:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">maxIndex[2:0][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataResults" type="array">
+      <obj_property name="ElementShortName">dataResults[0:6][7:0]</obj_property>
+      <obj_property name="ObjectShortName">dataResults[0:6][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/tbCount" type="other">
+      <obj_property name="ElementShortName">tbCount</obj_property>
+      <obj_property name="ObjectShortName">tbCount</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/seqCount" type="other">
+      <obj_property name="ElementShortName">seqCount</obj_property>
+      <obj_property name="ObjectShortName">seqCount</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/SEQ_COUNT_MAX" type="other">
+      <obj_property name="ElementShortName">SEQ_COUNT_MAX</obj_property>
+      <obj_property name="ObjectShortName">SEQ_COUNT_MAX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/RESULTS" type="array">
+      <obj_property name="ElementShortName">RESULTS[0:5][0:6][7:0]</obj_property>
+      <obj_property name="ObjectShortName">RESULTS[0:5][0:6][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/peak" type="array">
+      <obj_property name="ElementShortName">peak[0:5][2:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">peak[0:5][2:0][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/maxCycleCount" type="other">
+      <obj_property name="ElementShortName">maxCycleCount</obj_property>
+      <obj_property name="ObjectShortName">maxCycleCount</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg6" type="array">
+      <obj_property name="ElementShortName">reg6[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg6[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg5" type="array">
+      <obj_property name="ElementShortName">reg5[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg5[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg4" type="array">
+      <obj_property name="ElementShortName">reg4[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg4[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg3" type="array">
+      <obj_property name="ElementShortName">reg3[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg3[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg2" type="array">
+      <obj_property name="ElementShortName">reg2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg2[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg1" type="array">
+      <obj_property name="ElementShortName">reg1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg1[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_dataGenConsume/dataConsume1/reg0" type="array">
+      <obj_property name="ElementShortName">reg0[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg0[7:0]</obj_property>
+   </wvobject>
+</wave_config>
